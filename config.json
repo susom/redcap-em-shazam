@@ -23,7 +23,8 @@
   ],
 
   "permissions": [
-    "hook_survey_page_top"
+    "hook_survey_page_top",
+    "hook_data_entry_form_top"
   ],
 
   "links": {
@@ -33,7 +34,7 @@
       {
       "name": "Shazam",
       "icon": "gear",
-      "url": "shazam.php"
+      "url": "config.php"
       }
     ]
   },
