@@ -30,6 +30,11 @@
     "control-center": [
     ],
     "project": [
+      {
+      "name": "Shazam",
+      "icon": "gear",
+      "url": "shazam.php"
+      }
     ]
   },
 
