@@ -1,0 +1,46 @@
+{
+  "name": "Shazam",
+
+  "namespace":"Stanford\\Shazam",
+
+  "description": "A module for tabulating fields",
+
+  "versions": [
+    { "0.1": "Initial Development Version" }
+  ],
+
+  "authors": [
+    {
+      "name": "Andy Martin",
+      "email": "andy123@stanford.edu",
+      "institution": "Stanford University"
+    },
+    {
+      "name": "YongJae Lee",
+      "email": "jael@stanford.edu",
+      "institution": "Stanford University"
+    }
+  ],
+
+  "permissions": [
+    "hook_survey_page_top"
+  ],
+
+  "links": {
+    "control-center": [
+    ],
+    "project": [
+      {
+      "name": "Shazam",
+      "icon": "gear",
+      "url": "shazam.php"
+      }
+    ]
+  },
+
+  "system-settings": [
+  ],
+
+  "project-settings": [
+  ]
+}
