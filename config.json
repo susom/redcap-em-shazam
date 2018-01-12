@@ -48,60 +48,11 @@
     }
   ],
 
-  "TODOproject-settings-override": [
-    {
-      "name": "Configure",
-      "url": "config.php"
-    },
-    {
-      "name": "Validate",
-      "url": "validate.php"
-    }
-  ],
-
   "project-settings": [
     {
-      "key": "shazam-config",
-      "name": "config.php",
-      "type": "custom",
-      "source": "js/em_config.js"
-    },
-    {
-      "key": "shazam_fields",
-      "name": "<b>Select one or more fields to insert custom Shazam tables.  Keep in mind that all fields used in the Shazam table must be on the page when rendered.  You cannot build tables from multiple forms.",
-      "type" : "sub_settings",
-      "repeatable" : true,
-      "sub_settings":[
-        {
-          "key": "destination_field",
-          "name": "<b>Destination Field</b>Shazam will use this field to create its content.  It is generally recommended that this be a 'descriptive' field to reduce complexity.",
-          "type": "field-list",
-          "required": true
-        },
-        {
-          "key": "html",
-          "name": "HTML",
-          "type": "text",
-          "required": false
-        },
-        {
-          "key": "css",
-          "name": "CSS",
-          "required": false,
-          "type": "text"
-        },
-        {
-          "key": "js",
-          "name": "JS",
-          "required": false,
-          "type": "text"
-        },
-        {
-          "key":"disabled",
-          "name": "Check to disable this Shazam",
-          "type": "checkbox"
-        }
-      ]
+      "key": "shazam-descriptive",
+      "name": "This module is configured by a link on the sidebar called 'Shazam Setup'.<br><i>The acutal config is stored in a hidden shazam-config external module variable.</i>",
+      "type": "descriptive"
     }
   ]
 }

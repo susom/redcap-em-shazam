@@ -90,7 +90,11 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
     .shazam-descriptive { font-style: italic; font-size: smaller; margin: 0 20px; white-space: nowrap;}
 </style>
 
-<h3>Shazam</h3>
+<h3>Shazam Fields</h3>
+
+<p>
+    This is a table of descriptive fields in your project that have been configured with Shazam's powers.  Click on the add button below to get started.  More instructions are available when you are actually editing the Shazam configuration.
+</p>
 
 <div class="shazam-table">
 	<?php echo $module->getShazamTable(); ?>
