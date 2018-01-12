@@ -1,150 +1,110 @@
+// CREATE SHAZAM
+if(typeof Shazam === 'undefined') { var Shazam = {}; }
 
-// Make the tabs work on click
-$('#tabs li').on('click',function(){
-
-    // Remove any that might not be active
-    $('#tabs li').not(this).each(function(i, e) {
-        $(e).removeClass('active');
-        var panel_id = $(e).data('div');
-        var panel = $('#' + panel_id);
-        //console.log("active panel", panel);
-        panel.hide();
-    });
-
-    //Show the active one
-    $(this).addClass('active');
-    var panel_id = $(this).data('div');
-    var panel = $('#' + panel_id);
-    //console.log("new active panel", panel);
-    panel.show();
-});
-
-// Attach handlers to buttons/events
-$('#saveBtn').on('click',saveShazam);
-$('#active_field_name').on('change',loadShazam);
-
-// Make the first tab active by default
-$('#tabs li:first').trigger('click');
-
-// Load the first field from the dropdown
-$('#active_field_name').trigger('change');
-
-
-function loadShazam() {
-    var field_name = $( "#active_field_name" ).val();
-    if (field_name) {
-        var params = {
-            "pid": pid,
-            "action": "load",
-            "field_name": field_name
-        };
-
-        var jqxhr = $.ajax({
-            type: "POST",
-            data: params,
-            dataType: "json"
-        })
-            .done(function(data) {
-                if ( console && console.log ) {
-                    console.log( "Loading:", data);
-                }
-                // Make sure the fieldnames still match!
-                if ( $( "#active_field_name" ).val() != data.field_name ) {
-                    alert ("The selected fieldname doesn't match the loaded one!");
-                    return;
-                }
-                // Load values into editor
-                $(editors).each(function(i,e) {
-                    var editor = e.instance;
-                    var mode = e.mode;
-                    var val = editor.getValue();
-                    if (data.params[mode]) editor.setValue(data.params[mode]);
-                });
-
-
-            })
-            .fail(function() {
-                alert( "error" );
-            });
-    }
-
+// Table
+Shazam.post = function(action,field_name) {
+    // console.log("Creating " + field_name);
+    var action = $('<input>')
+        .attr('name','action')
+        .val(action);
+    var field_name = $('<input>')
+        .attr('name','field_name')
+        .val(field_name);
+    var form = $('#action-form').append(action).append(field_name).submit();
 }
 
-// Save the current configuration
-function saveShazam() {
-    var data = {
-        "pid": pid,
-        "action": "save",
-        "field_name": $( "#active_field_name" ).val(),
-        "params": {}
-    }
+Shazam.initAceEditors = function() {
 
-    // Get values from editors
-    $(editors).each(function(i,e) {
-        var editor = e.instance;
-        var val = editor.getValue();
-        var mode = e.mode;
-        console.log(editor, val);
-        data.params[mode] = val;
-    });
-    console.log("Params:",data);
+    // Init read-only editor for the example:
+    Shazam.initEditor('shazam-example-code','html');
+    //Shazam.example = Shazam.editors.shift();
 
-    var jqxhr = $.ajax({
-        type: "POST",
-        data: data
-    })
-        .done(function(data) {
-            if ( console && console.log ) {
-                console.log( "Sample of data:", data.slice( 0, 100 ) );
-            }
-        })
-        .fail(function() {
-            alert( "error" );
-        })
-        .always(function() {
-//                    alert( "complete" );
-        });
-}
+    // var currentValue = $(editorElement).html();
+    // // console.log("EditorElement",editorElement, currentValue);
+    // var editor = ace.edit(id);
+    //
+    // editor.setOptions({
+    //     enableBasicAutocompletion: true,
+    //     enableSnippets: true,
+    //     enableLiveAutocompletion: true
+    // });
+    //
+    // editor.setTheme("ace/theme/clouds");
+    // editor.getSession().setMode("ace/mode/" + mode);
 
 
+    console.log("initAceEditors");
+    var langTools = ace.require("ace/ext/language_tools");
+    var redcapFieldCompleter = {
+        getCompletions: function(editor, session, pos, prefix, callback) {
+            var wordList = ["foo", "bar", "baz"];
+            // callback(null, wordList.map(function(word) {
+            callback(null, Shazam.fields.map(function(word) {
+                return {
+                    caption: word,
+                    value: word,
+                    meta: "field"
+                };
+            }));
 
-// Utility function to dynamically load an external script
-function getScript(src, callback) {
-    var s = document.createElement('script');
-    s.src = src;
-    s.async = true;
-    s.onreadystatechange = s.onload = function() {
-        if (!callback.done && (!s.readyState || /loaded|complete/.test(s.readyState))) {
-            callback.done = true;
-            callback();
         }
     };
-    document.querySelector('head').appendChild(s);
+    langTools.addCompleter(redcapFieldCompleter);
+
+    var shazamCompleter = {
+        getCompletions: function(editor, session, pos, prefix, callback) {
+            var wordList = ["shazam", "shazam-mirror-visibility"];
+            callback(null, wordList.map(function(word) {
+                return {
+                    caption: word,
+                    value: word,
+                    meta: "Shazam Commands"
+                };
+            }));
+
+        }
+    };
+    langTools.addCompleter(shazamCompleter);
+    var labelCompleter = {
+        getCompletions: function(editor, session, pos, prefix, callback) {
+            var field_labels = Shazam.fields.map(function(word) { return word + ":label" });
+            callback(null, field_labels.map(function(word) {
+                return {
+                    caption: word,
+                    value: word,
+                    meta: "Field Label"
+                };
+            }));
+
+        }
+    };
+    langTools.addCompleter(labelCompleter);
+
+    Shazam.initEditor('editor_html', 'html');
+    Shazam.initEditor('editor_css', 'css');
+    Shazam.initEditor('editor_js', 'javascript');
 }
 
-
-// Get the ACE Editor
-//getScript('https://cdn.jsdelivr.net/ace/1.2.3/noconflict/ace.js', initAce);
-
-
-// An array for all of the editors we are working with in the tabs
-var editors = [];
-
-function initAce() {
-    initEditor('editor_html', 'html');
-    initEditor('editor_css', 'css');
-    initEditor('editor_js', 'javascript');
-}
-
-// Create an ACE editor on the id element in mode mode
-function initEditor(id, mode) {
+Shazam.initEditor = function(id, mode) {
+    // console.log("initEditor" + id + " / " + mode);
+    // Create an ACE editor on the id element with mode mode
     var editorElement = $('#'+id);
+    var currentValue = $(editorElement).html();
+    // console.log("EditorElement",editorElement, currentValue);
     var editor = ace.edit(id);
+
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+
     editor.setTheme("ace/theme/clouds");
     editor.getSession().setMode("ace/mode/" + mode);
     editor.$blockScrolling = Infinity;
-    editorElement.width('100%');
 
+
+    editorElement.width('100%');
     editor.commands.addCommand({
         name: 'saveFile',
         bindKey: {
@@ -153,18 +113,48 @@ function initEditor(id, mode) {
             sender: 'editor|cli'
         },
         exec: function(env, args, request) {
-            saveShazam();
+            Shazam.save();
         }
     });
 
-    editors.push( {id: id, instance: editor, mode: mode});
-    resizeAce();
+    // Set the value of the editor from memory
+    editor.setValue(currentValue,1);
+
+    // Get fancy with the default view of the default js template
+    if (mode=='javascript') {
+        if(currentValue == "$(document).ready(function(){\n\t//Add javascript here...\n\t\n});") {
+            editor.gotoLine(3, 1);
+        }
+    }
+
+    // For html, remove a few annotations that don't apply
+    if (mode=='html') {
+        var session = editor.getSession();
+        session.on("changeAnnotation", function () {
+            var annotations = session.getAnnotations() || [], i = len = annotations.length;
+            while (i--) {
+                if (/doctype first\. Expected/.test(annotations[i].text)) {
+                    annotations.splice(i, 1);
+                }
+                else if (/Unexpected End of file\. Expected/.test(annotations[i].text)) {
+                    annotations.splice(i, 1);
+                }
+            }
+            if (len > annotations.length) {
+                session.setAnnotations(annotations);
+            }
+        });
+        editor.focus();
+    }
+
+    // Cache the editor objects to Shazam js object (used for resizing and saving)
+    Shazam.editors.push( {id: id, instance: editor, mode: mode});
 }
 
-function resizeAce() {
-    // Bottom of Tabs
-    var tabTop = $('#tabs').position().top;
-
+// Try to set a reasonable size to the ACE editor based on size of the display/window
+Shazam.resizeAceEditors = function () {
+    // Top of div
+    var tabTop = $('div.shazam-editor').position().top;
 
     // Space in window
     var w = window.innerHeight;
@@ -172,27 +162,154 @@ function resizeAce() {
     // Top of south footer (if present)
     var footerTop = $('#south').position().top;
 
+    // Calculate a suitable bottom
     var bottom = footerTop == 0 ? w : footerTop;
 
-    // Space for submit and other stuff
-    var fudge = 100;
+    // Space for submit and other fudge stuff
+    var fudge = 90;
 
     // Calc Height
     var h = max(200,bottom - tabTop - fudge);
-//            console.log("h", h);
 
     // Apply height to all editors (even hidden ones)
-    $(editors).each(function(i,e){
-//                console.log("id", e.id);
+    $(Shazam.editors).each(function(i,e){
         var editorDiv = $('#'+ e.id);
         $(editorDiv).css('height', h.toString() + 'px');
     });
 }
 
-$(window).on('resize', function () {
-    resizeAce();
-});
+Shazam.save = function(callback) {
+    // console.log('SAVE!');
+    var field_name = $('div.shazam-editor').data('field-name');
+    var status = 1; // $('div.shazam-editor').data('status')
+    var data = {
+        "action": "save",
+        "field_name": field_name,
+        "params": {
+            "status": status
+        }
+    };
 
-$(document).ready( function() {
-    resizeAce();
+    var saveBtn = $('button[name="save"]');
+    var saveBtnHtml = saveBtn.html();
+    saveBtn.html('<img src="'+app_path_images+'progress_circle.gif"> Saving...');
+    saveBtn.prop('disabled',true);
+
+    // Get the values from the three panes
+    $(Shazam.editors).each(function (i, e) {
+        var editor = e.instance;
+        var val = editor.getValue();
+        var mode = e.mode;
+        // console.log(editor, val);
+        data.params[mode] = val;
+    });
+
+    // Post back saved version
+    var jqxhr = $.ajax({
+        method: "POST",
+        data: data,
+        dataType: "json"
+    })
+        .done(function (data) {
+            console.log(data);
+            saveBtn.html(saveBtnHtml);
+            saveBtn.prop('disabled',false);
+            if (callback) {
+                console.log("callback", field_name, callback, data);
+                callback(data);
+                return false;
+            }
+        })
+        .fail(function () {
+            alert("error");
+        });
+}
+
+Shazam.closeEditor = function() {
+    // go back to the table by making a get to the same url
+    var url = window.location.href.replace(/\#$/, "");
+    $(location).attr('href', url);
+}
+
+// A prepare the editor page by doing all necessary javascript add-ons
+Shazam.prepareEditors = function() {
+
+    // Create the ACE objects
+    Shazam.editors = [];
+    Shazam.initAceEditors();
+    Shazam.resizeAceEditors();
+
+    // Add some event handlers
+    $(window).on('resize', function () {
+        Shazam.resizeAceEditors();
+    });
+
+    $('.shazam-edit-buttons button').on('click', function() {
+        var action = $(this).attr('name');
+
+        if (action == 'save') {
+            Shazam.save();
+        }
+
+        if (action == 'save_and_close') {
+            Shazam.save(Shazam.closeEditor);
+        }
+
+
+        if (action == 'cancel') {
+            Shazam.closeEditor();
+        }
+
+    });
+
+}
+
+// Prepare event handlers for the table-view
+Shazam.prepareTable = function() {
+    // Handle the ADD button
+    $('.add-shazam a').on('click', function() {
+        // Create a new shazam entry
+        var field_name = $(this).data('field-name');
+        if (field_name.length) Shazam.post('create', field_name);
+    });
+
+    // Handle the in-table action buttons
+    $('.shazam-table ul.actions a').on('click', function() {
+        var action = $(this).data('action');
+        var field_name = $(this).closest('tr').find('td:first').text();
+
+        // Confirm Deletions
+        if (action == 'delete') {
+            // Give confirmation popup to reset all others
+            // function simpleDialog(content,title,id,width,onCloseJs,closeBtnTxt,okBtnJs,okBtnTxt) {
+            simpleDialog('Are you sure you want to delete the Shazam configuration for ' + field_name + '?',
+                'Confirm Deletion',
+                null,
+                600,
+                function() {
+                    // Do nothing
+                    return false;
+                },
+                "Cancel",
+                function() {
+                    // Delete
+                    Shazam.post(action, field_name);
+                },
+                "Delete"
+            );
+        } else {
+            Shazam.post(action, field_name);
+        }
+    });
+}
+
+
+$(document).ready(function(){
+
+    // THESE ARE ACTIONS FOR THE 'TABLE VIEW'
+    // if ($('div.shazam-table').length) Shazam.prepareTable();
+
+    // PREPARE ACE EDITORS (IF ON EDIT PAGE)
+    // if ($('div.shazam-editor').length) Shazam.prepareEditors();
+
 });

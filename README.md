@@ -1,2 +1,77 @@
-# redcap-em-shazam
-Shazam External Module
+#Shazam External Module
+
+There is additional documentation to help you configure this once installed.
+
+###What does it do?
+This module allows you to create custom instrument layouts, similar to custom input matrixes.  You can arrange dropdown, radio, input, and other fields into a custom html element and insert that into your instrument.
+
+It does require a little but of HTML skill, but you can do simple things like this:
+
+![Example Table](assets/example_table.png)
+
+Or, you can get much more creative:
+
+![Example Complex](assets/example_complex_field.png)
+
+Or, you can go crazy as in this side-by-side radio example:
+
+![Example Side By Side](assets/example_side_by_side.png)
+
+The way this works is to insert a 'descriptive' field on your form where you want to put the custom table.
+
+Next, you set up the external module and define your custom HTML.  Here is an example:
+
+```html
+<table class='fy_summary'>
+    <tr>
+        <th></th>
+        <th>2012</th>
+        <th>2013</th>
+        <th>2014</th>
+        <th>2015</th>
+        <th>2016</th>
+    </tr>
+    <tr>
+        <th>Federal Grants</th>
+        <td class='shazam'>fed_grants_fy12</td>
+        <td class='shazam'>fed_grants_fy13</td>
+        <td class='shazam'>fed_grants_fy14</td>
+        <td class='shazam'>fed_grants_fy15</td>
+        <td class='shazam'>fed_grants_fy16</td>
+    </tr>
+    <tr>
+        <th class='shazam'>nf_grants:label</th> <!-- This will map the LABEL to the field nf_grants -->
+        <td class='shazam'>nf_grants_fy12</td>
+        <td class='shazam'>nf_grants_fy13</td>
+        <td class='shazam'>nf_grants_fy14</td>
+        <td class='shazam'>nf_grants_fy15</td>
+        <td class='shazam'>nf_grants_fy16</td>
+    </tr>
+    <tr><th>Research Agreements/Contracts</th>
+        <td class='shazam'>rsch_contract_fy12</td>
+        <td class='shazam'>rsch_contract_fy13</td>
+        <td class='shazam'>rsch_contract_fy14</td>
+        <td class='shazam'>rsch_contract_fy15</td>
+        <td class='shazam'>rsch_contract_fy16</td>
+    </tr>
+    <tr shazam-mirror-visibility="clinical_trials"> <!-- This will make this entire TR only visible when the field 'clinical_trials' is visible -->
+        <th>Clinical Trials</th>
+        <td class='shazam'>ct_fy12</td>
+        <td class='shazam'>ct_fy13</td>
+        <td class='shazam'>ct_fy14</td>
+        <td class='shazam'>ct_fy15</td>
+        <td class='shazam'>ct_fy16</td>
+    </tr>
+</table>
+```
+
+Then, to make customization easier, you can use CSS instead of in-line CSS to tweak the look and feel.
+
+![Example CSS](assets/example_css.png)
+
+It also supports the abiliy to hide and show some of your custom elements based on other branched REDCap elements.  This means you could make a complex table and be able to hide/show rows of that table based on another REDCap field - similar to how one can do branching on rows in an input matrix.
+
+Have fun!
+
+####DISCLAIMER:
+This is an early release and I'm sure there are some issues - so please post.

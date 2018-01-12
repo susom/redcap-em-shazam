@@ -3,10 +3,10 @@
 
   "namespace":"Stanford\\Shazam",
 
-  "description": "A module for tabulating fields",
+  "description": "A module for applying REDCap inputs into tabular or other custom layouts for surverys and data entry forms",
 
   "versions": [
-    { "0.1": "Initial Development Version" }
+    { "0.1": "Initial Development Version on EMs" }
   ],
 
   "authors": [
@@ -24,7 +24,8 @@
 
   "permissions": [
     "hook_survey_page_top",
-    "hook_data_entry_form_top"
+    "hook_data_entry_form_top",
+    "redcap_every_page_top"
   ],
 
   "links": {
@@ -32,7 +33,7 @@
     ],
     "project": [
       {
-      "name": "Shazam",
+      "name": "Shazam Setup",
       "icon": "gear",
       "url": "config.php"
       }
@@ -40,9 +41,67 @@
   },
 
   "system-settings": [
+    {
+      "key": "shazam-log-file",
+      "name": "<b>Shazam System-Wide Log File:</b> <i>(optional)</i><br>Provide a valid file path and Shazam will output debug information to this file",
+      "type": "text"
+    }
+  ],
+
+  "TODOproject-settings-override": [
+    {
+      "name": "Configure",
+      "url": "config.php"
+    },
+    {
+      "name": "Validate",
+      "url": "validate.php"
+    }
   ],
 
   "project-settings": [
-
+    {
+      "key": "shazam-config",
+      "name": "config.php",
+      "type": "custom",
+      "source": "js/em_config.js"
+    },
+    {
+      "key": "shazam_fields",
+      "name": "<b>Select one or more fields to insert custom Shazam tables.  Keep in mind that all fields used in the Shazam table must be on the page when rendered.  You cannot build tables from multiple forms.",
+      "type" : "sub_settings",
+      "repeatable" : true,
+      "sub_settings":[
+        {
+          "key": "destination_field",
+          "name": "<b>Destination Field</b>Shazam will use this field to create its content.  It is generally recommended that this be a 'descriptive' field to reduce complexity.",
+          "type": "field-list",
+          "required": true
+        },
+        {
+          "key": "html",
+          "name": "HTML",
+          "type": "text",
+          "required": false
+        },
+        {
+          "key": "css",
+          "name": "CSS",
+          "required": false,
+          "type": "text"
+        },
+        {
+          "key": "js",
+          "name": "JS",
+          "required": false,
+          "type": "text"
+        },
+        {
+          "key":"disabled",
+          "name": "Check to disable this Shazam",
+          "type": "checkbox"
+        }
+      ]
+    }
   ]
 }
