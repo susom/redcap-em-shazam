@@ -23,9 +23,9 @@ class Util
 
         $args = func_get_args();
         $arg_count = count($args);
-        \Plugin::log($args, "$arg_count ARGS");
+        // \Plugin::log($args, "$arg_count ARGS");
         $last_arg = strtoupper($args[$arg_count-1]);
-        \Plugin::log($last_arg, "LAST ARG");
+        // \Plugin::log($last_arg, "LAST ARG");
 
         if(in_array($last_arg, array('INFO','DEBUG','ERROR'))) {
             $type = $last_arg;
