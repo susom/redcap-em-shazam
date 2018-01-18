@@ -1,8 +1,8 @@
-#Shazam External Module
+# Shazam External Module
 
 There is additional documentation to help you configure this once installed.
 
-###What does it do?
+### What does it do?
 This module allows you to create custom instrument layouts, similar to custom input matrixes.  You can arrange dropdown, radio, input, and other fields into a custom html element and insert that into your instrument.
 
 It does require a little but of HTML skill, but you can do simple things like this:
@@ -75,5 +75,5 @@ Javascript can only be added/edited/removed by a superuser to prevent users from
 
 Have fun!
 
-####DISCLAIMER:
+#### DISCLAIMER:
 This is an early release and I'm sure there are some issues - so please post.
