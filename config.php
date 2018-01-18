@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			?>
 			<script>
+                Shazam.su = <?php echo SUPER_USER; ?>;
                 Shazam.fields = <?php print json_encode(array_keys($instrument_fields)); ?>;
                 Shazam.prepareEditors();
             </script>
@@ -47,9 +48,23 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			// SAVE A CONFIGURATION
 			// THIS IS AN AJAX METHOD
 			$params = $_POST['params'];
-			$update = array(
-				$field_name => $params
-			);
+
+			// If not a superuser, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
+            if (SUPER_USER !== 1) {
+                // Is there an existing js
+                if (!empty($module->config[$field_name]['javascript'])) {
+                    // $module::log("js is not empty - keeping original value since not a superuser");
+                    $params['javascript'] = $module->config[$field_name]['javascript'];
+                } else {
+                    // $module::log("js IS empty");
+                    $params['javascript'] = '';
+                }
+            }
+
+            $update = array(
+                $field_name => $params
+            );
+
             // Add or update config
 			$new_config = empty($module->config) ? $update : array_merge($module->config, $update);
             $module::log($update, "DEBUG", "UPDATE");
@@ -79,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	}
 }
 
-$module::log("Foo");
+
 
 # Render Table Page
 require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';

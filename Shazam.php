@@ -196,7 +196,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 			    $html = isset($params['html']) ? $params['html'] : "<div>MISSING SHAZAM HTML</div>";
 			    $shazamParams[] = array(
                     'field_name' => $field_name,
-                    'html' => $html
+                    'html' => filter_tags($html)
                 );
 
                 if (!empty($params['css'])) {

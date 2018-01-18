@@ -125,6 +125,16 @@ Shazam.initEditor = function(id, mode) {
         if(currentValue == "$(document).ready(function(){\n\t//Add javascript here...\n\t\n});") {
             editor.gotoLine(3, 1);
         }
+
+        // Handle JS editing - only for superusers
+        if(Shazam.su !== 1) {
+            editor.setOptions({
+                readOnly: true
+            });
+
+            var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
+
+        }
     }
 
     // For html, remove a few annotations that don't apply

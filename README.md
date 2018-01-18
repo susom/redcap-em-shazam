@@ -71,6 +71,8 @@ Then, to make customization easier, you can use CSS instead of in-line CSS to tw
 
 It also supports the abiliy to hide and show some of your custom elements based on other branched REDCap elements.  This means you could make a complex table and be able to hide/show rows of that table based on another REDCap field - similar to how one can do branching on rows in an input matrix.
 
+Javascript can only be added/edited/removed by a superuser to prevent users from doing bad things :-)
+
 Have fun!
 
 ####DISCLAIMER:
