@@ -1,6 +1,30 @@
 // SHAZAM JS FILE USED FOR BOTH CONFIG AND ACTUAL ADMINISTRATION OF SHAZAM INSTRUMENTS
 var Shazam = Shazam || {};
 
+// // Avoid `console` errors in browsers that lack a console.
+// (function() {
+//     var method;
+//     var noop = function () {};
+//     var methods = [
+//         'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+//         'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+//         'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+//         'timeStamp', 'trace', 'warn'
+//     ];
+//     var length = methods.length;
+//     var console = (window.console = window.console || {});
+//
+//     while (length--) {
+//         method = methods[length];
+//
+//         // Only stub undefined methods.
+//         if (!console[method]) {
+//             console[method] = noop;
+//         }
+//     }
+// }());
+
+
 Shazam.maxTransformDelays = 5;
 Shazam.transformDelays = 0;
 
@@ -31,9 +55,22 @@ Shazam.highlightFields = function() {
  * A Logging wrapper to handle old IE versions
  */
 Shazam.log = function() {
-    if (typeof (console.log === "function")) {
+
+    // Make console logging more resilient to Redmond
+    try {
         console.log.apply(this,arguments);
+    } catch(err) {
+        // Error trying to apply logs to console (problem with IE11)
+        try {
+            console.log(arguments);
+
+        } catch (err2) {
+            // Can't even do that!  Argh - no logging
+            // var d = $('<div></div>').html(JSON.stringify(err)).appendTo($('body'));
+        }
     }
+
+    // }
 };
 
 
@@ -161,7 +198,7 @@ Shazam.Transform = function() {
             // Get the 'source' tr
             var mirror_source_tr = $("tr[sq_id='" + mirror_source_field + "']");
 
-            Shazam.log(mirror_source_field, mirror_source_tr);
+            Shazam.log("Checking mirror for " + mirror_source_field);
 
             // Make sure field is present on page
             if (!mirror_source_tr.size()) {
@@ -171,9 +208,11 @@ Shazam.Transform = function() {
 
             // Do an initial sync of the visibilty
             if (mirror_source_tr.is(':visible')) {
-                $().show();
+                Shazam.log("Visible");
+                $(mirror_element).show();
             } else {
-                $().hide();
+                Shazam.log("Invisible");
+                $(mirror_element).hide();
             }
 
             // Create observer that maintains the sync going forward

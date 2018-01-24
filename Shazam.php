@@ -22,7 +22,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
     public function __construct()
     {
-        self::log("Constructing SHAZAM");
+        self::log("Constructing SHAZAM", "DEBUG");
         parent::__construct();
 
         // If we are in a 'project' setting, then load the config

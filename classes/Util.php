@@ -83,7 +83,7 @@ class Util
         $e = new \Exception();
         $trace = explode("\n", $e->getTraceAsString());
         // Take only the last three entries...
-        $trace = array_slice($trace,1,3);
+        // $trace = array_slice($trace,1,3);
 
         $length = count($trace);
         $result = array();
