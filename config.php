@@ -5,6 +5,7 @@
 $module->loadConfig();
 
 use \REDCap;
+use \Browser;
 
 // Handle posts back to this script
 if ($_SERVER['REQUEST_METHOD']=='POST') {
@@ -32,12 +33,135 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			// Plugin::log($module->config, "DEBUG", "this->config");
 			// Render the editor
 			require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
-			$module->renderEditorTabs($field_name, $instrument);
+
+            $b = new Browser();
+            $cmdKey = ( $b->getPlatform() == "Apple" ? "&#8984;" : "Ctrl" );
+
+            ?>
+            <h3>Shazam Editor</h3>
+            <table class="table table-bordered ">
+                <tr><th class="info col-md-2"><strong>Instrument:</strong></th><td><b><?php echo $instrument ?></b></td></tr>
+                <tr><th class="info col-md-2"><strong>Field:</strong></th><td><b><?php echo $field_name ?></b></td></tr>
+            </table>
+
+            <button class="btn btn-success btn-sm" data-toggle="collapse" data-target="#shazam-example">Toggle Instructions</button>
+            <div id="shazam-example" class="collapse panel panel-body" style="border:2px solid #ccc; border-radius: 3px;">
+
+                <p>Use the tabs below to create and edit your Shazam HTML block.  This block of HTML will be inserted into the instrument where
+                    <?php echo $field_name ?> would normally be displayed.  As you are editing, you can save your progress with
+                    <span class="label label-primary"><?php echo $cmdKey?>-S</span>.  It may be best to open up your <?php echo $instrument ?> form and refresh
+                    after each save to see how you are progressing.</p>
+                <p>
+                    Most commonly, you will create a HTML table and insert REDCap fields into this table as illustrated below:
+                </p>
+
+                <div id="shazam-example-code" style="border: 1px solid #ccc; max-width: 95%;">
+                    <table class='fy_summary'>
+                        <tr>
+                            <th></th>
+                            <th>2012</th>
+                            <th>2013</th>
+                            <th>2014</th>
+                            <th>2015</th>
+                            <th>2016</th>
+                        </tr>
+                        <tr>
+                            <th>Federal Grants</th>
+                            <td class='shazam'>fed_grants_fy12</td>
+                            <td class='shazam'>fed_grants_fy13</td>
+                            <td class='shazam'>fed_grants_fy14</td>
+                            <td class='shazam'>fed_grants_fy15</td>
+                            <td class='shazam'>fed_grants_fy16</td>
+                        </tr>
+                        <tr>
+                            <th class='shazam'>nf_grants:label</th> <!-- This will map the LABEL to the field nf_grants -->
+                            <td class='shazam'>nf_grants_fy12</td>
+                            <td class='shazam'>nf_grants_fy13</td>
+                            <td class='shazam'>nf_grants_fy14</td>
+                            <td class='shazam'>nf_grants_fy15</td>
+                            <td class='shazam'>nf_grants_fy16</td>
+                        </tr>
+                        <tr><th>Research Agreements/Contracts</th>
+                            <td class='shazam'>rsch_contract_fy12</td>
+                            <td class='shazam'>rsch_contract_fy13</td>
+                            <td class='shazam'>rsch_contract_fy14</td>
+                            <td class='shazam'>rsch_contract_fy15</td>
+                            <td class='shazam'>rsch_contract_fy16</td>
+                        </tr>
+                        <tr shazam-mirror-visibility="clinical_trials"> <!-- This will make this entire TR only visible when the field 'clinical_trials' is visible -->
+                            <th>Clinical Trials</th>
+                            <td class='shazam'>ct_fy12</td>
+                            <td class='shazam'>ct_fy13</td>
+                            <td class='shazam'>ct_fy14</td>
+                            <td class='shazam'>ct_fy15</td>
+                            <td class='shazam'>ct_fy16</td>
+                        </tr>
+                    </table>
+                </div>
+                <p>
+                    And this is what it looks like:
+                    <img style="max-width: 90%;" src="<?php echo $module->getUrl("assets/example_table.png"); ?>"/>
+                </p>
+                <p>
+                    Notice how each element with a <code>class='shazam'</code> contains the name of a field as the text of the element.  This will move
+                    that redcap field into the element with the class.
+                </p>
+                <p>
+                    Also notice how the last row contains <code>shazam-mirror-visibility</code>.  This is a way to make an element in your html mimic
+                    the branching-logic visiblity of a redcap element.  In this case, there is a field called 'clinical_trials'.  If it is visible, so will
+                    the row in the table called Clinical Trials.
+                </p>
+                <p>
+                    Lastly, notice how you can also MAP the label from another redcap question.  Look at the row header for "Non-Federal Grants" isn't spelled out,
+                    but rather comes from the label of another question.  This can reduce the complexity of your Shazam HTML by relying more on the data dictionary.
+                </p>
+                <p>
+                    Don't forget you can also add custom CSS to your page and even javascript to override non-css attributes on a page.
+                </p>
+            </div>
+            <hr>
+            <div class="shazam-editor" data-field-name="<?php echo $field_name ?>">
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#panel_editor_html">HTML</a></li>
+                    <li><a data-toggle="tab"  href="#panel_editor_css">CSS</a></li>
+                    <li><a data-toggle="tab"  href="#panel_editor_js">JS</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="panel_editor_html" >
+                        <div class="editor2" id='editor_html' data-mode="html"></div>
+                    </div>
+                    <div class="tab-pane fade" id="panel_editor_css">
+                        <div class="editor2" id='editor_css' data-mode="css"></div>
+                    </div>
+                    <div class="tab-pane fade" id="panel_editor_js">
+                        <div class="editor2" id='editor_js' data-mode="javascript"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="shazam-edit-buttons">
+                <button class="btn btn-primary" name="save">SAVE (<?php echo $cmdKey; ?>-S)</button>
+                <button class="btn btn-primary" name="save_and_close">SAVE AND CLOSE</button>
+                <button class="btn btn-default" name="cancel">CANCEL</button>
+            </div>
+
+            <script src="<?php echo $module->getUrl('js/ace/ace.js'); ?>"></script>
+            <script src="<?php echo $module->getUrl('js/config.js'); ?>"></script>
+            <script src="<?php echo $module->getUrl('js/ace/ext-language_tools.js'); ?>"></script>
+
+            <style>
+                .shazam-editor { border-bottom: 1px solid #ddd; margin-bottom: 10px;}
+            </style>
+
+            <?php
+			// $module->renderEditorTabs($field_name, $instrument);
+
 			require_once APP_PATH_DOCROOT . 'ProjectGeneral/footer.php';
 
 			?>
 			<script>
                 Shazam.su = <?php echo SUPER_USER; ?>;
+                Shazam.config = <?php echo json_encode($module->config[$field_name]); ?>;
                 Shazam.fields = <?php print json_encode(array_keys($instrument_fields)); ?>;
                 Shazam.prepareEditors();
             </script>
@@ -90,7 +214,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$module->saveConfig();
 			break;
         default:
-			print "Unkown action";
+			print "Unknown action";
 	}
 }
 

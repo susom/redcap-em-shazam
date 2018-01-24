@@ -213,7 +213,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 <script type='text/javascript'>
                     $(document).ready(function () {
                         Shazam.params = <?php print json_encode($shazamParams); ?>;
-                        console.log("Shazam Params", Shazam.params);
+                        //Shazam.log("Shazam Params", Shazam.params);
                         Shazam.Transform();
                     });
                 </script>
@@ -239,7 +239,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $this->available_descriptive_fields = $fields;
     }
 
-
+/**
     function renderEditorTabs($field_name, $instrument) {
 		$b = new \Browser();
 		$cmdKey = ( $b->getPlatform() == "Apple" ? "&#8984;" : "Ctrl" );
@@ -336,13 +336,13 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade in active" id="panel_editor_html" >
-                    <div class="editor2" id='editor_html' data-mode="html"><?php echo $this->config[$field_name]['html']; ?></div>
+                    <div class="editor2" id='editor_html' data-mode="html"></div>
                 </div>
                 <div class="tab-pane fade" id="panel_editor_css">
-                    <div class="editor2" id='editor_css' data-mode="css"><?php echo $this->config[$field_name]['css']; ?></div>
+                    <div class="editor2" id='editor_css' data-mode="css"></div>
                 </div>
                 <div class="tab-pane fade" id="panel_editor_js">
-                    <div class="editor2" id='editor_js' data-mode="javascript"><?php echo $this->config[$field_name]['javascript']; ?></div>
+                    <div class="editor2" id='editor_js' data-mode="javascript"></div>
                 </div>
             </div>
         </div>
@@ -363,6 +363,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 		<?php
 
 	}
+**/
+
 
 	/**
      * Generate the dropdown elements of unused descriptive fields required for the add-new shazam menu

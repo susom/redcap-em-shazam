@@ -17,8 +17,8 @@ Shazam.initAceEditors = function() {
 
     // Init read-only editor for the example:
     Shazam.initEditor('shazam-example-code','html');
-    //Shazam.example = Shazam.editors.shift();
 
+    //Shazam.example = Shazam.editors.shift();
     // var currentValue = $(editorElement).html();
     // // console.log("EditorElement",editorElement, currentValue);
     // var editor = ace.edit(id);
@@ -32,12 +32,13 @@ Shazam.initAceEditors = function() {
     // editor.setTheme("ace/theme/clouds");
     // editor.getSession().setMode("ace/mode/" + mode);
 
-
-    console.log("initAceEditors");
+    // console.log("initAceEditors");
     var langTools = ace.require("ace/ext/language_tools");
+
+    // Add list of fields
     var redcapFieldCompleter = {
         getCompletions: function(editor, session, pos, prefix, callback) {
-            var wordList = ["foo", "bar", "baz"];
+            // var wordList = ["foo", "bar", "baz"];
             // callback(null, wordList.map(function(word) {
             callback(null, Shazam.fields.map(function(word) {
                 return {
@@ -46,11 +47,11 @@ Shazam.initAceEditors = function() {
                     meta: "field"
                 };
             }));
-
         }
     };
     langTools.addCompleter(redcapFieldCompleter);
 
+    // Add shazam command hints
     var shazamCompleter = {
         getCompletions: function(editor, session, pos, prefix, callback) {
             var wordList = ["shazam", "shazam-mirror-visibility"];
@@ -65,6 +66,8 @@ Shazam.initAceEditors = function() {
         }
     };
     langTools.addCompleter(shazamCompleter);
+
+    // Add label hints
     var labelCompleter = {
         getCompletions: function(editor, session, pos, prefix, callback) {
             var field_labels = Shazam.fields.map(function(word) { return word + ":label" });
@@ -89,7 +92,13 @@ Shazam.initEditor = function(id, mode) {
     // console.log("initEditor" + id + " / " + mode);
     // Create an ACE editor on the id element with mode mode
     var editorElement = $('#'+id);
+
+
     var currentValue = $(editorElement).html();
+    if (Shazam.config[mode]) {
+        var currentValue = Shazam.config[mode];
+    }
+
     // console.log("EditorElement",editorElement, currentValue);
     var editor = ace.edit(id);
 
@@ -189,7 +198,7 @@ Shazam.resizeAceEditors = function () {
 }
 
 Shazam.save = function(callback) {
-    // console.log('SAVE!');
+    // Shazam.log('SAVE!');
     var field_name = $('div.shazam-editor').data('field-name');
     var status = 1; // $('div.shazam-editor').data('status')
     var data = {
@@ -221,11 +230,11 @@ Shazam.save = function(callback) {
         dataType: "json"
     })
         .done(function (data) {
-            console.log(data);
+            //Shazam.log(data);
             saveBtn.html(saveBtnHtml);
             saveBtn.prop('disabled',false);
             if (callback) {
-                console.log("callback", field_name, callback, data);
+                Shazam.log("callback", field_name, callback, data);
                 callback(data);
                 return false;
             }
@@ -264,7 +273,6 @@ Shazam.prepareEditors = function() {
         if (action == 'save_and_close') {
             Shazam.save(Shazam.closeEditor);
         }
-
 
         if (action == 'cancel') {
             Shazam.closeEditor();

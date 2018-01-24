@@ -4,6 +4,6 @@ if(typeof ExternalModulesOptional === 'undefined') {
 
 
 ExternalModulesOptional.shazam = function(e) {
-    console.log("Config It", e, this);
+    //console.log("Config It", e, this);
 }
 

@@ -1,6 +1,8 @@
 // SHAZAM JS FILE USED FOR BOTH CONFIG AND ACTUAL ADMINISTRATION OF SHAZAM INSTRUMENTS
 var Shazam = Shazam || {};
 
+Shazam.maxTransformDelays = 5;
+Shazam.transformDelays = 0;
 
 /**
  * A utility function for highlighting fields in the data dictionary view
@@ -29,7 +31,7 @@ Shazam.highlightFields = function() {
  * A Logging wrapper to handle old IE versions
  */
 Shazam.log = function() {
-    if (console) {
+    if (typeof (console.log === "function")) {
         console.log.apply(this,arguments);
     }
 };
@@ -39,6 +41,27 @@ Shazam.log = function() {
  * Transform the page according to Shazam
  */
 Shazam.Transform = function() {
+
+    // Check if we need to delay execution for autocomplete dropdowns to be handled first...
+    var ac_dropdowns = $('input.rc-autocomplete').length;
+    var ac_dropdowns_processed = $('input.rc-autocomplete.ui-autocomplete-input').length;
+    if (ac_dropdowns > ac_dropdowns_processed) {
+        if (Shazam.transformDelays < Shazam.maxTransformDelays) {
+            setTimeout(function () {
+                Shazam.Transform()
+            }, 5);
+
+            // Increment number of processing delays
+            Shazam.transformDelays ++;
+            // Shazam.log("Delaying Shazam (#" + Shazam.transformDelays + ") - waiting for autocomplete dropdowns to be processed...");
+            return;
+        } else {
+            Shazam.log ("Only " + ac_dropdowns_processed + " of " + ac_dropdowns + " autocomplete dropdowns processed after " + Shazam.transformDelays + " shazam transform delays.  Moving forward anyhow but all autodropdowns may not work");
+        }
+    }
+
+    Shazam.log("Starting to Transform");
+
     $(Shazam.params).each(function(i, obj) {
         var field_name = obj.field_name;
         var html_content = obj.html;
@@ -59,7 +82,7 @@ Shazam.Transform = function() {
         // Get the last label td to inject the table
         var shazam_target = $('td.labelrc:last-child', shazam_tr);
 
-        Shazam.log("target element", shazam_target);
+        //Shazam.log("target element", shazam_target);
 
         // Set the html according to the parameters
         $(shazam_target).html(html_content);
@@ -76,7 +99,6 @@ Shazam.Transform = function() {
             var source_tr = $("tr[sq_id='" + search_field + "']");
             // Make sure field is present on page
             if ($(source_tr).size()) {
-                //TODO: Try removing .size()
 
                 // Check for label option
                 if (search_option == 'label') {
@@ -103,7 +125,7 @@ Shazam.Transform = function() {
                         var type = $(this).prop('type');
 
                         // TODO: NOT SURE IF THIS IS REALLY NEEDED STILL
-                        if (type == 'text' && $(this).css('width') != '0px') $(this).css({'width': ''});//,'max-width':'90%'});
+                        // if (type == 'text' && $(this).css('width') != '0px') $(this).css({'width': ''});//,'max-width':'90%'});
                         if (type == 'textarea') $(this).css('width', '95%');
                     });
 
@@ -113,6 +135,9 @@ Shazam.Transform = function() {
                     }).parent().css('text-align', 'left');
 
                     // Move Contents of source to shazam cell
+                    //Shazam.log("Source data", source_data);
+                    //Shazam.log("Source data.children", source_data.children());
+
                     $(this).html(source_data.children());
 
                     // Hide the source TRs. (two methods here)
