@@ -17,21 +17,7 @@ Shazam.initAceEditors = function() {
 
     // Init read-only editor for the example:
     Shazam.initEditor('shazam-example-code','html');
-
-    //Shazam.example = Shazam.editors.shift();
-    // var currentValue = $(editorElement).html();
-    // // console.log("EditorElement",editorElement, currentValue);
-    // var editor = ace.edit(id);
-    //
-    // editor.setOptions({
-    //     enableBasicAutocompletion: true,
-    //     enableSnippets: true,
-    //     enableLiveAutocompletion: true
-    // });
-    //
-    // editor.setTheme("ace/theme/clouds");
-    // editor.getSession().setMode("ace/mode/" + mode);
-
+    
     // console.log("initAceEditors");
     var langTools = ace.require("ace/ext/language_tools");
 
@@ -86,7 +72,7 @@ Shazam.initAceEditors = function() {
     Shazam.initEditor('editor_html', 'html');
     Shazam.initEditor('editor_css', 'css');
     Shazam.initEditor('editor_js', 'javascript');
-}
+};
 
 Shazam.initEditor = function(id, mode) {
     // console.log("initEditor" + id + " / " + mode);
@@ -195,7 +181,7 @@ Shazam.resizeAceEditors = function () {
         var editorDiv = $('#'+ e.id);
         $(editorDiv).css('height', h.toString() + 'px');
     });
-}
+};
 
 Shazam.save = function(callback) {
     // Shazam.log('SAVE!');
@@ -242,13 +228,25 @@ Shazam.save = function(callback) {
         .fail(function () {
             alert("error");
         });
-}
+};
 
 Shazam.closeEditor = function() {
     // go back to the table by making a get to the same url
     var url = window.location.href.replace(/\#$/, "");
     $(location).attr('href', url);
-}
+};
+
+
+Shazam.makeBeautiful = function() {
+    var html_beautify = ace.require("ace/ext/html_beautify"); // get reference to extension
+
+    // get active editor and beautify it!
+    var panel_id = $('div.tab-pane:visible').attr('id');
+    var id = panel_id.replace("panel_","");
+    var editor = ace.edit(id);
+    html_beautify.beautify(editor, false, false, {});
+};
+
 
 // A prepare the editor page by doing all necessary javascript add-ons
 Shazam.prepareEditors = function() {
@@ -266,21 +264,25 @@ Shazam.prepareEditors = function() {
     $('.shazam-edit-buttons button').on('click', function() {
         var action = $(this).attr('name');
 
-        if (action == 'save') {
+        if (action === 'save') {
             Shazam.save();
         }
 
-        if (action == 'save_and_close') {
+        if (action === 'save_and_close') {
             Shazam.save(Shazam.closeEditor);
         }
 
-        if (action == 'cancel') {
+        if (action === 'cancel') {
             Shazam.closeEditor();
+        }
+
+        if (action === 'beautify') {
+            Shazam.makeBeautiful();
         }
 
     });
 
-}
+};
 
 // Prepare event handlers for the table-view
 Shazam.prepareTable = function() {
@@ -297,7 +299,7 @@ Shazam.prepareTable = function() {
         var field_name = $(this).closest('tr').find('td:first').text();
 
         // Confirm Deletions
-        if (action == 'delete') {
+        if (action === 'delete') {
             // Give confirmation popup to reset all others
             // function simpleDialog(content,title,id,width,onCloseJs,closeBtnTxt,okBtnJs,okBtnTxt) {
             simpleDialog('Are you sure you want to delete the Shazam configuration for ' + field_name + '?',
@@ -326,14 +328,3 @@ Shazam.prepareTable = function() {
     });
 
 };
-
-
-$(document).ready(function(){
-
-    // THESE ARE ACTIONS FOR THE 'TABLE VIEW'
-    // if ($('div.shazam-table').length) Shazam.prepareTable();
-
-    // PREPARE ACE EDITORS (IF ON EDIT PAGE)
-    // if ($('div.shazam-editor').length) Shazam.prepareEditors();
-
-});

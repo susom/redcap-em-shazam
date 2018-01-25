@@ -163,12 +163,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             <div class="shazam-edit-buttons">
                 <button class="btn btn-primary" name="save">SAVE (<?php echo $cmdKey; ?>-S)</button>
                 <button class="btn btn-primary" name="save_and_close">SAVE AND CLOSE</button>
+                <button class="btn btn-default" name="beautify">BEAUTIFY</button>
                 <button class="btn btn-default" name="cancel">CANCEL</button>
             </div>
 
             <script src="<?php echo $module->getUrl('js/ace/ace.js'); ?>"></script>
             <script src="<?php echo $module->getUrl('js/config.js'); ?>"></script>
             <script src="<?php echo $module->getUrl('js/ace/ext-language_tools.js'); ?>"></script>
+            <script src="<?php echo $module->getUrl('js/ace/ext-html_beautify.js'); ?>"></script>
 
             <style>
                 .shazam-editor { border-bottom: 1px solid #ddd; margin-bottom: 10px;}
