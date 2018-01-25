@@ -11,7 +11,7 @@ Shazam.post = function(action,field_name) {
         .attr('name','field_name')
         .val(field_name);
     var form = $('#action-form').append(action).append(field_name).submit();
-}
+};
 
 Shazam.initAceEditors = function() {
 
@@ -234,7 +234,7 @@ Shazam.save = function(callback) {
             saveBtn.html(saveBtnHtml);
             saveBtn.prop('disabled',false);
             if (callback) {
-                Shazam.log("callback", field_name, callback, data);
+                //Shazam.log("callback", field_name, callback, data);
                 callback(data);
                 return false;
             }
@@ -319,7 +319,13 @@ Shazam.prepareTable = function() {
             Shazam.post(action, field_name);
         }
     });
-}
+
+    // Handle the add example button
+    $('button.add-example').on('click', function() {
+        Shazam.post('add-example', 'shaz_ex_desc_field');
+    });
+
+};
 
 
 $(document).ready(function(){

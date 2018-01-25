@@ -26,6 +26,27 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         $action = "edit";
     }
 
+
+    if ($action == "add-example") {
+	    // see if the field doesn't already exist
+        if (isset($module->config[$field_name])) {
+            // Already exists - can't do anything
+            $module::log("$field_name already exists as an example module");
+        } else {
+            // load the example config
+            $example_config = $module->getExampleConfig();
+            if ($example_config) {
+                $module->config = $example_config;
+                // $new_config = array_merge($this->config, $example_config);
+                // $module::log($config,"Example Config");
+                // $module->config = $new_config;
+                // $module->saveConfig();
+                $action = "edit";
+            };
+        }
+    }
+
+
     switch ($action) {
         case "edit":
 			// Verify edit is valid and then render the 'edit' page.
@@ -248,6 +269,14 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
             <?php echo $module->getAddShazamOptions() ?>
         </ul>
     </div>
+    <?php if (!isset($module->config['shaz_ex_desc_field'])) { ?>
+    <div class="pull-right">
+        <button type="button" class="btn btn-default add-example" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                Add Example Field
+        </button>
+    </div>
+    <?php } ?>
 </div>
 
 <form id="action-form" name="action" class="hidden" method="POST">

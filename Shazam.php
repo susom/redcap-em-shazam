@@ -22,7 +22,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
     public function __construct()
     {
-        self::log("Constructing SHAZAM", "DEBUG");
+        self::log("Constructing SHAZAM");
         parent::__construct();
 
         // If we are in a 'project' setting, then load the config
@@ -394,7 +394,22 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 		$data = array();
 		foreach ($this->config as $field_name => $details) {
 		    if (in_array($field_name, array('last_modified','last_modified_by'))) continue;
+
             $instrument = $Proj->metadata[$field_name]['form_name'];
+            if (empty($instrument)) {
+                if ($field_name == "shaz_ex_desc_field") {
+                    // offer to download test instrument
+                    global $project_id;
+                    $designer_url = APP_PATH_WEBROOT . "Design/online_designer.php?pid=" . $project_id;
+                    $instrument = "<span class='label label-danger'>FIELD MISSING</span> " .
+                        "To test, upload this <a href='" . $this->getUrl("assets/ShazamExample_Instrument.zip") . "'>" .
+                        "<button class='btn btn-xs btn-default'>Example Instrument.zip</button></a> using the <a href='" .
+                        $designer_url . "'><button class='btn btn-xs btn-success'>online designer</button></a>";
+                } else {
+                    $instrument = "<span class='label label-danger'>MISSING</span>";
+                }
+            }
+
             $status = $details['status'];
             $data[] = array(
                 $field_name,
@@ -427,6 +442,19 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             </div>';
         return $html;
     }
+
+
+    public function getExampleConfig() {
+        $file = $this->getModulePath() . "assets/ShazamExample_Instrument.json";
+        if (file_exists($file)) {
+            self::log("$file FOUND");
+            return json_decode(file_get_contents($file),true);
+        } else {
+            self::log("Unable to find $file");
+            return false;
+        }
+    }
+
 
 
     private static function renderTable($id, $header=array(), $table_data) {
