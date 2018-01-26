@@ -9,6 +9,10 @@
     { "0.1": "Initial Development Version on EMs" }
   ],
 
+  "compatibility": {
+    "redcap-version-min": "8.0.3",
+  },
+
   "authors": [
     {
       "name": "Andy Martin",
