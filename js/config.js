@@ -17,7 +17,7 @@ Shazam.initAceEditors = function() {
 
     // Init read-only editor for the example:
     Shazam.initEditor('shazam-example-code','html');
-    
+
     // console.log("initAceEditors");
     var langTools = ace.require("ace/ext/language_tools");
 
@@ -232,7 +232,7 @@ Shazam.save = function(callback) {
 
 Shazam.closeEditor = function() {
     // go back to the table by making a get to the same url
-    var url = window.location.href.replace(/\#$/, "");
+    var url = window.location.href.replace(/#$/, "");
     $(location).attr('href', url);
 };
 
