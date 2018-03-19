@@ -56,6 +56,8 @@ Shazam.highlightFields = function() {
  */
 Shazam.log = function() {
 
+    return false;
+
     // Make console logging more resilient to Redmond
     try {
         console.log.apply(this,arguments);
@@ -119,7 +121,7 @@ Shazam.Transform = function() {
         // Get the last label td to inject the table
         var shazam_target = $('td.labelrc:last-child', shazam_tr);
 
-        //Shazam.log("target element", shazam_target);
+        Shazam.log("target element", shazam_target);
 
         // Set the html according to the parameters
         $(shazam_target).html(html_content);
@@ -130,7 +132,7 @@ Shazam.Transform = function() {
             var matches = nodeValue.split(':');
             var search_field = matches[0];
             var search_option = matches[1];
-            // Shazam.log(field, option, nodeValue);
+            Shazam.log(field_name, search_field, search_option, nodeValue);
 
             // Find the 'real tr' for the field to be relocated
             var source_tr = $("tr[sq_id='" + search_field + "']");
@@ -139,8 +141,13 @@ Shazam.Transform = function() {
 
                 // Check for label option
                 if (search_option == 'label') {
+
+                    Shazam.log("Label Search in tr", source_tr);
+
                     //Only copying the label
-                    var source_label = $("td.labelrc:not(.quesnum):not(.questionnum) td:first", source_tr);
+                    // var source_label = $("td.labelrc:not(.quesnum):not(.questionnum):first", source_tr);
+                    var source_label = $("#label-" + search_field);
+                    Shazam.log("SourceTD", source_label);
 
                     // COPY label to the shazam cell
                     $(this).html(source_label.clone()).addClass('shazam_label');
@@ -172,14 +179,14 @@ Shazam.Transform = function() {
                     }).parent().css('text-align', 'left');
 
                     // Move Contents of source to shazam cell
-                    //Shazam.log("Source data", source_data);
-                    //Shazam.log("Source data.children", source_data.children());
+                    // Shazam.log("Source data", source_data);
+                    // Shazam.log("Source data.children", source_data.children());
 
                     $(this).html(source_data.children());
 
                     // Hide the source TRs. (two methods here)
                     //$(real_tr).css('display','none');
-                    $(source_tr).css('position', 'absolute').css('left', '-1000px');
+                    $(source_tr).css({"position":"absolute","width":"1px;","opacity":"0", "left":"-8000px"});
                 }
             }
         });
