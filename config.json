@@ -6,7 +6,10 @@
   "description": "A module for applying REDCap inputs into tabular or other custom layouts for surverys and data entry forms",
 
   "versions": [
-    { "0.1": "Initial Development Version on EMs" }
+    {
+      "0.1": "Initial Development Version on EMs",
+      "1.0.2": "Bug fixes around survey shazam with labels"
+    }
   ],
 
   "compatibility": {
