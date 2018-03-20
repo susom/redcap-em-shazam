@@ -5,7 +5,6 @@ There is additional documentation to help you configure this once installed.
 ### What does it do?
 This module allows you to create custom instrument layouts, similar to custom input matrixes.  You can arrange dropdown, radio, input, and other fields into a custom html element and insert that into your instrument.
 
-
 It does require a little but of HTML skill, but you can do simple things like this:
 
 ![Example Table](assets/example_table.png)
