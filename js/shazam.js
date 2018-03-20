@@ -184,6 +184,16 @@ Shazam.Transform = function() {
 
                     $(this).html(source_data.children());
 
+                    // Add Data History & Field Comment Log/Data Resolution Workflow icons
+                    if (Shazam.displayIcons === true) {
+                        if ($(this).find(".rc-autocomplete").length === 0 && $(this).find(".note").length === 0 && $(this).find("div").length === 0) {
+                            $(this).append('<br>');
+                        }
+                        if (source_tr.find("a").length !== 0) {
+                            $(this).append(source_tr.find("a").parent().html().replace('<br>', ''));
+                        }
+                    }
+
                     // Hide the source TRs. (two methods here)
                     //$(real_tr).css('display','none');
                     $(source_tr).css({"position":"absolute","width":"1px;","opacity":"0", "left":"-8000px"});
