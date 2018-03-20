@@ -1,6 +1,5 @@
 # Shazam External Module
 
-
 There is additional documentation to help you configure this once installed.
 
 ### What does it do?
