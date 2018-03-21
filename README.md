@@ -33,11 +33,11 @@ Next, you set up the external module and define your custom HTML.  Here is an ex
     </tr>
     <tr>
         <th>Federal Grants</th>
-        <td class='shazam'>fed_grants_fy12</td>
-        <td class='shazam'>fed_grants_fy13</td>
-        <td class='shazam'>fed_grants_fy14</td>
-        <td class='shazam'>fed_grants_fy15</td>
-        <td class='shazam'>fed_grants_fy16</td>
+        <td><div class='shazam shazam-icons'>fed_grants_fy12</div></td> <!-- including shazam-icons will add the history / data quality icons -->
+        <td><div class='shazam'>fed_grants_fy13</div></td>
+        <td><div class='shazam'>fed_grants_fy14</div></td>
+        <td><div class='shazam'>fed_grants_fy15</div></td>
+        <td><div class='shazam'>fed_grants_fy16</div></td>
     </tr>
     <tr>
         <th class='shazam'>nf_grants:label</th> <!-- This will map the LABEL to the field nf_grants -->

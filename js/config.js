@@ -16,7 +16,25 @@ Shazam.post = function(action,field_name) {
 Shazam.initAceEditors = function() {
 
     // Init read-only editor for the example:
-    Shazam.initEditor('shazam-example-code','html');
+    var e = $('#shazam-example-code');
+    if (e.length) {
+        console.log('setting up ace editor');
+        Shazam.exampleEditor = ace.edit('shazam-example-code');
+        Shazam.exampleEditor.setOptions({
+            readOnly: true
+        });
+        Shazam.exampleEditor.setTheme("ace/theme/clouds");
+        Shazam.exampleEditor.getSession().setMode("ace/mode/html");
+        Shazam.exampleEditor.$blockScrolling = Infinity;
+        e.width('100%');
+
+        e.css({"height":"300px"});
+
+        Shazam.exampleEditor.getSession().setValue($('#example-data').val());
+
+        console.log(e);
+    }
+
 
     // console.log("initAceEditors");
     var langTools = ace.require("ace/ext/language_tools");

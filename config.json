@@ -58,12 +58,12 @@
   "project-settings": [
     {
       "key": "shazam-descriptive",
-      "name": "This module is configured by a link on the sidebar called 'Shazam Setup'.<br><i>The acutal config is stored in a hidden shazam-config external module variable.</i>",
+      "name": "<b>This module is configured by a link on the sidebar called 'Shazam Setup'.</b><br><i>The acutal config is stored in a hidden shazam-config external module variable.</i>",
       "type": "descriptive"
     },
     {
       "key": "shazam-display-icons",
-      "name": "Display Data History & Field Comment Log/Data Resolution Workflow Icons",
+      "name": "<b>Display Data History & Field Comment Log/Data Resolution Workflow Icons</b><br>You can also enable these icons for just a particular input by adding the class <code>shazam-icons</code> to a particular input field.",
       "type": "checkbox"
     }
   ]

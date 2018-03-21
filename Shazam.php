@@ -213,7 +213,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 <script type='text/javascript'>
                     $(document).ready(function () {
                         Shazam.params = <?php print json_encode($shazamParams); ?>;
-                        Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons", $project_id)); ?>;
+                        Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons")); ?>;
                         //Shazam.log("Shazam Params", Shazam.params);
                         Shazam.Transform();
                     });

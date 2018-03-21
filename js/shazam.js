@@ -56,7 +56,7 @@ Shazam.highlightFields = function() {
  */
 Shazam.log = function() {
 
-    return false;
+    //return false;
 
     // Make console logging more resilient to Redmond
     try {
@@ -146,7 +146,7 @@ Shazam.Transform = function() {
 
                     //Only copying the label
                     // var source_label = $("td.labelrc:not(.quesnum):not(.questionnum):first", source_tr);
-                    var source_label = $("#label-" + search_field);
+                    var source_label = $("#label-" + search_field + " td:first");
                     Shazam.log("SourceTD", source_label);
 
                     // COPY label to the shazam cell
@@ -185,18 +185,26 @@ Shazam.Transform = function() {
                     $(this).html(source_data.children());
 
                     // Add Data History & Field Comment Log/Data Resolution Workflow icons
-                    if (Shazam.displayIcons === true) {
+                    if (Shazam.displayIcons === true || $(this).hasClass('shazam-icons')) {
+                        // Place the icons into a span tag so you can do CSS to control their wrapping
+                        var wrapper = $('<span/>').addClass('shazam-icons');
+
                         if ($(this).find(".rc-autocomplete").length === 0 && $(this).find(".note").length === 0 && $(this).find("div").length === 0) {
-                            $(this).append('<br>');
+                            // Instead of appending a BR - I'm going to wrap the icons into an element so you could use css to break them apart...
+                            // $(this).append('<br>');
+                            wrapper.addClass("add-br");
                         }
                         if (source_tr.find("a").length !== 0) {
-                            $(this).append(source_tr.find("a").parent().html().replace('<br>', ''));
+                            // $(this).append(source_tr.find("a").parent().html().replace('<br>', ''));
+                            wrapper.append(source_tr.find("a").parent().html().replace('<br>',''));
                         }
+
+                        $(this).append(wrapper);
                     }
 
                     // Hide the source TRs. (two methods here)
                     //$(real_tr).css('display','none');
-                    $(source_tr).css({"position":"absolute","width":"1px;","opacity":"0", "left":"-8000px"});
+                    // $(source_tr).css({"position":"absolute","width":"1px;","opacity":"0", "left":"-8000px"});
                 }
             }
         });
