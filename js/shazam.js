@@ -56,7 +56,7 @@ Shazam.highlightFields = function() {
  */
 Shazam.log = function() {
 
-    //return false;
+    if (!Shazam.isDev) return false;
 
     // Make console logging more resilient to Redmond
     try {
@@ -147,6 +147,8 @@ Shazam.Transform = function() {
                     //Only copying the label
                     // var source_label = $("td.labelrc:not(.quesnum):not(.questionnum):first", source_tr);
                     var source_label = $("#label-" + search_field + " td:first");
+                    if (source_label.length === 0) source_label = $("#label-" + search_field);
+
                     Shazam.log("SourceTD", source_label);
 
                     // COPY label to the shazam cell
@@ -187,6 +189,8 @@ Shazam.Transform = function() {
                     // Add Data History & Field Comment Log/Data Resolution Workflow icons
                     if (Shazam.displayIcons === true || $(this).hasClass('shazam-icons')) {
                         // Place the icons into a span tag so you can do CSS to control their wrapping
+                        Shazam.log("Adding DisplayIcons!", source_tr);
+
                         var wrapper = $('<span/>').addClass('shazam-icons');
 
                         if ($(this).find(".rc-autocomplete").length === 0 && $(this).find(".note").length === 0 && $(this).find("div").length === 0) {
@@ -204,7 +208,7 @@ Shazam.Transform = function() {
 
                     // Hide the source TRs. (two methods here)
                     //$(real_tr).css('display','none');
-                    // $(source_tr).css({"position":"absolute","width":"1px;","opacity":"0", "left":"-8000px"});
+                    $(source_tr).css({"position":"absolute","width":"0px !important","height": "0px !important","opacity":"0"}); //, "left":"-8000px"});
                 }
             }
         });
