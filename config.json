@@ -9,7 +9,8 @@
     {
       "0.1": "Initial Development Version on EMs",
       "1.0.2": "Bug fixes around survey shazam with labels",
-      "1.1.0": "Added support for widgets and multiple bug fixes"
+      "1.1.0": "Added support for widgets and multiple bug fixes",
+      "1.1.1": "Fixed bug reported by Mark on label option"
     }
   ],
 
