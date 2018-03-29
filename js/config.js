@@ -58,7 +58,7 @@ Shazam.initAceEditors = function() {
     // Add shazam command hints
     var shazamCompleter = {
         getCompletions: function(editor, session, pos, prefix, callback) {
-            var wordList = ["shazam", "shazam-mirror-visibility"];
+            var wordList = ["shazam", "shazam-mirror-visibility", "shazam-icons"];
             callback(null, wordList.map(function(word) {
                 return {
                     caption: word,
@@ -147,6 +147,8 @@ Shazam.initEditor = function(id, mode) {
 
             var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
 
+        } else {
+            var jsWarn = $('<span></span>').addClass('label label-danger text-center').text("Javascript Editing Enabled (You are a Super User)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
         }
     }
 

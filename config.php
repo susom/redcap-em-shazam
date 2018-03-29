@@ -214,15 +214,17 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$params = $_POST['params'];
 
 			// If not a superuser, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
-            if (SUPER_USER !== 1) {
+            if (! SUPER_USER) {
                 // Is there an existing js
                 if (!empty($module->config[$field_name]['javascript'])) {
-                    // $module::log("js is not empty - keeping original value since not a superuser");
+                    $module::log("js is not empty - keeping original value since not a superuser");
                     $params['javascript'] = $module->config[$field_name]['javascript'];
                 } else {
-                    // $module::log("js IS empty");
+                    $module::log("js IS empty");
                     $params['javascript'] = '';
                 }
+            } else {
+                $module::log("Super User is Saving!");
             }
 
             $update = array(
@@ -231,8 +233,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
             // Add or update config
 			$new_config = empty($module->config) ? $update : array_merge($module->config, $update);
-            $module::log($update, "DEBUG", "UPDATE");
-            $module::log($new_config, "DEBUG", "new_config");
+            //$module::log($update, "DEBUG", "UPDATE");
+            //$module::log($new_config, "DEBUG", "new_config");
 			$module->config = $new_config;
 			$return = $module->saveConfig();
 			// $return = $module->setProjectSetting('shazam-config', json_encode($new_config));

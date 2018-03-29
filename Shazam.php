@@ -72,7 +72,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         foreach ($this->config as $field_name => $detail) {
             // Skip invalid fields
             if (!isset($Proj->metadata[$field_name])) {
-                self::log("Shazam field $field_name is not present in this project!");
+                if (!in_array($field_name, array('last_modified','last_modified_by'))) {
+                    self::log("Shazam field $field_name is not present in this project!");
+                }
                continue;
             }
 
@@ -218,7 +220,6 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                         Shazam.params       = <?php print json_encode($shazamParams); ?>;
                         Shazam.isDev        = <?php echo self::isDev(); ?>;
                         Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons")); ?>;
-                        //Shazam.log("Shazam Params", Shazam.params);
                         Shazam.Transform();
                     });
                 </script>
@@ -373,9 +374,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     # defines criteria to judge someone is on a development box or not
     public static function isDev()
     {
-        $host = @$_SERVER['HTTP_HOST'];
-        $is_dev_server = (isset($GLOBALS['is_development_server']) && $GLOBALS['is_development_server'] == '1');
-        return $host == 'localhost' || $is_dev_server;
+        $is_localhost  = ( @$_SERVER['HTTP_HOST'] == 'localhost' );
+        $is_dev_server = ( isset($GLOBALS['is_development_server']) && $GLOBALS['is_development_server'] == '1' );
+        $is_dev = ( $is_localhost || $is_dev_server ) ? 1 : 0;
+        return $is_dev;
     }
 
 }
