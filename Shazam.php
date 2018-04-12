@@ -62,6 +62,21 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     }
 
 
+    // Only display the Shazam Setup link if the user has design rights
+    public function redcap_module_link_check_display($project_id, $link, $record = null, $instrument = null, $instance = null, $page = null) {
+        $result = false;
+
+        // Evaluate all links for now - in the future you might have different rules for different links...
+        if (@$link['name'] == "Shazam Setup") {
+            global $userid;
+            $rights = REDCap::getUserRights($userid);
+            if (@$rights[$userid]['design'] == 1) $result = $link;
+        }
+
+        return $result;
+    }
+
+
     /**
      * Looks through the config to create an array of instruments => fields that are active for Shazam
      */
