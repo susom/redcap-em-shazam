@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                             <ul>
                                 <li>
                                     Notice how each element with a <code>class='shazam'</code> contains the name of a field as the text of the element.  This will move
-                                    that redcap field into the element with the class.
+                                    that redcap field into the element with the class.  If you want to move a fields label instead, use <code>field_name:label</code> inside of the shazam tag.
                                 </li>
                                 <li>
                                     Also notice how the last row contains the attribute <code>shazam-mirror-visibility="field_name"</code>.  This is a way to make an element in your html mimic
