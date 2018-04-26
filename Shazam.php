@@ -68,9 +68,11 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         // Evaluate all links for now - in the future you might have different rules for different links...
         if (@$link['name'] == "Shazam Setup") {
+
+            // Show link if design or superuser
             global $userid;
             $rights = REDCap::getUserRights($userid);
-            if (@$rights[$userid]['design'] == 1) $result = $link;
+            if (@$rights[$userid]['design'] == 1 || SUPER_USER ) $result = $link;
         }
 
         return $result;

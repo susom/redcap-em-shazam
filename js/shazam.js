@@ -1,30 +1,6 @@
 // SHAZAM JS FILE USED FOR BOTH CONFIG AND ACTUAL ADMINISTRATION OF SHAZAM INSTRUMENTS
 var Shazam = Shazam || {};
 
-// // Avoid `console` errors in browsers that lack a console.
-// (function() {
-//     var method;
-//     var noop = function () {};
-//     var methods = [
-//         'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-//         'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-//         'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-//         'timeStamp', 'trace', 'warn'
-//     ];
-//     var length = methods.length;
-//     var console = (window.console = window.console || {});
-//
-//     while (length--) {
-//         method = methods[length];
-//
-//         // Only stub undefined methods.
-//         if (!console[method]) {
-//             console[method] = noop;
-//         }
-//     }
-// }());
-
-
 Shazam.maxTransformDelays = 5;
 Shazam.transformDelays = 0;
 
@@ -301,14 +277,6 @@ Shazam.Transform = function() {
                     $(this).html(source_data);
                 }
 
-
-
-
-
-
-
-
-
                 // // Add Data History & Field Comment Log/Data Resolution Workflow icons
                 // if (Shazam.displayIcons === true || $(this).hasClass('shazam-icons')) {
                 //     // Place the icons into a span tag so you can do CSS to control their wrapping
@@ -333,9 +301,6 @@ Shazam.Transform = function() {
                 //         wrapper = e;
                 //     }
                 //
-                //
-                //
-                //
                 //     // if ($('table[role="presentation"]', source_tr).length > 0) {
                 //     //     wrapper = $('table[role="presentation"]', source_tr).clone().find('td:first').remove().parent(); //.wrapAll('span').parent().addClass('shazam-icons');
                 //     //     Shazam.log("Wrapper", wrapper);
@@ -355,10 +320,7 @@ Shazam.Transform = function() {
                 //
                 //     $(this).append(wrapper);
                 // }
-
-
-
-
+                
             }
 
 
@@ -373,7 +335,7 @@ Shazam.Transform = function() {
                 }
             }
 
-            $(source_tr).css({"position":"absolute","width":"0px !important","height": "0px !important","opacity":"0"}); //, "left":"-8000px"});
+            $(source_tr).css({"position":"absolute","width":"0px !important","height": "0px !important","opacity":"0"}).addClass('shazam-vanished'); //, "left":"-8000px"});
         });
 
         // Look for shazam-mirror-visibility
@@ -430,6 +392,23 @@ Shazam.Transform = function() {
         });
 
     });
+
+    // If is survey and all questionnum (left column) are empty, then hide them
+    if (Shazam.isSurvey) {
+        var allEmpty = true;
+
+        $('td.questionnum').parent().not('.shazam-vanished').find('td.questionnum').each(function(){
+            if($(this).text() !== "") {
+                Shazam.log("this is not empty",this);
+                allEmpty = false;
+            }
+        });
+        if (allEmpty) {
+            Shazam.log("all td.questionnum are empty");
+
+            $('td.questionnum').hide(); //css({"position":"absolute","width":"0px !important","height": "0px !important","opacity":"0"});
+        }
+    }
 
     // Bring back the form
     $('#form').animate({opacity: 1}, 500);
