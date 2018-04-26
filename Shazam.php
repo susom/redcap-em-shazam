@@ -116,7 +116,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
     function  hook_survey_page_top($project_id, $record = NULL, $instrument, $event_id, $group_id = NULL, $survey_hash = NULL, $response_id = NULL, $repeat_instance = 1) {
 		// self::log("Calling from hook_survey_page_top");
-        $this->shazamIt($project_id,$instrument);
+        $this->shazamIt($project_id,$instrument, true);
 	}
 
 
@@ -176,7 +176,6 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 	}
 
 
-
     /**
      * When a new field is being converted to shazam - prepopulate the editors with some helper text
      * @param $field_name
@@ -197,7 +196,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * @param $project_id
      * @param $instrument
      */
-    function shazamIt($project_id, $instrument) {
+    function shazamIt($project_id, $instrument, $isSurvey = false) {
 
         self::log("Evaluating ShazamIt for $instrument");
 
@@ -205,6 +204,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $this->loadConfig();
 
         if(isset($this->shazam_instruments[$instrument])) {
+
+
+
             // We are active!
 			self::log("Shazam active fields:", $this->shazam_instruments[$instrument]);
 
@@ -235,9 +237,12 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                         Shazam.params       = <?php print json_encode($shazamParams); ?>;
                         Shazam.isDev        = <?php echo self::isDev(); ?>;
                         Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons")); ?>;
+                        Shazam.isSurvey     = <?php print json_encode($isSurvey); ?>;
                         Shazam.Transform();
                     });
                 </script>
+                <style type='text/css'>#form {opacity: 0;}</style>
+
             <?php
 
         } else {
