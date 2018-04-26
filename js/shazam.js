@@ -234,7 +234,7 @@ Shazam.Transform = function() {
                     var type = $(e).prop('type');
 
                     // Left aligned stuff has a rci-left class... going to leave it for now.
-                    // if ($(e).hasClass("rci-left")) $(e).removeClass('rci-left');
+                    if ($(e).hasClass("rci-left")) $(e).removeClass('rci-left').addClass('rci-left-shazam');
 
                     // TODO: NOT SURE IF THIS IS REALLY NEEDED STILL
                     // if (type == 'text' && $(this).css('width') != '0px') $(this).css({'width': ''});//,'max-width':'90%'});
@@ -320,7 +320,7 @@ Shazam.Transform = function() {
                 //
                 //     $(this).append(wrapper);
                 // }
-                
+
             }
 
 
