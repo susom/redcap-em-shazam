@@ -149,7 +149,6 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             self::log("PAGE: " . PAGE);
             self::log("INSTRUMENT: ". $instrument);
 
-            //return;
 
             // Highlight shazam fields on the page
             ?>
@@ -231,16 +230,26 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 }
             }
             // self::log($shazamParams, $shazamParams);
-            
+
+
+            global $auth_meth;
+			$is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
+			$js_url = ($auth_meth === "shibboleth" && $is_above_843)  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
+
             ?>
-                <script type='text/javascript' src="<?php print $this->getUrl("js/shazam.js", true, true) ?>"></script>
+                <script type='text/javascript' src="<?php echo $js_url ?>"></script>
                 <script type='text/javascript'>
                     $(document).ready(function () {
-                        Shazam.params       = <?php print json_encode($shazamParams); ?>;
-                        Shazam.isDev        = <?php echo self::isDev(); ?>;
-                        Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons")); ?>;
-                        Shazam.isSurvey     = <?php print json_encode($isSurvey); ?>;
-                        Shazam.Transform();
+                        if (typeof Shazasm === "undefined") {
+                            // There has been an error loading the js file.
+                            alert("This page uses an external module called 'Shazam' but due to a configuration error the module is not loading the required javascript library correctly.  Please notify the project administrator.");
+                        } else {
+                            Shazam.params       = <?php print json_encode($shazamParams); ?>;
+                            Shazam.isDev        = <?php echo self::isDev(); ?>;
+                            Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons")); ?>;
+                            Shazam.isSurvey     = <?php print json_encode($isSurvey); ?>;
+                            Shazam.Transform();
+                        }
                     });
                 </script>
                 <style type='text/css'>#form {opacity: 0;}</style>
