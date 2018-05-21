@@ -166,10 +166,10 @@ Shazam.Transform = function() {
                         source_label = source_tr.find('td').not('questionnum').find('label').html().trim();
                     } else if ($('table[role="presentation"]', source_tr).find('td:first-child').length > 0) {
                         source_label = $('table[role="presentation"]', source_tr).find('td:first-child').html().trim();
-                    } else if (align === "left" && source_tr.find('td').children().length === 0) {
+                    } else if (align === "left" && source_tr.children('td').length === 1) { // descriptive text field trs have exactly one immediate child td (which may contain other tables with tds)
                         Shazam.log('Label2');
                         // Could be a descriptive field, so lets just take the content
-                        source_label = source_tr.find('td').html();
+                        source_label = source_tr.find('td:first-child').html().trim();
                     } else if ($('.sldrparent', source_tr).length > 0) {
                         Shazam.log('Label3');
                         // Is a slider
