@@ -15,7 +15,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     public $available_descriptive_fields = array();
     
     // A wrapper for logging
-    public static function log() {
+    public static function sLog() {
         if (self::isDev()) {
             $args = func_get_args();
             call_user_func_array('\Stanford\Shazam\Util::log', $args);
@@ -24,7 +24,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
     public function __construct()
     {
-        self::log("Constructing SHAZAM");
+        self::sLog("Constructing SHAZAM");
         parent::__construct();
 
         // If we are in a 'project' setting, then load the config
@@ -41,7 +41,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     {
         // Load the config
         $this->config = json_decode($this->getProjectSetting('shazam-config'), true);
-        self::log("Config Loaded");
+        self::sLog("Config Loaded");
         //self::log($this->config, "LOADED CONFIG");
 
         // Set instruments too
@@ -58,7 +58,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $this->config['last_modified_by'] = USERID;
         //self::log(json_encode($this->config), "DEBUG", "Saving this!");
         $this->setProjectSetting('shazam-config', json_encode($this->config));
-        self::log("Config Saved");
+        self::sLog("Config Saved");
     }
 
 
@@ -90,14 +90,14 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             // Skip invalid fields
             if (!isset($Proj->metadata[$field_name])) {
                 if (!in_array($field_name, array('last_modified','last_modified_by'))) {
-                    self::log("Shazam field $field_name is not present in this project!");
+                    self::sLog("Shazam field $field_name is not present in this project!");
                 }
                continue;
             }
 
             // Skip inactive shazam configurations
             if ($detail['status'] == 0) {
-                self::log("Skipping $field_name - inactive");
+                self::sLog("Skipping $field_name - inactive");
                 continue;
             }
 
@@ -112,7 +112,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         }
 
         // self::log("Setting Shazam Instruments", $this->shazam_instruments, "DEBUG");
-        self::log("Setting Shazam Instruments");
+        self::sLog("Setting Shazam Instruments");
     }
 
 
@@ -132,7 +132,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         // ONLY DO STUFF FOR THE ONLINE DESIGNER PAGE:
 	    if (PAGE == "Design/online_designer.php") {
-            self::log("Calling hook_every_page_top on " . PAGE);
+            self::sLog("Calling hook_every_page_top on " . PAGE);
             $instrument = $_GET['page'];
 
             // Apparently the config usn't loaded?  TODO: TEST THIS.
@@ -140,13 +140,13 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
             // Skip if this instrument doesn't have any shazam fields
             if (!isset($this->shazam_instruments[$instrument])) {
-                self::log("$instrument not used");
+                self::sLog("$instrument not used");
                 return;
             }
 
             //self::log($this);
-            self::log("PAGE: " . PAGE);
-            self::log("INSTRUMENT: ". $instrument);
+            self::sLog("PAGE: " . PAGE);
+            self::sLog("INSTRUMENT: ". $instrument);
 
             $jsUrl = $this->getUrl('js/shazam.js');
             // Highlight shazam fields on the page
@@ -205,7 +205,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     function shazamIt($project_id, $instrument, $isSurvey = false) {
 
-        self::log("Evaluating ShazamIt for $instrument");
+        self::sLog("Evaluating ShazamIt for $instrument");
 
         // Determine if any of the current shazam-enabled fields are on the current instrument
         $this->loadConfig();
@@ -215,7 +215,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
 
             // We are active!
-			self::log("Shazam active fields:", $this->shazam_instruments[$instrument]);
+			self::sLog("Shazam active fields:", $this->shazam_instruments[$instrument]);
 
 			// Build the data to pass through to the javascript engine
 			$shazamParams = array();
@@ -240,7 +240,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
             global $auth_meth;
 			$is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
-			self::log($auth_meth, $is_above_843);
+			self::sLog($auth_meth, $is_above_843);
 
 			$js_url = ($auth_meth === "shibboleth" && $is_above_843)  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
 
@@ -269,7 +269,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         } else {
             // No shazam here
-			self::log( "Nothing happening on this instrument $instrument");
+			self::sLog( "Nothing happening on this instrument $instrument");
         }
 
     }
@@ -368,10 +368,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     public function getExampleConfig() {
         $file = $this->getModulePath() . "assets/ShazamExample_Instrument.json";
         if (file_exists($file)) {
-            self::log("$file FOUND");
+            self::sLog("$file FOUND");
             return json_decode(file_get_contents($file),true);
         } else {
-            self::log("Unable to find $file");
+            self::sLog("Unable to find $file");
             return false;
         }
     }

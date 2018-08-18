@@ -9,7 +9,7 @@ use \Browser;
 
 // Handle posts back to this script
 if ($_SERVER['REQUEST_METHOD']=='POST') {
-	$module::log($_POST, "DEBUG", "INCOMING POST");
+	$module::sLog($_POST, "DEBUG", "INCOMING POST");
 
 	$field_name = !empty($_POST['field_name'])  ? $_POST['field_name']  : "";
 	$action     = !empty($_POST['action'])      ? $_POST['action']      : "";
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	    // see if the field doesn't already exist
         if (isset($module->config[$field_name])) {
             // Already exists - can't do anything
-            $module::log("$field_name already exists as an example module");
+            $module::sLog("$field_name already exists as an example module");
         } else {
             // load the example config
             $example_config = $module->getExampleConfig();
@@ -217,14 +217,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             if (! SUPER_USER) {
                 // Is there an existing js
                 if (!empty($module->config[$field_name]['javascript'])) {
-                    $module::log("js is not empty - keeping original value since not a superuser");
+                    $module::sLog("js is not empty - keeping original value since not a superuser");
                     $params['javascript'] = $module->config[$field_name]['javascript'];
                 } else {
-                    $module::log("js IS empty");
+                    $module::sLog("js IS empty");
                     $params['javascript'] = '';
                 }
             } else {
-                $module::log("Super User is Saving!");
+                $module::sLog("Super User is Saving!");
             }
 
             $update = array(
