@@ -4,9 +4,6 @@
 
 $module->loadConfig();
 
-use \REDCap;
-use \Browser;
-
 // Handle posts back to this script
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$module::sLog($_POST, "DEBUG", "INCOMING POST");
@@ -55,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			// Render the editor
 			require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 
-            $b = new Browser();
+            $b = new \Browser();
             $cmdKey = ( $b->getPlatform() == "Apple" ? "&#8984;" : "Ctrl" );
 
             ?>
