@@ -220,14 +220,14 @@ Shazam.Transform = function() {
 
                     // This rule handles the majority of left-aligned fields
                     // Take everything after the div.space separator
-                      source_data =  source_tr.find("td").not('questionnum').find("div.space").nextAll();
+                    source_data =  source_tr.find("td").not('questionnum').find("div.space").nextAll();
 
-//                    source_data =  source_tr.find("td:first").find("div.space").nextAll();
+                    // source_data =  source_tr.find("td:first").find("div.space").nextAll();
                 }
 
 
                 // If we still didn't find anything - then lets log an error and continue
-                if (!source_data.size()) {
+                if (!source_data.length) {
                     Shazam.log("Error finding td for " + search_field + " in shazam config for " + field_name);
                     return true;
                 }
@@ -359,7 +359,7 @@ Shazam.Transform = function() {
             Shazam.log("Checking mirror for " + mirror_source_field);
 
             // Make sure field is present on page
-            if (!mirror_source_tr.size()) {
+            if (!mirror_source_tr.length) {
                 Shazam.log("Unable to mirror visibility of field that isn't on this page: " + mirror_source_field);
                 return true;
             }
