@@ -21,6 +21,7 @@ The way this works is to insert a 'descriptive' field on your form where you wan
 
 Next, you set up the external module and define your custom HTML.  Here is an example:
 
+
 ```html
 <table class='fy_summary'>
     <tr>
