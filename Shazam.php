@@ -296,10 +296,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
 	    $html = '';
 	    foreach ($this->available_descriptive_fields as $field_name => $label) {
-	        $html .= "<li><a data-field-name='$field_name' href='#'>[$field_name] $label</a></li>";
+	        $html .= "<a class='dropdown-item' data-field-name='$field_name' href='#'>[$field_name] $label</a>";
         }
-        $html .= "<li role='separator' class='divider'></li>";
-		$html .= "<li><span class='shazam-descriptive'>Create a new descriptive field for it to appear here</span></li>";
+        $html .= "<div class='dropdown-divider'></div>";
+		$html .= "<div class='dropdown-header shazam-descriptive'>Create a new descriptive field for it to appear here</div>";
         return $html;
     }
 
@@ -349,17 +349,26 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     		<div class="btn-group">
                 <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span class="caret"></span>
                 </button>
-                <ul class="dropdown-menu actions">
-                    <li><a data-action="edit" href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit</a></li>
-                    <li><a data-action="delete" href="#"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete</a></li>';
+                <div class="dropdown-menu actions">
+                    <a class="dropdown-item" data-action="edit" href="#">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a class="dropdown-item" data-action="delete" href="#">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>';
         if ($status == 0) {
             $html .= '
-                    <li><a data-action="activate" href="#"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Activate</a></li>';
+                    <a class="dropdown-item" data-action="activate" href="#">
+                        <i class="fas fa-toggle-on"></i> Activate
+                    </a>';
         } else {
             $html .= '
-                    <li><a data-action="deactivate" href="#"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span> Deactivate</a></li>';
+                    <a class="dropdown-item" data-action="deactivate" href="#">
+                        <i class="fas fa-toggle-off"></i> Deactivate
+                    </a>';
         }
 	    $html .= '        
+                </div>
             </div>';
         return $html;
     }

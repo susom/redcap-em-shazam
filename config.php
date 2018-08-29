@@ -56,21 +56,23 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             $cmdKey = ( $b->getPlatform() == "Apple" ? "&#8984;" : "Ctrl" );
 
             ?>
-            <h3>Shazam Editor</h3>
-            <table class="table table-bordered ">
-                <tr><th class="info col-md-2"><strong>Instrument:</strong></th><td><b><?php echo $instrument ?></b></td></tr>
-                <tr><th class="info col-md-2"><strong>Field:</strong></th><td><b><?php echo $field_name ?></b></td></tr>
-            </table>
+            <h4>
+                Shazam Editor:
+                <span class="badge badge-info">Instrument: <?php echo $instrument?></span>
+                <span class="badge badge-info">Field: <?php echo $field_name?></span>
+                <button class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#shazam-example">Show Example/Instructions</button>
+            </h4>
 
-            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#shazam-example">Show Example/Instructions</button>
             <hr>
 <!--            <div id="shazam-example" class="collapse panel panel-body" style="border:2px solid #ccc; border-radius: 3px;">-->
             <div class="modal fade" id="shazam-example" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-wide">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                             <h4 class="modal-title" id="shazam-example-label">Shazam Example</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="fas fa-times"></i>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <p>Use the tabs below to create and edit your Shazam HTML block.  This block of HTML will be inserted into the instrument where
@@ -143,7 +145,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                             </p>
                         </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">
+                                    <i class="fas fa-times"></i> Close
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -151,12 +155,18 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             <div class="shazam-editor" data-field-name="<?php echo $field_name ?>">
 
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#panel_editor_html">HTML</a></li>
-                    <li><a data-toggle="tab"  href="#panel_editor_css">CSS</a></li>
-                    <li><a data-toggle="tab"  href="#panel_editor_js">JS</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#panel_editor_html">HTML</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel_editor_css">CSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#panel_editor_js">JS</a>
+                    </li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane fade in active" id="panel_editor_html" >
+                    <div class="tab-pane active" id="panel_editor_html" >
                         <div class="editor2" id='editor_html' data-mode="html"></div>
                     </div>
                     <div class="tab-pane fade" id="panel_editor_css">
@@ -168,10 +178,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                 </div>
             </div>
             <div class="shazam-edit-buttons">
-                <button class="btn btn-primary" name="save">SAVE (<?php echo $cmdKey; ?>-S)</button>
-                <button class="btn btn-primary" name="save_and_close">SAVE AND CLOSE</button>
-                <button class="btn btn-default" name="beautify">BEAUTIFY</button>
-                <button class="btn btn-default" name="cancel">CANCEL</button>
+                <button class="btn btn-sm btn-info" name="save">SAVE (<?php echo $cmdKey; ?>-S)</button>
+                <button class="btn btn-sm btn-info" name="save_and_close">SAVE AND CLOSE</button>
+                <button class="btn btn-sm btn-success" name="beautify">BEAUTIFY</button>
+                <button class="btn btn-sm btn-danger" name="cancel">CANCEL</button>
             </div>
 
             <script src="<?php echo $module->getUrl('js/ace/ace.js'); ?>"></script>
@@ -188,6 +198,15 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                         margin: 30px auto;
                     }
                 }
+
+                .modal-dialog { max-width: inherit; }
+
+                li.nav-item {
+                    font-weight: bold;
+                    background-color: #efefef;
+                }
+
+                ul.nav-tabs { margin-left: 48px }
             </style>
 
             <?php
@@ -266,6 +285,8 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 <style>
     #shazam td { vertical-align: middle; }
     .shazam-descriptive { font-style: italic; font-size: smaller; margin: 0 20px; white-space: nowrap;}
+
+    .table th {font-weight: bold;}
 </style>
 
 <h3>Shazam Fields</h3>
@@ -281,18 +302,22 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             Add Shazam Field <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu add-shazam">
-            <li><span style="padding-left: 10px;">Select an unsused descriptive field below:</span></li>
-            <li class="divider"></li>
+        <div class="dropdown-menu add-shazam">
+            <div class="dropdown-header">
+                Select an unsused descriptive field below:
+            </div>
+            <div class="dropdown-divider"></div>
             <?php echo $module->getAddShazamOptions() ?>
-        </ul>
+        </div>
     </div>
     <?php if (!isset($module->config['shaz_ex_desc_field'])) { ?>
+
     <div class="pull-right">
-        <button type="button" class="btn btn-default add-example" aria-haspopup="true" aria-expanded="false">
-            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                Add Example Field
-        </button>
+        <p>
+            <div class="btn btn-info btn-sm add-example" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-plus-square"></i> Add Example Field
+            </div>
+        </p>
     </div>
     <?php } ?>
 </div>

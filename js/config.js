@@ -148,7 +148,7 @@ Shazam.initEditor = function(id, mode) {
             var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
 
         } else {
-            var jsWarn = $('<span></span>').addClass('label label-danger text-center').text("Javascript Editing Enabled (You are a Super User)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
+            var jsWarn = $('<span></span>').addClass('badge badge-danger text-center').text("Javascript Editing Enabled (You are a Super User)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
         }
     }
 
@@ -188,7 +188,7 @@ Shazam.resizeAceEditors = function () {
     var footerTop = $('#south').position().top;
 
     // Calculate a suitable bottom
-    var bottom = footerTop == 0 ? w : footerTop;
+    var bottom = footerTop == 0 ? w : Math.min(w,footerTop);
 
     // Space for submit and other fudge stuff
     var fudge = 90;
@@ -314,7 +314,7 @@ Shazam.prepareTable = function() {
     });
 
     // Handle the in-table action buttons
-    $('.shazam-table ul.actions a').on('click', function() {
+    $('.shazam-table div.actions a').on('click', function() {
         var action = $(this).data('action');
         var field_name = $(this).closest('tr').find('td:first').text();
 
@@ -343,7 +343,7 @@ Shazam.prepareTable = function() {
     });
 
     // Handle the add example button
-    $('button.add-example').on('click', function() {
+    $('div.add-example').on('click', function() {
         Shazam.post('add-example', 'shaz_ex_desc_field');
     });
 
