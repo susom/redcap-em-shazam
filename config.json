@@ -19,10 +19,6 @@
     }
   ],
 
-  "compatibility": {
-    "redcap-version-min": "8.0.3"
-  },
-
   "authors": [
     {
       "name": "Andy Martin",
@@ -73,5 +69,10 @@
       "name": "<b>Display Data History & Field Comment Log/Data Resolution Workflow Icons</b><br>You can also enable these icons for just a particular input by adding the class <code>shazam-icons</code> to a particular input field.",
       "type": "checkbox"
     }
-  ]
+  ],
+  "compatibility": {
+    "php-version-min": "5.4.0",
+    "redcap-version-min": "7.0.0",
+    "redcap-version-max": "8.6.5"
+  }
 }
