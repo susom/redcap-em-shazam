@@ -17,7 +17,8 @@
       "1.1.5": "Fixed issue with js passthru and ExternalModules prior to 8.4.3",
       "1.1.6": "Fixed label issue with descriptive fields",
       "1.1.9": "Last version for boostrap 3",
-      "1.2.0": "Boostrap 4 version"
+      "1.2.0": "Boostrap 4 version",
+      "1.2.1": "Fix release issue that made 1.2.0 really the same as 1.1.9"
     }
   ],
 
