@@ -68,7 +68,7 @@ Shazam.Transform = function() {
 
             // Increment number of processing delays
             Shazam.transformDelays ++;
-            // Shazam.log("Delaying Shazam (#" + Shazam.transformDelays + ") - waiting for autocomplete dropdowns to be processed...");
+            Shazam.log("Delaying Shazam (#" + Shazam.transformDelays + ") - waiting for autocomplete dropdowns to be processed...");
             return;
         } else {
             Shazam.log ("Only " + ac_dropdowns_processed + " of " + ac_dropdowns + " autocomplete dropdowns processed after " + Shazam.transformDelays + " shazam transform delays.  Moving forward anyhow but all autodropdowns may not work");
@@ -85,12 +85,12 @@ Shazam.Transform = function() {
         // Get parent tr for destination field
         var shazam_target_tr = $('tr[sq_id="' + field_name + '"]');
 
-        // Add shazam-row class to tr (not sure why this was done...)
-        $(shazam_target_tr).addClass('shazam-row');
+        // // Add shazam-row class to tr (not sure why this was done...)
+        // $(shazam_target_tr).addClass('shazam-row');
 
         // Get the last td in the descriptive tr to inject the Shazam HTML code
         var shazam_target = $('td:last-child', shazam_target_tr);
-        Shazam.log("target element", shazam_target);
+        Shazam.log(field_name + " is Shazam target", shazam_target);
 
         // Set the html according to the parameters
         $(shazam_target).html(html_content);
@@ -98,13 +98,11 @@ Shazam.Transform = function() {
         // Loop through HTML content and substitute in native page content
         $('.shazam', shazam_target).each(function () {
 
-            Shazam.log("Shazam Insert:",this);
-
+            // Shazam.log("Shazam Insert:",this);
             var nodeValue = trim($(this).text());   // The text inside the node
             var matches = nodeValue.split(':');     // Parse if there is a ":" delimiter
             var search_field = matches[0];          // field_name
             var search_option = matches[1];         // label is only supported option now
-
             Shazam.log(field_name, search_field, search_option, nodeValue);
 
             // Find the 'real tr' for the field to be relocated
@@ -112,7 +110,7 @@ Shazam.Transform = function() {
 
             // Make sure field is present on page
             if (source_tr.length === 0) {
-                Shazam.log("Unable to find shazam-specified field " + search_field);
+                Shazam.log(field_name + ": Unable to find shazam-specified field " + search_field);
                 return;
             }
 
@@ -142,15 +140,15 @@ Shazam.Transform = function() {
                 align = (source_tr.children('td').length === 1) ? "left": "right";
             }
 
-            Shazam.log("Align: " + align, source_tr.children('td').length);
+            Shazam.log(search_field + " alignment: " + align, "td count: " + source_tr.children('td').length);
 
             // Check to see if we need to parse the label
             if (search_option === 'label') {
-                Shazam.log("Label Search in tr", source_tr);
+                Shazam.log(search_field + " Label Search in tr", source_tr);
 
                 var source_label;
                 if (source_tr.attr('mtxgrp')) {
-                    Shazam.log("This is a MATRIX");
+                    Shazam.log(search_field + " is a MATRIX");
                     var label_e;
                     // For a matrix, the label is in the second
                     if (Shazam.isSurvey) {
@@ -163,30 +161,30 @@ Shazam.Transform = function() {
 
                     // Not a matrix
                     if (Shazam.isSurvey && source_tr.find('td').not('.questionnum').find('label').length > 0) {
-                        Shazam.log('Label1');
+                        Shazam.log(search_field + ' Label1');
                         source_label = source_tr.find('td').not('.questionnum').find('label').html().trim();
                     } else if ($('table[role="presentation"]', source_tr).find('td:first-child').length > 0) {
-                        Shazam.log('Label2');
+                        Shazam.log(search_field + ' Label2');
                         source_label = $('table[role="presentation"]', source_tr).find('td:first-child').html().trim();
                     } else if (align === "left" && source_tr.children('td').not('.questionnum').length === 1) {
                     // } else if (align === "left" && source_tr.children('td').length === 1) {
-                        Shazam.log('Label3');
+                        Shazam.log(search_field + ' Label3');
                         // descriptive text field trs have exactly one immediate child td
                         // (which may contain other tables with tds)
                         source_label = source_tr.find('td').not('.questionnum').first().html().trim();
                     } else if ($('.sldrparent', source_tr).length > 0) {
-                        Shazam.log('Label3');
+                        Shazam.log(search_field + ' Label3');
                         // Is a slider
                         source_label = source_tr.find('label:first').html();
                     } else if ($("#label-" + search_field + " td:first").length > 0) {
-                        Shazam.log('Label4');
+                        Shazam.log(search_field + ' Label4');
                         source_label = $("#label-" + search_field + " td:first").html().trim();
                     } else {
-                        Shazam.log('Label5');
+                        Shazam.log(search_field + ' Label5');
                         // Last resort - set label to field
                         source_label = $("#label-" + search_field).html();
                     }
-                    Shazam.log("Source Label", source_label);
+                    Shazam.log(search_field + " Source Label", source_label);
                 }
 
                 // COPY label to the shazam cell
@@ -199,7 +197,7 @@ Shazam.Transform = function() {
                 var source_data;
 
                 if (source_tr.attr('mtxgrp')) {
-                    Shazam.log("This is a MATRIX");
+                    Shazam.log(search_field + " is a MATRIX");
                     var header_table = $('#' + source_tr.attr('mtxgrp') + '-mtxhdr-tr').find('table:first').clone();
                     header_table.find('td:first').remove();
                     var data_table = source_tr.find('table:first').clone();
@@ -210,13 +208,13 @@ Shazam.Transform = function() {
                 } else if (align === "right") {
                     // Vanilla- take the td.data
                     source_data =  $("td.data", source_tr).children();
-                    Shazam.log("AlignRight", source_tr);
+                    Shazam.log(search_field + " AlignRight - using td.data", source_tr);
                 } else if ($('a.fileuploadlink', source_tr).length > 0) {
-                    Shazam.log("FileUpload");
+                    Shazam.log(search_field + " FileUpload");
                     // This is a file upload field which needs an exception
                     source_data = source_tr.find("td").not('questionnum').find('label').nextAll();
                 } else {
-                    Shazam.log("LeftCatchAll");
+                    Shazam.log(search_field + " LeftCatchAll");
 
                     // This rule handles the majority of left-aligned fields
                     // Take everything after the div.space separator
@@ -228,13 +226,13 @@ Shazam.Transform = function() {
 
                 // If we still didn't find anything - then lets log an error and continue
                 if (!source_data.length) {
-                    Shazam.log("Error finding td for " + search_field + " in shazam config for " + field_name);
+                    Shazam.log(field_name + " ERROR finding td for " + search_field + " in shazam config");
                     return true;
                 }
 
                 // Adjust width of some non-hidden inputs
                 $("input[type!='hidden']", source_data.parent()).each(function (i, e) {
-                    Shazam.log(i,e);
+                    Shazam.log(search_field + " non-hidden inputs", i, e);
                     var type = $(e).prop('type');
 
                     // Left aligned stuff has a rci-left class... going to leave it for now.
@@ -257,14 +255,14 @@ Shazam.Transform = function() {
                 // Add Data History & Field Comment Log/Data Resolution Workflow icons -- doesn't work for matrix!
                 if (Shazam.isSurvey === false && (Shazam.displayIcons === true || $(this).hasClass('shazam-icons'))) {
                     // Place the icons into a span tag so you can do CSS to control their wrapping
-                    Shazam.log("Adding DisplayIcons!", source_tr);
+                    Shazam.log(search_field + " Adding DisplayIcons!", source_tr);
 
                     var trp;
 
                     if (source_tr.attr('mtxgrp')) {
                         trp = $('table[role="presentation"]:last', source_tr)
                     } else if (source_tr.hasClass('sliderlabels')) {
-                        Shazam.log("Skipping Slider Icons");
+                        Shazam.log(search_field + " skipping Slider Icons");
                     } else {
                         // This new version only supports the presentation table wrapper!
                         trp = $('table[role="presentation"]:first', source_tr);
@@ -277,7 +275,7 @@ Shazam.Transform = function() {
                     }
                 } else {
                     // Move Contents of source to shazam cell
-                    Shazam.log("Moving data for " + search_field, source_data);
+                    Shazam.log(search_field + " moving data into " + field_name, source_data);
                     $(this).html(source_data);
                 }
 

@@ -148,7 +148,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             self::sLog("PAGE: " . PAGE);
             self::sLog("INSTRUMENT: ". $instrument);
 
-            $jsUrl = $this->getUrl('js/shazam.js');
+            $jsUrl = $this->getUrl('js/shazam.js', false, true);
             // Highlight shazam fields on the page
             ?>
             <script src='<?php echo $jsUrl; ?>'></script>
@@ -177,6 +177,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 .shazam-label:hover {
                     cursor: pointer;
                 }
+
             </style>
             <?php
         }
@@ -242,7 +243,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 			$is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
 			self::sLog($auth_meth, $is_above_843);
 
-			$js_url = ($auth_meth === "shibboleth" && $is_above_843)  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
+			$js_url = $is_above_843  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
+			//$js_url = $this->getUrl("js/shazam.js", true, true);
 
             ?>
                 <script type='text/javascript' src="<?php echo $js_url ?>"></script>
@@ -263,7 +265,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                         });
                     }
                 </script>
-                <style type='text/css'>#form {opacity: 0;}</style>
+                <style type='text/css'>
+                    #form {opacity: 0;}
+                    .shazam-vanished { z-index: -9999; }
+                </style>
 
             <?php
 
