@@ -304,7 +304,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
         </button>
         <div class="dropdown-menu add-shazam">
             <div class="dropdown-header">
-                Select an unsused descriptive field below:
+                Select an unused descriptive field below:
             </div>
             <div class="dropdown-divider"></div>
             <?php echo $module->getAddShazamOptions() ?>
