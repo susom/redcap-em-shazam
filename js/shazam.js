@@ -1,8 +1,14 @@
 // SHAZAM JS FILE USED FOR BOTH CONFIG AND ACTUAL ADMINISTRATION OF SHAZAM INSTRUMENTS
 var Shazam = Shazam || {};
 
+
+// These counters are for when we need to delay transformation for dropdown auto-complete fields
 Shazam.maxTransformDelays = 5;
 Shazam.transformDelays = 0;
+Shazam.showDuration = Shazam.showDuration || 0;
+Shazam.hideDuration = Shazam.hideDuration || 0;
+
+
 
 /**
  * A utility function for highlighting fields in the data dictionary view
@@ -56,6 +62,14 @@ Shazam.log = function() {
  * Transform the page according to Shazam
  */
 Shazam.Transform = function() {
+
+    // Skip Shazam if some other module has set the 'DisableTransform' property to true...
+    if (Shazam.DisableTransform) {
+        // Turn the form back on as the EM turns it off on page load
+        $('#form').animate({opacity: 1}, 250);
+        return;
+    }
+
 
     // Check if we need to delay execution for autocomplete dropdowns to be handled first...
     var ac_dropdowns = $('input.rc-autocomplete').length;
@@ -123,8 +137,6 @@ Shazam.Transform = function() {
             // and potentially the 'icons'
             //
             // I just created a test project with a bunch of combinations to try and make this better
-
-            // if (search_field === "ais_last_name_1") return;
 
             var label;
             var data;
@@ -278,51 +290,6 @@ Shazam.Transform = function() {
                     Shazam.log(search_field + " moving data into " + field_name, source_data);
                     $(this).html(source_data);
                 }
-
-                // // Add Data History & Field Comment Log/Data Resolution Workflow icons
-                // if (Shazam.displayIcons === true || $(this).hasClass('shazam-icons')) {
-                //     // Place the icons into a span tag so you can do CSS to control their wrapping
-                //     Shazam.log("Adding DisplayIcons!", source_tr);
-                //
-                //     // var wrapper = $('<span/>').addClass('shazam-icons');
-                //     var wrapper;
-                //
-                //     var trp = $('table[role="presentation"]', source_tr);
-                //
-                //     // if (trp.length) {
-                //     //     // remove the first td.
-                //     //     trp.find('td:first').remove();
-                //     //     wrapper = trp;
-                //     // }
-                //
-                //     if (trp.length) {
-                //         // remove the first td
-                //         var e = trp.find('td:last').children().wrapAll('<span>').parent().addClass('foo'); //remove();
-                //         console.log("e",e);
-                //
-                //         wrapper = e;
-                //     }
-                //
-                //     // if ($('table[role="presentation"]', source_tr).length > 0) {
-                //     //     wrapper = $('table[role="presentation"]', source_tr).clone().find('td:first').remove().parent(); //.wrapAll('span').parent().addClass('shazam-icons');
-                //     //     Shazam.log("Wrapper", wrapper);
-                //     // }
-                //
-                //
-                //     //
-                //     // if ($(this).find(".rc-autocomplete").length === 0 && $(this).find(".note").length === 0 && $(this).find("div").length === 0) {
-                //     //     // Instead of appending a BR - I'm going to wrap the icons into an element so you could use css to break them apart...
-                //     //     // $(this).append('<br>');
-                //     //     wrapper.addClass("add-br");
-                //     // }
-                //     // if (source_tr.find("a").length !== 0) {
-                //     //     // $(this).append(source_tr.find("a").parent().html().replace('<br>', ''));
-                //     //     wrapper.append(source_tr.find("a").parent().html().replace('<br>',''));
-                //     // }
-                //
-                //     $(this).append(wrapper);
-                // }
-
             }
 
 
@@ -365,10 +332,10 @@ Shazam.Transform = function() {
             // Do an initial sync of the visibilty
             if (mirror_source_tr.is(':visible')) {
                 Shazam.log("Visible");
-                $(mirror_element).show();
+                $(mirror_element).show(Shazam.showDuration);
             } else {
                 Shazam.log("Invisible");
-                $(mirror_element).hide();
+                $(mirror_element).hide(Shazam.hideDuration);
             }
 
             // Create observer that maintains the sync going forward
@@ -377,10 +344,10 @@ Shazam.Transform = function() {
                 Shazam.log("MutationObserver", mutations,target);
                 if ($(target).is(':visible')) {
                     Shazam.log('showing ', mirror_element);
-                    $(mirror_element).show();
+                    $(mirror_element).show(Shazam.showDuration);
                 } else {
                     Shazam.log('hiding ', mirror_element);
-                    $(mirror_element).hide();
+                    $(mirror_element).hide(Shazam.hideDuration);
                 }
             });
 
