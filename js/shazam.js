@@ -366,6 +366,7 @@ Shazam.Transform = function() {
     if (Shazam.isSurvey) {
         var allEmpty = true;
 
+        // Kludgy way to look through all the first TDs to see if they have text (e.g. question numbers)
         $('td.questionnum').parent().not('.shazam-vanished').find('td.questionnum').each(function(){
             if($(this).text() !== "") {
                 Shazam.log("this is not empty",this);
@@ -375,7 +376,9 @@ Shazam.Transform = function() {
         if (allEmpty) {
             Shazam.log("all td.questionnum are empty");
 
-            $('td.questionnum').hide(); //css({"position":"absolute","width":"0px !important","height": "0px !important","opacity":"0"});
+            // Per issue #18, we do not want to hide questionnum that are in the first header td of a matrix
+            // https://stackoverflow.com/questions/6784741/how-to-select-an-element-which-parent-is-not-specified-class
+            $('tr:not("[mtxgrp]") td.questionnum').hide();
         }
     }
 
