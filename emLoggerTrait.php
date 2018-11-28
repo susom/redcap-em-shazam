@@ -1,5 +1,5 @@
 <?php
-namespace Stanford\ApiWhitelist;
+namespace Stanford\Shazam;
 
 /**
  * This trait can be use with External Modules to enable the Stanford emLogger module
