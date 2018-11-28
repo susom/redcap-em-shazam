@@ -1,32 +1,38 @@
 <?php
 namespace Stanford\Shazam;
 
-if (!class_exists('Util')) require_once('classes/Util.php');
+//if (!class_exists('Util')) require_once('classes/Util.php');
 
 use \REDCap as REDCap;
 
-// require_once ("classes/ActionTagHelper.php");
-
+require_once "emLoggerTrait.php";
 
 class Shazam extends \ExternalModules\AbstractExternalModule
 {
+
+    use emLoggerTrait;
+
     public $config = array();
     public $shazam_instruments = array(); // An array with key = instrument and values = shazam fields
     public $available_descriptive_fields = array();
-    
-    // A wrapper for logging
-    public static function sLog() {
-        if (self::isDev()) {
-            $args = func_get_args();
-            call_user_func_array('\Stanford\Shazam\Util::log', $args);
-        }
-    }
+
+    public $backup_configs = array();
+
+    const BACKUP_COPIES = 10;
+    const KEY_CONFIG_METADATA = '__MISC__';
+    const KEY_SHAZAM_MIRROR_VIZ_FIX = "smvf";
+
+    //// A wrapper for logging
+    //public static function sLog() {
+    //    if (self::isDev()) {
+    //        $args = func_get_args();
+    //        call_user_func_array('\Stanford\Shazam\Util::log', $args);
+    //    }
+    //}
 
     public function __construct()
     {
-        self::sLog("Constructing SHAZAM");
         parent::__construct();
-
         // If we are in a 'project' setting, then load the config
         // global $project_id;
         // if ($project_id) $this->loadConfig();
@@ -34,31 +40,107 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
     /**
      * Currently the shazam config is stored as an array with keys equal to field_names
-     * and then an array of properties for status, html, css, javascript, date-saved.
-     * @return array|mixed
+     * and then an array of properties for status, html, css, javascript.  To add future expandibility of Shazam
+     * I made a new 'metadata' key that can be added to either the parent array for things like 'date saved'
+     * or to each field's array to store version and other information.
      */
     public function loadConfig()
     {
         // Load the config
         $this->config = json_decode($this->getProjectSetting('shazam-config'), true);
-        self::sLog("Config Loaded");
-        //self::log($this->config, "LOADED CONFIG");
+        $this->emDebug("Config Loaded");
+        $this->emDebug($this->config, "LOADED CONFIG");
 
-        // Set instruments too
+        // Migrate over 'shazam-mirror-visibility' in HTML to data-shazam-mirror-visibility
+        $this->migrateShazamMirrorViz();
+
+        // Set shazam instruments too
         $this->setShazamInstruments();
     }
+
+
+    /**
+     * Migrate any HTML using the attribute 'shazam-mirror-visibility' to 'data-shazam-mirror-visibility'
+     * https://github.com/susom/redcap-em-shazam/issues/13
+     */
+    public function migrateShazamMirrorViz() {
+        $config = $this->config;
+
+        // Use a regex to replace shazam-mirror-visibility...
+        $re = '/(?<!data-)shazam-mirror-visibility/m';
+        foreach ($config as $field => $props) {
+            // Only fix those that need fixin'
+            if (isset($props['html']) && !isset($props[self::KEY_CONFIG_METADATA][self::KEY_SHAZAM_MIRROR_VIZ_FIX])) {
+                // Fix any shazam-mirror-viz
+                $count = 0;
+                $html = preg_replace($re, "data-shazam-mirror-visibility", $props['html'], -1, $count);
+                if ($count > 0) {
+                    // We did a replacement
+                    $props['html'] = $html;
+                }
+
+                // Create a misc array if not already there
+                if (!isset($props[self::KEY_CONFIG_METADATA])) $props[self::KEY_CONFIG_METADATA] = [];
+
+                // Record the fact that we applied this fix
+                $props[self::KEY_CONFIG_METADATA][self::KEY_SHAZAM_MIRROR_VIZ_FIX] = $count;
+                $config[$field] = $props;
+                $this->emDebug("Updating " . self::KEY_SHAZAM_MIRROR_VIZ_FIX . " for $field with $count shazam-mirror-visibility changes");
+            } else {
+                // Already fixed
+            }
+        }
+
+        // If we actually made a change here, let's re-save
+        if (serialize($config) !== serialize($this->config)) {
+            // We fixed some stuff
+            $this->emDebug("Updating config");
+            $this->saveConfig($config, "migration of shazam-mirror-visibility changes");
+        }
+    }
+
+
+    /**
+     * Backups are time-stamp versions of shazam settings*
+     * @return array|mixed
+     */
+    public function loadBackupConfigs()
+    {
+        $backup_configs = json_decode($this->getProjectSetting('shazam-config-backups'), true);
+        if ( !empty($backup_configs)) $this->backup_configs = $backup_configs;
+        return $this->backup_configs;
+    }
+
 
     /**
      * Save the config back to the external modules settings table
      */
-    public function saveConfig() {
-        //TODO: Add backup of configs...
+    public function saveConfig($newConfig, $saveComment = "") {
+        // Load backups and save current config as new backup
+        $backup_configs = $this->loadBackupConfigs();
+        $ts = time();
 
-        $this->config['last_modified'] = date('Y-m-d H:i:s');
-        $this->config['last_modified_by'] = USERID;
+        $backup_configs[$ts] = array($this->config);
+        ksort($backup_configs);
+
+        // Only keep so many copies of backups
+        $this->backup_configs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
+        $this->setProjectSetting('shazam-config-backups', json_encode($this->backup_configs));
+        $this->emDebug(count($this->backup_configs) . " backup configs saved");
+
+        // Set and save new Config
+        $this->config = $newConfig;
+
+        // Add the metadata tag if it doesn't exist
+        if (!isset($this->config[self::KEY_CONFIG_METADATA])) $this->config[self::KEY_CONFIG_METADATA] = [];
+
+        $this->config[self::KEY_CONFIG_METADATA]['last_modified'] = date('Y-m-d H:i:s');
+        $this->config[self::KEY_CONFIG_METADATA]['last_modified_by'] = USERID;
+        $this->config[self::KEY_CONFIG_METADATA]['save_comment'] = $saveComment;
+
         //self::log(json_encode($this->config), "DEBUG", "Saving this!");
         $this->setProjectSetting('shazam-config', json_encode($this->config));
-        self::sLog("Config Saved");
+        $this->emDebug("Config Saved");
     }
 
 
@@ -90,14 +172,14 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             // Skip invalid fields
             if (!isset($Proj->metadata[$field_name])) {
                 if (!in_array($field_name, array('last_modified','last_modified_by'))) {
-                    self::sLog("Shazam field $field_name is not present in this project!");
+                    $this->emDebug("Shazam field $field_name is not present in this project!");
                 }
                continue;
             }
 
             // Skip inactive shazam configurations
             if ($detail['status'] == 0) {
-                self::sLog("Skipping $field_name - inactive");
+                $this->emDebug("Skipping $field_name - inactive");
                 continue;
             }
 
@@ -112,7 +194,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         }
 
         // self::log("Setting Shazam Instruments", $this->shazam_instruments, "DEBUG");
-        self::sLog("Setting Shazam Instruments");
+        $this->emDebug("Setting Shazam Instruments");
     }
 
 
@@ -132,7 +214,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         // ONLY DO STUFF FOR THE ONLINE DESIGNER PAGE:
 	    if (PAGE == "Design/online_designer.php") {
-            self::sLog("Calling hook_every_page_top on " . PAGE);
+            $this->emDebug("Calling hook_every_page_top on " . PAGE);
             $instrument = $_GET['page'];
 
             // Apparently the config usn't loaded?  TODO: TEST THIS.
@@ -140,13 +222,13 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
             // Skip if this instrument doesn't have any shazam fields
             if (!isset($this->shazam_instruments[$instrument])) {
-                self::sLog("$instrument not used");
+                $this->emDebug("$instrument not used");
                 return;
             }
 
             //self::log($this);
-            self::sLog("PAGE: " . PAGE);
-            self::sLog("INSTRUMENT: ". $instrument);
+            $this->emDebug("PAGE: " . PAGE);
+            $this->emDebug("INSTRUMENT: ". $instrument);
 
             $jsUrl = $this->getUrl('js/shazam.js', false, true);
             // Highlight shazam fields on the page
@@ -206,7 +288,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     function shazamIt($project_id, $instrument, $isSurvey = false) {
 
-        self::sLog("Evaluating ShazamIt for $instrument");
+        $this->emDebug("Evaluating ShazamIt for $instrument");
 
         // Determine if any of the current shazam-enabled fields are on the current instrument
         $this->loadConfig();
@@ -216,7 +298,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
 
             // We are active!
-			self::sLog("Shazam active fields:", $this->shazam_instruments[$instrument]);
+			$this->emDebug("Shazam active fields:", $this->shazam_instruments[$instrument]);
 
 			// Build the data to pass through to the javascript engine
 			$shazamParams = array();
@@ -241,7 +323,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
             global $auth_meth;
 			$is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
-			self::sLog($auth_meth, $is_above_843);
+			$this->emDebug($auth_meth, $is_above_843);
 
 			$js_url = $is_above_843  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
 			//$js_url = $this->getUrl("js/shazam.js", true, true);
@@ -274,7 +356,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         } else {
             // No shazam here
-			self::sLog( "Nothing happening on this instrument $instrument");
+			$this->emDebug( "Nothing happening on this instrument $instrument");
         }
 
     }
@@ -301,7 +383,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
 	    $html = '';
 	    foreach ($this->available_descriptive_fields as $field_name => $label) {
-	        $html .= "<a class='dropdown-item' data-field-name='$field_name' href='#'>[$field_name] $label</a>";
+	        $html .= "<a class='dropdown-item' data-field-name='$field_name' href='#'>[$field_name] " . strip_tags2($label) . "</a>";
         }
         $html .= "<div class='dropdown-divider'></div>";
 		$html .= "<div class='dropdown-header shazam-descriptive'>Create a new descriptive field for it to appear here</div>";
@@ -352,7 +434,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 	private static function getActionButton($status) {
         $html = '
     		<div class="btn-group">
-                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span class="caret"></span>
+                <button type="button" class="btn btn-primaryrc btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span class="caret"></span>
                 </button>
                 <div class="dropdown-menu actions">
                     <a class="dropdown-item" data-action="edit" href="#">
@@ -372,6 +454,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                         <i class="fas fa-toggle-off"></i> Deactivate
                     </a>';
         }
+        $html .= '
+                    <a class="dropdown-item" data-action="copy-clipboard" href="#">
+                        <i class="fas fa-trash-alt"></i> Copy to Clipboard
+                    </a>';
 	    $html .= '        
                 </div>
             </div>';
@@ -382,10 +468,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     public function getExampleConfig() {
         $file = $this->getModulePath() . "assets/ShazamExample_Instrument.json";
         if (file_exists($file)) {
-            self::sLog("$file FOUND");
+            $this->emDebug("$file FOUND");
             return json_decode(file_get_contents($file),true);
         } else {
-            self::sLog("Unable to find $file");
+            $this->emDebug("Unable to find $file");
             return false;
         }
     }

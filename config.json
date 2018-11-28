@@ -18,7 +18,8 @@
       "1.1.6": "Fixed label issue with descriptive fields",
       "1.1.9": "Last version for boostrap 3",
       "1.2.0": "Boostrap 4 version",
-      "1.2.1": "Fix release issue that made 1.2.0 really the same as 1.1.9"
+      "1.2.1": "Fix release issue that made 1.2.0 really the same as 1.1.9",
+      "1.2.2": "Bug fix around matrix fields"
     }
   ],
 
@@ -55,21 +56,28 @@
 
   "system-settings": [
     {
-      "key": "shazam-log-file",
-      "name": "<b>Shazam System-Wide Log File:</b> <i>(optional)</i><br>Provide a valid file path and Shazam will output debug information to this file",
-      "type": "text"
+      "key": "enable-system-debug-logging2",
+      "name": "<b>Enable Debug Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging through this checkbox.  Note that this will enable debugs for ALL shazam projects.  You can alternatively enable it on a per-project basis by going that that project's Shazam EM configuration page",
+      "required": false,
+      "type": "checkbox"
     }
   ],
 
   "project-settings": [
     {
       "key": "shazam-descriptive",
-      "name": "<b>This module is configured by a link on the sidebar called 'Shazam Setup'.</b><br><i>The acutal config is stored in a hidden shazam-config external module variable.</i>",
+      "name": "<b>This module is configured by a link on the sidebar called 'Shazam Setup'.</b><br><i>The actual config is stored in a hidden shazam-config external module variable</i>",
       "type": "descriptive"
     },
     {
       "key": "shazam-display-icons",
-      "name": "<b>Display Data History & Field Comment Log/Data Resolution Workflow Icons</b><br>You can also enable these icons for just a particular input by adding the class <code>shazam-icons</code> to a particular input field.",
+      "name": "<b>Display Data History & Field Comment Log/Data Resolution Workflow Icons</b><br>You can also enable these icons for just a particular input by adding the class <code>shazam-icons</code> to a particular input field",
+      "type": "checkbox"
+    },
+    {
+      "key": "enable-project-debug-logging",
+      "name": "<b>Enable Debug Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging for this project",
+      "required": false,
       "type": "checkbox"
     }
   ],
