@@ -309,14 +309,14 @@ Shazam.Transform = function() {
 
         // Look for shazam-mirror-visibility
         // This feature allows you to make a DOM element mirror the visibility of another element.
-        $('td.labelrc *[shazam-mirror-visibility]', shazam_target_tr).each(function () {
+        $('td.labelrc *[data-shazam-mirror-visibility]', shazam_target_tr).each(function () {
             Shazam.log ('dependent mirror-viz element', this);
 
             // The 'shazam' element that will be hidden/shown
             var mirror_element = this;
 
             // The redcap field that controls the mirror_element
-            var mirror_source_field = $(this).attr('shazam-mirror-visibility');
+            var mirror_source_field = $(this).data('shazam-mirror-visibility');
 
             // Get the 'source' tr
             var mirror_source_tr = $("tr[sq_id='" + mirror_source_field + "']");

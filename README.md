@@ -54,7 +54,7 @@ Next, you set up the external module and define your custom HTML.  Here is an ex
         <td class='shazam'>rsch_contract_fy15</td>
         <td class='shazam'>rsch_contract_fy16</td>
     </tr>
-    <tr shazam-mirror-visibility="clinical_trials"> <!-- This will make this entire TR only visible when the field 'clinical_trials' is visible -->
+    <tr data-shazam-mirror-visibility="clinical_trials"> <!-- This will make this entire TR only visible when the field 'clinical_trials' is visible -->
         <th>Clinical Trials</th>
         <td class='shazam'>ct_fy12</td>
         <td class='shazam'>ct_fy13</td>

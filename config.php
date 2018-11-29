@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     </tr>
 
     <!-- This will make this entire TR only visible when the field 'clinical_trials' is visible -->
-    <tr shazam-mirror-visibility="clinical_trials">
+    <tr data-shazam-mirror-visibility="clinical_trials">
         <th>Clinical Trials</th>
         <td class='shazam'>ct_fy12</td>
         <td class='shazam'>ct_fy13</td>
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                                     that redcap field into the element with the class.  If you want to move a fields label instead, use <code>field_name:label</code> inside of the shazam tag.
                                 </li>
                                 <li>
-                                    Also notice how the last row contains the attribute <code>shazam-mirror-visibility="field_name"</code>.  This is a way to make an element in your html mimic
+                                    Also notice how the last row contains the attribute <code>data-shazam-mirror-visibility="field_name"</code>.  This is a way to make an element in your html mimic
                                     the branching-logic visiblity of a redcap element.  In this case, there is a field called 'clinical_trials'.  If it is visible, so will
                                     the row in the table called Clinical Trials.
                                 </li>

@@ -58,7 +58,7 @@ Shazam.initAceEditors = function() {
     // Add shazam command hints
     var shazamCompleter = {
         getCompletions: function(editor, session, pos, prefix, callback) {
-            var wordList = ["shazam", "shazam-mirror-visibility", "shazam-icons"];
+            var wordList = ["shazam", "data-shazam-mirror-visibility", "shazam-icons"];
             callback(null, wordList.map(function(word) {
                 return {
                     caption: word,
