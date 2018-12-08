@@ -1,10 +1,7 @@
 <?php
 namespace Stanford\Shazam;
 
-//if (!class_exists('Util')) require_once('classes/Util.php');
-
 use \REDCap as REDCap;
-
 require_once "emLoggerTrait.php";
 
 class Shazam extends \ExternalModules\AbstractExternalModule
@@ -49,13 +46,16 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         // Load the config
         $this->config = json_decode($this->getProjectSetting('shazam-config'), true);
         $this->emDebug("Config Loaded");
-        $this->emDebug($this->config, "LOADED CONFIG");
+//        $this->emDebug($this->config, "LOADED CONFIG");
 
         // Migrate over 'shazam-mirror-visibility' in HTML to data-shazam-mirror-visibility
         $this->migrateShazamMirrorViz();
 
         // Set shazam instruments too
         $this->setShazamInstruments();
+
+        // Get backup instruments
+        $this->backup_configs = json_decode($this->getProjectSetting('shazam-config-backups'), true);
     }
 
 
@@ -68,14 +68,20 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         // Use a regex to replace shazam-mirror-visibility...
         $re = '/(?<!data-)shazam-mirror-visibility/m';
+        $updates_made = false;
         foreach ($config as $field => $props) {
             // Only fix those that need fixin'
             if (isset($props['html']) && !isset($props[self::KEY_CONFIG_METADATA][self::KEY_SHAZAM_MIRROR_VIZ_FIX])) {
+                $this->emDebug($field,$props);
+
+                $this->emDebug("$field has HTML but doesn't have [" . self::KEY_CONFIG_METADATA . "][" . self::KEY_SHAZAM_MIRROR_VIZ_FIX . "]");
+
                 // Fix any shazam-mirror-viz
                 $count = 0;
                 $html = preg_replace($re, "data-shazam-mirror-visibility", $props['html'], -1, $count);
                 if ($count > 0) {
                     // We did a replacement
+                    $this->emDebug("We did a SMV replacement: " . $count);
                     $props['html'] = $html;
                 }
 
@@ -85,62 +91,67 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 // Record the fact that we applied this fix
                 $props[self::KEY_CONFIG_METADATA][self::KEY_SHAZAM_MIRROR_VIZ_FIX] = $count;
                 $config[$field] = $props;
+
+                $this->emDebug("New Props", $props, $config[$field]);
                 $this->emDebug("Updating " . self::KEY_SHAZAM_MIRROR_VIZ_FIX . " for $field with $count shazam-mirror-visibility changes");
+
+                $updates_made = true;
             } else {
                 // Already fixed
             }
         }
 
         // If we actually made a change here, let's re-save
-        if (serialize($config) !== serialize($this->config)) {
+        if ($updates_made) {
             // We fixed some stuff
-            $this->emDebug("Updating config");
-            $this->saveConfig($config, "migration of shazam-mirror-visibility changes");
+            $this->emDebug("Updating config with SMVF");
+            $this->saveConfig($config, "migration of shazam mirror visibility changes");
         }
     }
 
 
     /**
-     * Backups are time-stamp versions of shazam settings*
-     * @return array|mixed
-     */
-    public function loadBackupConfigs()
-    {
-        $backup_configs = json_decode($this->getProjectSetting('shazam-config-backups'), true);
-        if ( !empty($backup_configs)) $this->backup_configs = $backup_configs;
-        return $this->backup_configs;
-    }
-
-
-    /**
      * Save the config back to the external modules settings table
+     * also saves latext BACKUP_COPIES to backup-config
      */
     public function saveConfig($newConfig, $saveComment = "") {
-        // Load backups and save current config as new backup
-        $backup_configs = $this->loadBackupConfigs();
-        $ts = time();
-
-        $backup_configs[$ts] = array($this->config);
-        ksort($backup_configs);
-
-        // Only keep so many copies of backups
-        $this->backup_configs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
-        $this->setProjectSetting('shazam-config-backups', json_encode($this->backup_configs));
-        $this->emDebug(count($this->backup_configs) . " backup configs saved");
 
         // Set and save new Config
         $this->config = $newConfig;
 
+        $this->emDebug("This is the newConfig", $newConfig, $this->config);
+
         // Add the metadata tag if it doesn't exist
         if (!isset($this->config[self::KEY_CONFIG_METADATA])) $this->config[self::KEY_CONFIG_METADATA] = [];
 
-        $this->config[self::KEY_CONFIG_METADATA]['last_modified'] = date('Y-m-d H:i:s');
-        $this->config[self::KEY_CONFIG_METADATA]['last_modified_by'] = USERID;
-        $this->config[self::KEY_CONFIG_METADATA]['save_comment'] = $saveComment;
+        // Save the _MISC_ info to the current version
+        $ts = time();
+        $this->config[self::KEY_CONFIG_METADATA]['last_modified']       = date('Y-m-d H:i:s', $ts);
+        $this->config[self::KEY_CONFIG_METADATA]['last_modified_by']    = USERID;
+        $this->config[self::KEY_CONFIG_METADATA]['save_comment']        = $saveComment;
 
         //self::log(json_encode($this->config), "DEBUG", "Saving this!");
         $this->setProjectSetting('shazam-config', json_encode($this->config));
         $this->emDebug("Config Saved");
+
+
+        // Load backups and save current config as new backup
+        $backup_configs = $this->backup_configs;
+        if (empty($backup_configs)) $backup_configs = [];
+
+        // Add current config to backups
+        $backup_configs[$ts] = $this->config;
+        krsort($backup_configs);
+
+        $this->emDebug("Sorted Keys Before", array_keys($backup_configs));
+
+        // Only keep so many copies of backups
+        $this->backup_configs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
+
+        $this->emDebug("Sorted Keys After", array_keys($this->backup_configs));
+
+        $this->setProjectSetting('shazam-config-backups', json_encode($this->backup_configs));
+        $this->emDebug(count($this->backup_configs) . " backup configs saved");
     }
 
 
@@ -169,6 +180,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $this->shazam_instruments = array();
 
         foreach ($this->config as $field_name => $detail) {
+            if ($field_name == self::KEY_CONFIG_METADATA) continue;
+
             // Skip invalid fields
             if (!isset($Proj->metadata[$field_name])) {
                 if (!in_array($field_name, array('last_modified','last_modified_by'))) {
@@ -390,6 +403,42 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         return $html;
     }
 
+
+    /**
+     * Gets a list by timestamp of the previously saved config entries
+     * @return string
+     */
+    public function getPreviousShazamOptions() {
+        $html = '';
+
+//        $this->emDebug("Backup configs", $this->backup_configs);
+        foreach ($this->backup_configs as $ts => $config) {
+            $html .= "<a class='dropdown-item' data-ts='$ts' href='#'>" . $this->getBackupName($config) . "</a>";
+        };
+        return $html;
+    }
+
+    public function getBackupName($config, $include_last_modified = true) {
+        $last_modified = $config[self::KEY_CONFIG_METADATA]['last_modified'];
+        $last_modified_by = $config[self::KEY_CONFIG_METADATA]['last_modified_by'];
+        $comment = empty($config[self::KEY_CONFIG_METADATA]['save_comment']) ? "No comment" : $config[self::KEY_CONFIG_METADATA]['save_comment'];
+
+        $result = "[$last_modified] " . strip_tags2($comment);
+        if ($include_last_modified) $result .= " ($last_modified_by)";
+        return $result;
+    }
+
+    public function restoreVersion($ts) {
+        $config = $this->backup_configs[$ts];
+        if (empty($config)) {
+            $this->emError("Empty Config!");
+            return false;
+        }
+
+        $this->saveConfig($config, "Restored " . $this->getBackupName($config, false));
+    }
+
+
 	/**
      * Generate the html for building the shazam table (could be moved to javascript in the future?)
 	 * @return string
@@ -401,7 +450,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 		$header = array('Field Name', 'Instrument', 'Status', 'Action');
 		$data = array();
 		foreach ($this->config as $field_name => $details) {
-		    if (in_array($field_name, array('last_modified','last_modified_by'))) continue;
+		    if (in_array($field_name, array(self::KEY_CONFIG_METADATA, 'last_modified','last_modified_by'))) continue;
 
             $instrument = $Proj->metadata[$field_name]['form_name'];
             if (empty($instrument)) {
@@ -422,7 +471,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $data[] = array(
                 $field_name,
                 $instrument,
-                ($status == 0 ? 'Inactive' : 'Active'),
+                ($status == 0 ? '<h6><span class="badge badge-secondary">Inactive</span></h6>' : '<h6><span class="badge badge-success">Active</span></h6>'),
                 self::getActionButton($status)
             );
         }
@@ -434,7 +483,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 	private static function getActionButton($status) {
         $html = '
     		<div class="btn-group">
-                <button type="button" class="btn btn-primaryrc btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span class="caret"></span>
+                <button type="button" class="btn btn-primaryrc btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Action <span class="caret"></span>
                 </button>
                 <div class="dropdown-menu actions">
                     <a class="dropdown-item" data-action="edit" href="#">

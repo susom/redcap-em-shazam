@@ -213,7 +213,7 @@ ace.define('ace/ext/html_beautify', ['require', 'exports', 'module', 'ace/range'
                 value = beautifiers[type + "_beautify"](value, options);
 
                 if (d()) {
-                    console.log('executed beautifier: ' + type, '\n function:', beautifiers[type + "_beautify"], '\n options:', options, '\n originalValue:\n', originalValue, '\n new value:\n', value, '\n originalValue-whitespace:\n', showWhiteSpace(originalValue), '\n new value-whitespace:\n', showWhiteSpace(value));
+                    //console.log('executed beautifier: ' + type, '\n function:', beautifiers[type + "_beautify"], '\n options:', options, '\n originalValue:\n', originalValue, '\n new value:\n', value, '\n originalValue-whitespace:\n', showWhiteSpace(originalValue), '\n new value-whitespace:\n', showWhiteSpace(value));
                 }
 
 
