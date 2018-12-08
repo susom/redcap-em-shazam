@@ -6,7 +6,7 @@ $module->loadConfig();
 
 // Handle posts back to this script
 if ($_SERVER['REQUEST_METHOD']=='POST') {
-	$module::sLog($_POST, "DEBUG", "INCOMING POST");
+	$module->emDebug($_POST, "DEBUG", "INCOMING POST");
 
 	$field_name = !empty($_POST['field_name'])  ? $_POST['field_name']  : "";
 	$action     = !empty($_POST['action'])      ? $_POST['action']      : "";
@@ -23,26 +23,28 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         $action = "edit";
     }
 
+    // Get the current config as a variable
+    $config = $module->config;
 
-    if ($action == "add-example") {
-	    // see if the field doesn't already exist
-        if (isset($module->config[$field_name])) {
-            // Already exists - can't do anything
-            $module::sLog("$field_name already exists as an example module");
-        } else {
-            // load the example config
-            $example_config = $module->getExampleConfig();
-            if ($example_config) {
-                $module->config = $example_config;
-                // $new_config = array_merge($this->config, $example_config);
-                // $module::log($config,"Example Config");
-                // $module->config = $new_config;
-                // $module->saveConfig();
-                $action = "edit";
-            };
-        }
-    }
-
+//    if ($action == "add-example") {
+//	    // see if the field doesn't already exist
+//        if (isset($config[$field_name])) {
+//            // Already exists - can't do anything
+//            $module->emDebug("$field_name already exists as an example module");
+//        } else {
+//            // load the example config
+//            $example_config = $module->getExampleConfig();
+//
+//            $module->emDebug("Example Config", $example_config);
+//
+//            if ($example_config) {
+//                // Giving up on this for the moment..
+//                $_POST['$params'] = $example_config;
+//                $_POST['comments'] = "Adding example config";
+//                $action = "save";
+//            };
+//        }
+//    }
 
     switch ($action) {
         case "edit":
@@ -109,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     </tr>
 
     <!-- This will make this entire TR only visible when the field 'clinical_trials' is visible -->
-    <tr shazam-mirror-visibility="clinical_trials">
+    <tr data-shazam-mirror-visibility="clinical_trials">
         <th>Clinical Trials</th>
         <td class='shazam'>ct_fy12</td>
         <td class='shazam'>ct_fy13</td>
@@ -128,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                                     that redcap field into the element with the class.  If you want to move a fields label instead, use <code>field_name:label</code> inside of the shazam tag.
                                 </li>
                                 <li>
-                                    Also notice how the last row contains the attribute <code>shazam-mirror-visibility="field_name"</code>.  This is a way to make an element in your html mimic
+                                    Also notice how the last row contains the attribute <code>data-shazam-mirror-visibility="field_name"</code>.  This is a way to make an element in your html mimic
                                     the branching-logic visiblity of a redcap element.  In this case, there is a field called 'clinical_trials'.  If it is visible, so will
                                     the row in the table called Clinical Trials.
                                 </li>
@@ -177,11 +179,15 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                     </div>
                 </div>
             </div>
-            <div class="shazam-edit-buttons">
-                <button class="btn btn-sm btn-info" name="save">SAVE (<?php echo $cmdKey; ?>-S)</button>
-                <button class="btn btn-sm btn-info" name="save_and_close">SAVE AND CLOSE</button>
-                <button class="btn btn-sm btn-success" name="beautify">BEAUTIFY</button>
-                <button class="btn btn-sm btn-danger" name="cancel">CANCEL</button>
+            <div class="shazam-edit-buttons input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="Comment">Save Comment:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="(optional)" id="save_comments"/>
+                <button class="ml-2 btn btn-sm btn-info" name="save">SAVE (<?php echo $cmdKey; ?>-S)</button>
+                <button class="ml-2 btn btn-sm btn-info" name="save_and_close">SAVE AND CLOSE</button>
+                <button class="ml-2 btn btn-sm btn-success" name="beautify">BEAUTIFY</button>
+                <button class="ml-2 btn btn-sm btn-danger" name="cancel">CANCEL</button>
             </div>
 
             <script src="<?php echo $module->getUrl('js/ace/ace.js'); ?>"></script>
@@ -216,9 +222,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			?>
 			<script>
-                Shazam.su = <?php echo SUPER_USER; ?>;
+                Shazam.su     = <?php echo SUPER_USER; ?>;
                 Shazam.config = <?php echo json_encode($module->config[$field_name]); ?>;
-                Shazam.fields = <?php print json_encode(array_keys($instrument_fields)); ?>;
+                Shazam.fields = <?php echo json_encode(array_keys($instrument_fields)); ?>;
                 Shazam.prepareEditors();
             </script>
             <?php
@@ -227,20 +233,21 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         case "save":
 			// SAVE A CONFIGURATION
 			// THIS IS AN AJAX METHOD
-			$params = $_POST['params'];
+			$params     = $_POST['params'];
+            $comments   = !empty($_POST['comments'])      ? "[$field_name] " . $_POST['comments']      : "-";
 
 			// If not a superuser, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
             if (! SUPER_USER) {
                 // Is there an existing js
-                if (!empty($module->config[$field_name]['javascript'])) {
-                    $module::sLog("js is not empty - keeping original value since not a superuser");
-                    $params['javascript'] = $module->config[$field_name]['javascript'];
+                if (!empty($config[$field_name]['javascript'])) {
+                    $module->emDebug("js is not empty - keeping original value since not a superuser");
+                    $params['javascript'] = $config[$field_name]['javascript'];
                 } else {
-                    $module::sLog("js IS empty");
+                    $module->emDebug("js IS empty");
                     $params['javascript'] = '';
                 }
             } else {
-                $module::sLog("Super User is Saving!");
+                $module->emDebug("Super User is Saving!");
             }
 
             $update = array(
@@ -248,11 +255,13 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             );
 
             // Add or update config
-			$new_config = empty($module->config) ? $update : array_merge($module->config, $update);
+			$new_config = empty($config) ? $update : array_merge($config, $update);
             //$module::log($update, "DEBUG", "UPDATE");
             //$module::log($new_config, "DEBUG", "new_config");
-			$module->config = $new_config;
-			$return = $module->saveConfig();
+
+			// Save and backup the Config
+			$return = $module->saveConfig($new_config, $comments);
+
 			// $return = $module->setProjectSetting('shazam-config', json_encode($new_config));
 			// Plugin::log($return, "DEBUG", "STAUTS of setProjectSetting");
 			header('Content-Type: application/json');
@@ -260,17 +269,23 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			exit();
             break;
         case "delete":
-			unset($module->config[$field_name]);
-			$module->saveConfig();
+			unset($config[$field_name]);
+			$module->saveConfig($config, "Deleted $field_name");
 			break;
         case "activate":
-			$module->config[$field_name]['status'] = 1;
-			$module->saveConfig();
+			$config[$field_name]['status'] = 1;
+			$module->saveConfig($config, "Activated $field_name");
 			break;
         case "deactivate":
-			$module->config[$field_name]['status'] = 0;
-			$module->saveConfig();
+			$config[$field_name]['status'] = 0;
+			$module->saveConfig($config, "Deactivated $field_name");
 			break;
+        case "restore":
+            // The timestamp was passed in through the fieldname attribute
+            $ts = $field_name;
+            $module->emDebug("Restore", $ts);
+            $module->restoreVersion($ts);
+            break;
         default:
 			print "Unknown action";
 	}
@@ -298,7 +313,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 <div class="shazam-table">
 	<?php echo $module->getShazamTable(); ?>
     <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-sm btn-primaryrc dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             Add Shazam Field <span class="caret"></span>
         </button>
@@ -310,15 +325,28 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
             <?php echo $module->getAddShazamOptions() ?>
         </div>
     </div>
-    <?php if (!isset($module->config['shaz_ex_desc_field'])) { ?>
-
-    <div class="pull-right">
-        <p>
-            <div class="btn btn-info btn-sm add-example" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-plus-square"></i> Add Example Field
+    <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            Recover Previously Saved Version <span class="caret"></span>
+        </button>
+        <div class="dropdown-menu previous-shazam">
+            <div class="dropdown-header">
+                Select from the following previously saved versions of your Shazam config:
             </div>
-        </p>
+            <div class="dropdown-divider"></div>
+            <?php echo $module->getPreviousShazamOptions() ?>
+        </div>
     </div>
+    <?php if (!isset($config['shaz_ex_desc_field'])) { ?>
+
+<!--    <div class="pull-right">-->
+<!--        <p>-->
+<!--            <div class="btn btn-info btn-sm add-example" aria-haspopup="true" aria-expanded="false">-->
+<!--                <i class="fas fa-plus-square"></i> Add Example Field-->
+<!--            </div>-->
+<!--        </p>-->
+<!--    </div>-->
     <?php } ?>
 </div>
 

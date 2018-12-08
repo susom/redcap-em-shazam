@@ -18,7 +18,7 @@ Shazam.initAceEditors = function() {
     // Init read-only editor for the example:
     var e = $('#shazam-example-code');
     if (e.length) {
-        console.log('setting up ace editor');
+        //console.log('setting up ace editor');
         Shazam.exampleEditor = ace.edit('shazam-example-code');
         Shazam.exampleEditor.setOptions({
             readOnly: true
@@ -32,7 +32,7 @@ Shazam.initAceEditors = function() {
 
         Shazam.exampleEditor.getSession().setValue($('#example-data').val());
 
-        console.log(e);
+        //console.log(e);
     }
 
 
@@ -58,7 +58,7 @@ Shazam.initAceEditors = function() {
     // Add shazam command hints
     var shazamCompleter = {
         getCompletions: function(editor, session, pos, prefix, callback) {
-            var wordList = ["shazam", "shazam-mirror-visibility", "shazam-icons"];
+            var wordList = ["shazam", "data-shazam-mirror-visibility", "shazam-icons"];
             callback(null, wordList.map(function(word) {
                 return {
                     caption: word,
@@ -207,13 +207,15 @@ Shazam.save = function(callback) {
     // Shazam.log('SAVE!');
     var field_name = $('div.shazam-editor').data('field-name');
     var status = 1; // $('div.shazam-editor').data('status')
+    var comments = $('#save_comments').val();
     var data = {
         "action": "save",
         "field_name": field_name,
-        "params": {
-            "status": status
-        }
+        "comments": comments,
+        "params": Shazam.config
     };
+
+    // data.params['status'] = 1;
 
     var saveBtn = $('button[name="save"]');
     var saveBtnHtml = saveBtn.html();
@@ -312,6 +314,17 @@ Shazam.prepareTable = function() {
         var field_name = $(this).data('field-name');
         if (field_name.length) Shazam.post('create', field_name);
     });
+
+
+
+    // Handle the Previous Version button
+    $('.previous-shazam a').on('click', function() {
+        // Recover version from old version
+        var ts = $(this).data('ts');
+        if (ts > 0) Shazam.post('restore', ts );
+    });
+
+
 
     // Handle the in-table action buttons
     $('.shazam-table div.actions a').on('click', function() {
