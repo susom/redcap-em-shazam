@@ -30,6 +30,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     public function __construct()
     {
         parent::__construct();
+        $this->disableUserBasedSettingPermissions();
         // If we are in a 'project' setting, then load the config
         // global $project_id;
         // if ($project_id) $this->loadConfig();
