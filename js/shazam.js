@@ -378,7 +378,14 @@ Shazam.Transform = function() {
 
             // Per issue #18, we do not want to hide questionnum that are in the first header td of a matrix
             // https://stackoverflow.com/questions/6784741/how-to-select-an-element-which-parent-is-not-specified-class
-            $('tr:not("[mtxgrp]") td.questionnum').hide();
+            // $('.formtbody > tr:not("[mtxgrp]") td.questionnum').hide();
+
+            // Handle non-matrix groups
+            $('.formtbody > tr:not("[mtxgrp]") td.questionnum').hide();
+
+            // Handle Matrix Groups
+            $('.formtbody > tr[mtxgrp] td.questionnum').hide();
+            $('.formtbody > tr[mtxgrp] td.questionnummatrix').hide();
         }
     }
 
