@@ -244,7 +244,13 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $this->emDebug("PAGE: " . PAGE);
             $this->emDebug("INSTRUMENT: ". $instrument);
 
-            $jsUrl = $this->getUrl('js/shazam.js', false, true);
+            $skipApi = $this->getProjectSetting("do-not-use-api-endpoint");
+
+            if ($skipApi) {
+                $jsUrl = $this->getUrl("js/shazam.js");
+            } else {
+                $jsUrl = $this->getUrl('js/shazam.js', false, true);
+            }
             // Highlight shazam fields on the page
             ?>
             <script src='<?php echo $jsUrl; ?>'></script>
@@ -252,7 +258,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 if (typeof Shazam === "undefined") {
                     alert("This page uses an external module called 'Shazam' but due to a configuration error " +
                         "the module is not loading the required javascript library correctly.\n\n" +
-                        "Please notify the project administrator."
+                        "You can try toggling the system-wide external module parameter to not use the api endpoint " +
+                        "and see if that makes a difference.\n\nPlease notify the project administrator.\n\n" +
+                        <?php echo $jsUrl ?>
                     );
                 } else {
                     Shazam.fields = <?php echo json_encode($this->shazam_instruments[$instrument]); ?>;

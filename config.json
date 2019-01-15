@@ -59,9 +59,14 @@
 
   "system-settings": [
     {
-      "key": "enable-system-debug-logging2",
+      "key": "enable-system-debug-logging",
       "name": "<b>Enable Debug Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging through this checkbox.  Note that this will enable debugs for ALL shazam projects.  You can alternatively enable it on a per-project basis by going that that project's Shazam EM configuration page",
       "required": false,
+      "type": "checkbox"
+    },
+    {
+      "key": "do-not-use-api-endpoint",
+      "name": "<b>Do NOT use API Endpoint for Public URLs</b><br>This should be left unchecked unless you are having issues loading js files on public surveys or if your site blocks public access to the api endpoint",
       "type": "checkbox"
     }
   ],
