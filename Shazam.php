@@ -243,14 +243,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             //self::log($this);
             $this->emDebug("PAGE: " . PAGE);
             $this->emDebug("INSTRUMENT: ". $instrument);
+            $jsUrl = $this->getUrl("js/shazam.js");
 
-            $skipApi = $this->getProjectSetting("do-not-use-api-endpoint");
-
-            if ($skipApi) {
-                $jsUrl = $this->getUrl("js/shazam.js");
-            } else {
-                $jsUrl = $this->getUrl('js/shazam.js', false, true);
-            }
             // Highlight shazam fields on the page
             ?>
             <script src='<?php echo $jsUrl; ?>'></script>
@@ -260,7 +254,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                         "the module is not loading the required javascript library correctly.\n\n" +
                         "You can try toggling the system-wide external module parameter to not use the api endpoint " +
                         "and see if that makes a difference.\n\nPlease notify the project administrator.\n\n" +
-                        <?php echo $jsUrl ?>
+                        "URL: <?php echo $jsUrl ?>"
                     );
                 } else {
                     Shazam.fields = <?php echo json_encode($this->shazam_instruments[$instrument]); ?>;
@@ -343,21 +337,29 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             // self::log($shazamParams, $shazamParams);
 
 
-            global $auth_meth;
-			$is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
-			$this->emDebug($auth_meth, $is_above_843);
+            // global $auth_meth;
+			// $is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
+			// $this->emDebug($auth_meth, $is_above_843);
+            //
+			// $js_url = $is_above_843  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
+			// //$js_url = $this->getUrl("js/shazam.js", true, true);
 
-			$js_url = $is_above_843  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
-			//$js_url = $this->getUrl("js/shazam.js", true, true);
+            $skipApi = $this->getProjectSetting("do-not-use-api-endpoint");
+            if ($skipApi) {
+                $jsUrl = $this->getUrl("js/shazam.js");
+            } else {
+                $jsUrl = $this->getUrl('js/shazam.js', false, true);
+            }
 
             ?>
-                <script type='text/javascript' src="<?php echo $js_url ?>"></script>
+                <script type='text/javascript' src="<?php echo $jsUrl ?>"></script>
                 <script type='text/javascript'>
                     if (typeof Shazam === "undefined") {
                         // There has been an error loading the js file.
                         alert("This page uses an external module called 'Shazam' but due to a configuration error " +
                             "the module is not loading the required javascript library correctly.\n\n" +
-                            "Please notify the project administrator."
+                            "Please notify the project administrator.\n\n" +
+                            "URL: <?php echo $jsUrl ?>"
                         );
                     } else {
                         $(document).ready(function () {
