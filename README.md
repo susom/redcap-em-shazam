@@ -75,5 +75,23 @@ Javascript can only be added/edited/removed by a superuser to prevent users from
 
 Have fun!
 
+
+### Advanced Tricks ###
+
+In some cases I've needed to have another javascript function do something to the DOM AFTER shazam has fired.  So, I added
+a callback that you can register from the 'other' EM... Shazam will then call this function before it visualizes the modified DOM.
+
+For example:
+```javascript
+// In another module that writes something to the client
+$(document.ready( function() {
+    // Register the Shazam callback
+    Shazam.beforeDisplayCallback = function() {
+        console.log ('This function will get called AFTER Shazam has rearranged the DOM just before it shows the page to the end-user');
+    }
+});
+```
+
+
 #### DISCLAIMER:
 This is an early release and I'm sure there are some issues - so please post.

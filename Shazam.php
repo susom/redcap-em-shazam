@@ -252,7 +252,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 if (typeof Shazam === "undefined") {
                     alert("This page uses an external module called 'Shazam' but due to a configuration error " +
                         "the module is not loading the required javascript library correctly.\n\n" +
-                        "You can try toggling the system-wide external module parameter to not use the api endpoint " +
+                        "There is a parameter in the system configuration page (under External Modules) you might try changing " +
                         "and see if that makes a difference.\n\nPlease notify the project administrator.\n\n" +
                         "URL: <?php echo $jsUrl ?>"
                     );
@@ -358,7 +358,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                         // There has been an error loading the js file.
                         alert("This page uses an external module called 'Shazam' but due to a configuration error " +
                             "the module is not loading the required javascript library correctly.\n\n" +
-                            "Please notify the project administrator.\n\n" +
+                            "Please notify the project administrator to check the configuration options for the module.\n\n" +
                             "URL: <?php echo $jsUrl ?>"
                         );
                     } else {

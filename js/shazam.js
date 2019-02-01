@@ -8,6 +8,9 @@ Shazam.transformDelays = 0;
 Shazam.showDuration = Shazam.showDuration || 0;
 Shazam.hideDuration = Shazam.hideDuration || 0;
 
+// This is a callback that can be registered that you can call before Shazam displays the page
+Shazam.beforeDisplayCallback = Shazam.beforeDisplayCallback || null;
+
 
 
 /**
@@ -390,5 +393,6 @@ Shazam.Transform = function() {
     }
 
     // Bring back the form
+    if (typeof(Shazam.beforeDisplayCallback) === 'function' ) Shazam.beforeDisplayCallback();
     $('#form').animate({opacity: 1}, 500);
 };
