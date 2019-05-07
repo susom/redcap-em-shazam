@@ -6,6 +6,8 @@ namespace Stanford\Shazam;
 /**
  * This trait can be use with External Modules to enable the Stanford emLogger module
  *
+ * Version 1.2
+ *
  * To use this on your project:
  * 1) simply add this trait to your EM project root
  * 2) change the NAMESPACE of this file to match that of your EM
@@ -13,38 +15,37 @@ namespace Stanford\Shazam;
  * 4) Inside your class, before your first function, insert: use emLoggerTrait;
  * 5) (optional) Modify your config.json to include these two optional debug settings
 
-  (OPTIONAL) INSERT THESE OPTIONS INTO THE CONFIG.JSON
+(OPTIONAL) INSERT THESE OPTIONS INTO THE CONFIG.JSON
 
-  "system-settings": [
+"system-settings": [
 
-    {
-      "key": "enable-system-debug-logging",
-      "name": "<b>Enable Debug Logging (system-wide)</b>",
-      "required": false,
-      "type": "checkbox"
-    },
+{
+"key": "enable-system-debug-logging",
+"name": "<b>Enable Debug Logging (system-wide)</b><i>(optional)</i> Requires installation and configuration of emLogger",
+"required": false,
+"type": "checkbox"
+},
 
-  ],
+],
 
-  "project-settings": [
+"project-settings": [
 
-    {
-      "key": "enable-project-debug-logging",
-      "name": "<b>Enable Debug Logging</b>",
-      "required": false,
-      "type": "checkbox"
-    },
+{
+"key": "enable-project-debug-logging",
+"name": "<b>Enable Debug Logging</b><br><i>(optional)</i> Requires installation and configuration of emLogger",
+"required": false,
+"type": "checkbox"
+},
 
-   ],
+],
 
  */
 
 trait emLoggerTrait
 {
+    private $emLoggerEnabled = null;    // Cache logger enabled
+    private $emLoggerDebug   = null;    // Cache debug mode
 
-    // Determine if emLogger is enabled on this server
-    private $emLoggerEnabled    = null;
-    private $emLoggerDebugMode  = null;
 
     /**
      * Obtain an instance of emLogger or false if not installed / active
@@ -60,12 +61,6 @@ trait emLoggerTrait
 
         // Return instance if enabled
         if ($this->emLoggerEnabled) {
-
-            // Set if debug mode once on the first log call
-            if (is_null($this->emLoggerDebugMode)) {
-                $this->emLoggerDebugMode = $this->emLoggerGetDebugMode();
-            }
-
             // Try to return the instance of emLogger (which is cached by the EM framework)
             try {
                 return \ExternalModules\ExternalModules::getModuleInstance('em_logger');
@@ -73,22 +68,24 @@ trait emLoggerTrait
                 // Unable to initialize em_logger
                 error_log("Exception caught - unable to initialize emLogger in " . __NAMESPACE__ . "/" . __FILE__ . "!");
                 $this->emLoggerEnabled = false;
-                return false;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 
 
     /**
-     * Determine if we are in debug mode either on system or project level
+     * Determine if we are in debug mode either on system or project level and cache
      * @return bool
      */
-    function emLoggerGetDebugMode() {
-        $systemDebug  = $this->getSystemSetting('enable-system-debug-logging');
-        $projectDebug = !empty($_GET['pid']) && $this->getProjectSetting('enable-project-debug-logging');
-        return $systemDebug || $projectDebug;
+    function emLoggerDebugMode() {
+        // Set if debug mode once on the first log call
+        if (is_null($this->emLoggerDebug)) {
+            $systemDebug         = $this->getSystemSetting('enable-system-debug-logging');
+            $projectDebug        = !empty($_GET['pid']) && $this->getProjectSetting('enable-project-debug-logging');
+            $this->emLoggerDebug = $systemDebug || $projectDebug;
+        }
+        return $this->emLoggerDebug;
     }
 
 
@@ -113,7 +110,7 @@ trait emLoggerTrait
      * Wrapper for logging debug statements
      */
     function emDebug() {
-       if ( $this->emLoggerDebugMode && ($emLogger = $this->emLoggerInstance()) ) $emLogger->emLog($this->PREFIX, func_get_args(), "DEBUG");
+        if ( $this->emLoggerDebugMode() && ($emLogger = $this->emLoggerInstance()) ) $emLogger->emLog($this->PREFIX, func_get_args(), "DEBUG");
     }
 
 }
