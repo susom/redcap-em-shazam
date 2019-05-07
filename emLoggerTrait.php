@@ -4,7 +4,7 @@ namespace Stanford\Shazam;
 
 
 /**
- * This trait can be use with External Modules to enable the Stanford emLogger module
+ * This trait can be used with External Modules to enable the Stanford emLogger module
  *
  * Version 1.2
  *
