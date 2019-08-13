@@ -3,7 +3,7 @@
 
   "namespace":"Stanford\\Shazam",
 
-  "description": "A module for applying REDCap inputs into tabular or other custom layouts for surverys and data entry forms",
+  "description": "A module for applying REDCap inputs into tabular or other custom layouts for surveys and data entry forms",
 
   "versions": [
     {
@@ -63,7 +63,7 @@
   "system-settings": [
     {
       "key": "enable-system-debug-logging",
-      "name": "<b>Enable Debug Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging through this checkbox.  Note that this will enable debugs for ALL shazam projects.  You can alternatively enable it on a per-project basis by going that that project's Shazam EM configuration page",
+      "name": "<b>Enable Debug Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging through this checkbox.  Note that this will enable debugs for ALL Shazam projects.  You can alternatively enable it on a per-project basis by going that that project's Shazam EM configuration page",
       "required": false,
       "type": "checkbox"
     },
