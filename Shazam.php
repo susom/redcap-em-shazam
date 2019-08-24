@@ -392,10 +392,12 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 	    $fields = array();
 	    foreach ($Proj->metadata as $field_name => $field_details) {
 	        if ($field_details['element_type'] == 'descriptive' && !isset($this->config[$field_name])) {
-	            $label = strip_tags2($field_details['element_label']);
+                $label = strip_tags2($field_details['element_label']);
+                $label = preg_replace('/[\W+ ]/',"_",$label);
 	            if (strlen($label) > 50) {
 	                $label = substr($label,0,50) . "...";
                 }
+    	        $label = preg_replace('/[\n\r]/', "<br>", $label);
 	            $fields[$field_name] = $label;
             }
         }
@@ -411,7 +413,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
 	    $html = '';
 	    foreach ($this->available_descriptive_fields as $field_name => $label) {
-	        $html .= "<a class='dropdown-item' data-field-name='$field_name' href='#'>[$field_name] " . strip_tags2($label) . "</a>";
+	        // $label = preg_replace('/[\W+ ]/',"_",$label);
+	        // $label = preg_replace('/[\n\r]'/, "<br>", $label);
+	        $html .= "<a class='dropdown-item' data-field-name='$field_name' href='#'>[$field_name] " . $label . "</a>";
         }
         $html .= "<div class='dropdown-divider'></div>";
 		$html .= "<div class='dropdown-header shazam-descriptive'>Create a new descriptive field for it to appear here</div>";
