@@ -392,13 +392,14 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 	    $fields = array();
 	    foreach ($Proj->metadata as $field_name => $field_details) {
 	        if ($field_details['element_type'] == 'descriptive' && !isset($this->config[$field_name])) {
+	            $form = $field_details['form_name'];
                 $label = strip_tags2($field_details['element_label']);
-                $label = preg_replace('/[\W+ ]/',"_",$label);
+                $label = preg_replace('/[\W ]+/',"_",$label);
 	            if (strlen($label) > 50) {
 	                $label = substr($label,0,50) . "...";
                 }
-    	        $label = preg_replace('/[\n\r]/', "<br>", $label);
-	            $fields[$field_name] = $label;
+    	        $label = preg_replace('/[\n\r]+/', " ", $label);
+	            $fields[$field_name] = $form . " => " . $label;
             }
         }
         $this->available_descriptive_fields = $fields;
