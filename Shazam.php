@@ -392,7 +392,11 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 	    $fields = array();
 	    foreach ($Proj->metadata as $field_name => $field_details) {
 	        if ($field_details['element_type'] == 'descriptive' && !isset($this->config[$field_name])) {
-	            $fields[$field_name] = $field_details['element_label'];
+	            $label = strip_tags2($field_details['element_label']);
+	            if (strlen($label) > 50) {
+	                $label = substr($label,0,50) . "...";
+                }
+	            $fields[$field_name] = $label;
             }
         }
         $this->available_descriptive_fields = $fields;
