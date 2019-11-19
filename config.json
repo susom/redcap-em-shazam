@@ -87,8 +87,13 @@
     },
     {
       "key": "enable-project-debug-logging",
-      "name": "<b>Enable Debug Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging for this project",
+      "name": "<b>Enable Stanford emLogger Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging for this project",
       "required": false,
+      "type": "checkbox"
+    },
+    {
+      "key": "enable-project-console-logging",
+      "name": "<b>Enable Console Debug Logging</b><br>You can enable debug-level logging to the browser console for this project",
       "type": "checkbox"
     },
     {
