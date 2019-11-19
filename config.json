@@ -90,6 +90,11 @@
       "name": "<b>Enable Debug Logging</b><br>If you have the Stanford emLogger external module installed and configured, you can enable additional debug-level logging for this project",
       "required": false,
       "type": "checkbox"
+    },
+    {
+      "key": "shazam-inline-js",
+      "name": "Deliver JavaScript <b>inline</b><br>Use this setting when your API-endpoint is not open to the Internet",
+      "type": "checkbox"
     }
   ],
   "compatibility": {

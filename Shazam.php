@@ -345,14 +345,23 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 			// //$js_url = $this->getUrl("js/shazam.js", true, true);
 
             $skipApi = $this->getProjectSetting("do-not-use-api-endpoint");
+            $inline = $this->getProjectSetting("shazam-inline-js");
             if ($skipApi) {
                 $jsUrl = $this->getUrl("js/shazam.js");
             } else {
                 $jsUrl = $this->getUrl('js/shazam.js', false, true);
             }
 
+            // Inject JavaScript.
+            if ($inline) {
+                $jsText = file_get_contents(__DIR__ . "/js/shazam.js");
+                echo "<script type=\"text/javascript\">\n$jsText\n</script>";
+            }
+            else {
+                echo "<script type=\"text/javascript\" src=\"$jsUrl\"></script>";
+            }
+
             ?>
-                <script type='text/javascript' src="<?php echo $jsUrl ?>"></script>
                 <script type='text/javascript'>
                     if (typeof Shazam === "undefined") {
                         // There has been an error loading the js file.
