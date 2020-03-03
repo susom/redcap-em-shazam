@@ -1,6 +1,7 @@
 <?php
 namespace Stanford\Shazam;
 
+use ExternalModules\ExternalModules;
 use \REDCap as REDCap;
 require_once "emLoggerTrait.php";
 
@@ -19,13 +20,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     const KEY_CONFIG_METADATA = '__MISC__';
     const KEY_SHAZAM_MIRROR_VIZ_FIX = "smvf";
 
-    //// A wrapper for logging
-    //public static function sLog() {
-    //    if (self::isDev()) {
-    //        $args = func_get_args();
-    //        call_user_func_array('\Stanford\Shazam\Util::log', $args);
-    //    }
-    //}
+    const JS_USER_KEY = "shazam-js-editors";
+    const EMAIL_FROM = 'no-reply@myredcap.com';
+    const EMAIL_BODY = 'You now have permission to edit dynamic javascript within the shazam External Module';
 
     public function __construct()
     {
@@ -35,6 +32,145 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         // global $project_id;
         // if ($project_id) $this->loadConfig();
     }
+
+
+    /**
+     * Returns all users saved in project config
+     * @param void
+     * @return $js_users : array
+     */
+    public function getJavascriptUsers(){
+        if($this->getSystemSetting('enable-add-user-javascript-permissions')){
+            $js_users = json_decode($this->getProjectSetting(self::JS_USER_KEY));
+            return isset($js_users) ? $js_users : [];
+        }
+    }
+
+
+    /**
+     * Adds $username to project settings, enabling JS editing
+     * @param $username
+     * @return void
+     */
+    public function addJavascriptUser($username) {
+        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')){ //Check if user has permission to add
+            $existing_users = $this->getJavascriptUsers();
+
+            if(empty($existing_users)){ //if empty simply add to the list
+                $this->emDebug("No existing users, setting ", $username);
+                $this->setProjectSetting(self::JS_USER_KEY, json_encode(array($username)));
+                $this->sendNotificationEmail($username);
+            }else{ //check if username is within existing users already added
+                if(in_array($username, $existing_users)){
+                    $this->emDebug("Error, username {$username} exists within existing users, update choices");
+                } else {
+                    array_push($existing_users, $username);
+                    $this->setProjectSetting(self::JS_USER_KEY, json_encode($existing_users));
+                    $this->sendNotificationEmail($username);
+                }
+            }
+        } else {
+            $this->emError("User ${username} attempting to enable dynamic js permissions and failed");
+        }
+    }
+
+
+    /**
+     * Removes username from project settings
+     * @param $username
+     * @return void
+     */
+    public function removeJavascriptUser($username){
+        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')){ //check if user has permissions to remove
+            $existing_users = $this->getJavascriptUsers();
+
+            $index = array_search($username, $existing_users);
+            if(isset($index)){
+                unset($existing_users[$index]);
+                $re_index = array_values($existing_users); //necessary to prevent conversion to object upon encoding
+                $this->setProjectSetting(self::JS_USER_KEY, json_encode($re_index));
+            } else {
+                $this->emError("Error, existing users should contain {$username}");
+            }
+        } else {
+            $this->emError("User ". USERID . " attempting to remove dynamic js permissions from ${$username} and failed");
+        }
+    }
+
+
+    /**
+     * Returns user options for the UI table dropdown menu.
+     * @param void
+     * @return $html
+     */
+    public function getUserOptions(){
+        if($this->getSystemSetting('enable-add-user-javascript-permissions')){ //Ensure project setting on config is checked
+            $all_users = REDCap::getUsers();
+            $existing_users = $this->getJavascriptUsers();
+            $filtered = array_diff($all_users, $existing_users);
+            $html = "";
+
+            if(!empty($filtered)) {
+                foreach ($filtered as $key => $val) {
+                    if($val !== USERID) { //User shouldn't be able to add themselves
+                        $html .= "<option value={$val}>{$val}</option>";
+                    }
+                }
+            }
+            return $html;
+        }
+    }
+
+    /**
+     * Returns the rows for the user-js-enabled table
+     * @param void
+     * @return $html
+     */
+    public function renderJSTable(){
+        if($this->getSystemSetting('enable-add-user-javascript-permissions')) {
+            $users = $this->getJavascriptUsers();
+            $html = '';
+            $a = gettype($users);
+            if(!empty($users)){
+                foreach($users as $index => $user){
+                    $html .= "<tr>
+                        <td id='user-{$index}'>{$user}</td>
+                        <td><Button class ='btn btn-xs btn-danger removeUser' id={$index}>Remove</Button></td>
+                        </tr>";
+                }
+            }
+            return $html;
+        }
+    }
+
+
+    /**
+     * Get an email address for a username
+     * @param $user
+     * @return String $q
+     */
+    function getUserEmail($user) {
+        $sql = "SELECT user_email from redcap_user_information where username = '" . db_real_escape_string($user) . "'";
+        $q = $this->query($sql);
+        return db_result($q,0);
+    }
+
+    /**
+     * Send email to user notifying them of access
+     * @param $username
+     * @return void
+     */
+    function sendNotificationEmail($username){
+        $to = $this->getUserEmail($username);
+        $messageBody = self::EMAIL_BODY;
+        $emailResult = REDCap::email($to, self::EMAIL_FROM,'Shazam Javascript permissions granted', $messageBody);
+        if($emailResult){
+            $this->emLog("Email sent to ", $username);
+        } else {
+            $this->emError('Email not sent');
+        }
+    }
+
 
     /**
      * Currently the shazam config is stored as an array with keys equal to field_names
@@ -168,7 +304,6 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $rights = REDCap::getUserRights($userid);
             if (@$rights[$userid]['design'] == 1 || SUPER_USER ) $result = $link;
         }
-
         return $result;
     }
 
@@ -590,5 +725,6 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $is_dev = ( $is_localhost || $is_dev_server ) ? 1 : 0;
         return $is_dev;
     }
+
 
 }
