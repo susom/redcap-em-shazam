@@ -71,6 +71,11 @@
       "key": "do-not-use-api-endpoint",
       "name": "<b>Do NOT use API Endpoint for Public URLs</b><br>This should be left unchecked unless you are having issues loading js files on public surveys or if your site blocks public access to the api endpoint",
       "type": "checkbox"
+    },
+    {
+      "key": "enable-add-user-javascript-permissions",
+      "name": "<b>Enable user whitelist for javascript editing</b><br>If checked, superusers can grant regular users the ability to edit shazam javascript on a per project basis",
+      "type": "checkbox"
     }
   ],
 
@@ -79,6 +84,11 @@
       "key": "shazam-descriptive",
       "name": "<b>This module is configured by a link on the sidebar called 'Shazam Setup'.</b><br><i>The actual config is stored in a hidden shazam-config external module variable</i>",
       "type": "descriptive"
+    },
+    {
+      "key": "shazam-js-editors",
+      "name": "<b>Shazam JS editors</b>",
+      "type": "text"
     },
     {
       "key": "shazam-display-icons",
