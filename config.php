@@ -223,8 +223,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			?>
 			<script>
                 Shazam.su     = <?php echo SUPER_USER; ?>;
+                Shazam.currentUser = <?php echo json_encode(\ExternalModules\ExternalModules::getUsername()); ?>;
                 Shazam.config = <?php echo json_encode($module->config[$field_name]); ?>;
                 Shazam.fields = <?php echo json_encode(array_keys($instrument_fields)); ?>;
+                Shazam.js_users = <?php echo json_encode($module->getJavascriptUsers()); ?>;
                 Shazam.prepareEditors();
             </script>
             <?php
@@ -286,6 +288,18 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             $module->emDebug("Restore", $ts);
             $module->restoreVersion($ts);
             break;
+        case "grant":
+            $ts = $field_name;
+            $username = isset($_POST['username']) ? $_POST['username'] : "";
+            $module->emDebug("Grant JS Permissions", $ts);
+            $module->addJavascriptUser($username);
+            break;
+        case "remove":
+            $ts = $field_name;
+            $username = isset($_POST['username']) ? $_POST['username'] : "";
+            $module->emDebug("Removing JS Permssions from ", $username);
+            $module->removeJavascriptUser($username);
+            break;
         default:
 			print "Unknown action";
 	}
@@ -295,7 +309,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 # Render Table Page
 require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
-
+//redcap_info();
 ?>
 <style>
     #shazam td { vertical-align: middle; }
@@ -338,6 +352,62 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
             <?php echo $module->getPreviousShazamOptions() ?>
         </div>
     </div>
+    <?php
+
+    if($module->getProjectSetting('enable-add-user-javascript-permissions') && SUPER_USER) {
+
+        ?>
+            <div class="btn-group">
+                <button type="button"  class="grant-permission btn btn-sm btn-warning"
+                        aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#addUserModal">Grant Javascript Permissions</button>
+            </div>
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Select User to Grant Javascript
+                            Permissions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Note that the user has to be added to the project before this step can be completed</p>
+                        <select class="custom-select">
+                            <?php echo($module->getUserOptions()); ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="add-user-js" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class="mt-5">
+           <h5>Users with JS editing permissions</h5>
+           <hr>
+            <table class=" w-50 table table-striped table-bordered table-condensed" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td><strong>Username</strong></td>
+                        <td><strong>Remove</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php echo($module->renderJSTable()); ?>
+                </tbody>
+            </table>
+       </div>
+
+
+
+    <?php
+        }
+    ?>
+    <div class="modal">
+        <p>Second ajaxa </p>
+    </div>
     <?php if (!isset($config['shaz_ex_desc_field'])) { ?>
 
 <!--    <div class="pull-right">-->
@@ -356,4 +426,6 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 <script src="<?php echo $module->getUrl('js/config.js'); ?>"></script>
 <script>
     Shazam.prepareTable();
+
 </script>
+
