@@ -139,13 +139,25 @@ Shazam.initEditor = function(id, mode) {
             editor.gotoLine(3, 1);
         }
 
-        // Handle JS editing - only for superusers
+        // Handle JS editing - only for superusers & those granted permission
         if(Shazam.su !== 1) {
-            editor.setOptions({
-                readOnly: true
-            });
+            //Have to do this manually, no library support on IE
+            var passed = false;
+            for(let i = 0 ; i < Shazam.js_users.length ; i++){
+                if(Shazam.js_users[i] === Shazam.currentUser){
+                    passed = true;
+                }
+            }
 
-            var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
+            if(Shazam.js_users !== null && passed){
+                var jsWarn = $('<span></span>').addClass('badge badge-danger text-center').text("Javascript Editing Enabled (You've been granted permission)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
+            } else {
+                editor.setOptions({
+                    readOnly: true
+                });
+
+                var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
+            }
 
         } else {
             var jsWarn = $('<span></span>').addClass('badge badge-danger text-center').text("Javascript Editing Enabled (You are a Super User)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
@@ -358,6 +370,53 @@ Shazam.prepareTable = function() {
     // Handle the add example button
     $('div.add-example').on('click', function() {
         Shazam.post('add-example', 'shaz_ex_desc_field');
+    });
+
+    $('#add-user-js').on('click', function() {
+        let username = $('.custom-select').val();
+
+        if (username === null){
+            alert('No user selected -- try adding a user to the project')
+        } else {
+            let obj = {
+                'action': 'grant',
+                'username' : username
+            };
+
+            $.ajax({
+                method: "POST",
+                data: obj,
+            }).done(function (data) {
+                // console.log(data);
+                // $('#addUserModal').modal('toggle');
+                window.location.reload();
+            }).fail(function (err) {
+                console.log('err', err);
+            });
+        }
+    });
+
+    $('.removeUser').on('click', function(){
+        // console.log($(this).closest('tr').children('.username'));
+        let user_id = $(this).attr('id');
+        let username = $('#user-'+user_id).text()
+
+
+        let obj = {
+            'action': 'remove',
+            'username' : username
+        };
+
+        $.ajax({
+            method: "POST",
+            data: obj,
+        }).done(function (data) {
+            // console.log(data);
+            window.location.reload();
+        }).fail(function (err) {
+            console.log('err', err);
+        });
+
     });
 
 };
