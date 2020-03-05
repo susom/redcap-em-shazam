@@ -86,21 +86,13 @@
       "key": "notification-email-from-address",
       "name": "<b>Email From Address</b><br>(e.g. no-reply@myredcap.com or help@myredcap.com)<br>If left unset, the default will be the superuser ",
       "required": false,
-      "type": "email",
-      "branchingLogic" : {
-        "field": "rejection-email-notification",
-        "value": "1"
-      }
+      "type": "email"
     },
     {
       "key": "notification-email-header",
-      "name": "<b>Rejection Email Header</b><br>This field will be included in the email for rejected API requests",
+      "name": "<b>Notification Email Header</b><br>This field will be included in the email for rejected API requests",
       "required": false,
-      "type": "rich-text",
-      "branchingLogic" : {
-        "field": "rejection-email-notification",
-        "value": "1"
-      }
+      "type": "rich-text"
     }
   ],
 
