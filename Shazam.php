@@ -1,13 +1,11 @@
 <?php
 namespace Stanford\Shazam;
 
-use ExternalModules\ExternalModules;
 use \REDCap as REDCap;
 require_once "emLoggerTrait.php";
 
 class Shazam extends \ExternalModules\AbstractExternalModule
 {
-
     use emLoggerTrait;
 
     public $config = array();
@@ -20,31 +18,30 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     const KEY_CONFIG_METADATA = '__MISC__';
     const KEY_SHAZAM_MIRROR_VIZ_FIX = "smvf";
 
-    const JS_USER_KEY = "shazam-js-editors";
+    const KEY_USER_JS = "shazam-js-editors";
+
     const DEFAULT_EMAIL_FROM = 'no-reply@myredcap.com';
-    const DEFAULT_EMAIL_BODY = 'You now have permission to edit dynamic javascript within the shazam External Module';
+    const DEFAULT_EMAIL_BODY = 'You have been granted permission to edit javascript in the Shazam External Module for this project.  Please act responsibly and be sure to thoroughly test any changes as small errors could prevent your forms and surveys from behaving normally.';
 
     public function __construct()
     {
         parent::__construct();
+
+        // Not sure if this is still needed
         $this->disableUserBasedSettingPermissions();
-        // If we are in a 'project' setting, then load the config
-        // global $project_id;
-        // if ($project_id) $this->loadConfig();
     }
 
 
     /**
-     * Returns all users saved in project config
+     * Returns all users with edit javascript rights
      * @param void
      * @return $js_users : array
      */
     public function getJavascriptUsers(){
         if($this->getSystemSetting('enable-add-user-javascript-permissions')){
-            $js_users = json_decode($this->getProjectSetting(self::JS_USER_KEY));
+            $js_users = json_decode($this->getProjectSetting(self::KEY_USER_JS));
             return isset($js_users) ? $js_users : [];
         }
-
     }
 
 
@@ -54,19 +51,20 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * @return void
      */
     public function addJavascriptUser($username) {
-        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')){ //Check if user has permission to add
+        // Check if user has permission to edit users
+        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')) {
             $existing_users = $this->getJavascriptUsers();
 
             if(in_array($username, $existing_users)){
                 $this->emDebug("Error, username {$username} exists within existing users, update choices");
             } else {
                 array_push($existing_users, $username);
-                $this->setProjectSetting(self::JS_USER_KEY, json_encode($existing_users));
+                $this->setProjectSetting(self::KEY_USER_JS, json_encode($existing_users));
                 $this->sendNotificationEmail($username);
             }
 
         } else {
-            $this->emError("User ${username} attempting to enable dynamic js permissions and failed");
+            $this->emError("User " . USER_ID . " attempting to add user ${username} to edit Shazam JS but is not permitted");
         }
     }
 
@@ -76,17 +74,18 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * @param $username
      * @return void
      */
-    public function removeJavascriptUser($username){
-        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')){ //check if user has permissions to remove
+    public function removeJavascriptUser($username) {
+        // Check if user has permission to remove users
+        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')) {
             $existing_users = $this->getJavascriptUsers();
 
             $index = array_search($username, $existing_users);
-            if(isset($index)){
+            if(isset($index)) {
                 unset($existing_users[$index]);
                 $re_index = array_values($existing_users); //necessary to prevent conversion to object upon encoding
-                $this->setProjectSetting(self::JS_USER_KEY, json_encode($re_index));
+                $this->setProjectSetting(self::KEY_USER_JS, json_encode($re_index));
             } else {
-                $this->emError("Error, existing users should contain {$username}");
+                $this->emError("Error, existing users did not contain {$username}");
             }
         } else {
             $this->emError("User ". USERID . " attempting to remove dynamic js permissions from ${$username} and failed");
@@ -99,7 +98,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * @param void
      * @return $html
      */
-    public function getUserOptions(){
+    public function getUserOptions() {
         if($this->getSystemSetting('enable-add-user-javascript-permissions')){ //Ensure project setting on config is checked
             $all_users = REDCap::getUsers();
             $existing_users = $this->getJavascriptUsers();
@@ -117,6 +116,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         }
     }
 
+
     /**
      * Returns the rows for the user-js-enabled table
      * @param void
@@ -128,9 +128,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $html = '';
             if(!empty($users)){
                 foreach($users as $index => $user){
-                    $html .= "<tr>
-                        <td id='user-{$index}'>{$user}</td>
-                        <td><Button class ='btn btn-xs btn-danger removeUser' id={$index}>Remove</Button></td>
+                    $html .= "
+                        <tr>
+                            <td id='user-{$index}'>{$user}</td>
+                            <td><button class ='btn btn-xs btn-danger removeUser' id={$index}>Remove</button></td>
                         </tr>";
                 }
             }
@@ -150,6 +151,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         return db_result($q,0);
     }
 
+
     /**
      * Send email to user notifying them of access
      * @param $username
@@ -157,13 +159,18 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     function sendNotificationEmail($username){
         $to = $this->getUserEmail($username);
-        $messageBody = $this->getSystemSetting('notification-email-header');
+        $customBody = $this->getSystemSetting('notification-email-header');
         $email_from = $this->getSystemSetting('notification-email-from-address');
+        $shazam_url = $this->getUrl("config.php");
+
+        $messageBody = !empty($customBody) ? $customBody : self::DEFAULT_EMAIL_BODY;
+        $messageBody .= "<br><a href='{$shazam_url}'>{$shazam_url}</a>";
 
         $emailResult = REDCap::email($to,
             !empty($email_from) ? $email_from : self::DEFAULT_EMAIL_FROM,
             'Shazam Javascript permissions granted',
-            !empty($messageBody) ? $messageBody : self::DEFAULT_EMAIL_BODY);
+            $messageBody
+        );
 
         if($emailResult){
             $this->emLog("Email sent to ", $username);
@@ -185,7 +192,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         // Load the config
         $this->config = json_decode($this->getProjectSetting('shazam-config'), true);
         $this->emDebug("Config Loaded");
-//        $this->emDebug($this->config, "LOADED CONFIG");
+        // $this->emDebug($this->config, "LOADED CONFIG");
 
         // Migrate over 'shazam-mirror-visibility' in HTML to data-shazam-mirror-visibility
         $this->migrateShazamMirrorViz();
@@ -294,7 +301,16 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     }
 
 
-    // Only display the Shazam Setup link if the user has design rights
+    /**
+     * Only display the Shazam Setup link if the user has design rights
+     * @param $project_id
+     * @param $link
+     * @param null $record
+     * @param null $instrument
+     * @param null $instance
+     * @param null $page
+     * @return bool|null
+     */
     public function redcap_module_link_check_display($project_id, $link, $record = null, $instrument = null, $instance = null, $page = null) {
         $result = false;
 
@@ -448,8 +464,6 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         if(isset($this->shazam_instruments[$instrument])) {
 
-
-
             // We are active!
 			$this->emDebug("Shazam active fields:", $this->shazam_instruments[$instrument]);
 
@@ -471,9 +485,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                     print "<script type='text/javascript'>" . $params['javascript'] . "</script>";
                 }
             }
+
             // self::log($shazamParams, $shazamParams);
-
-
             // global $auth_meth;
 			// $is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
 			// $this->emDebug($auth_meth, $is_above_843);

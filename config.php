@@ -4,12 +4,15 @@
 
 $module->loadConfig();
 
-// Handle posts back to this script
+/**
+ * Handle calls from the configuration page
+ */
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$module->emDebug($_POST, "DEBUG", "INCOMING POST");
 
-	$field_name = !empty($_POST['field_name'])  ? $_POST['field_name']  : "";
-	$action     = !empty($_POST['action'])      ? $_POST['action']      : "";
+	// Parse required fields
+	$field_name = !empty($_POST['field_name'])  ? filter_var( $_POST['field_name'], FILTER_SANITIZE_STRING) : "";
+	$action     = !empty($_POST['action'])      ? filter_var( $_POST['action'], FILTER_SANITIZE_STRING)     : "";
 
 	// Get some instrument information as well:
     global $Proj;
@@ -64,9 +67,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                 <span class="badge badge-info">Field: <?php echo $field_name?></span>
                 <button class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#shazam-example">Show Example/Instructions</button>
             </h4>
-
             <hr>
-<!--            <div id="shazam-example" class="collapse panel panel-body" style="border:2px solid #ccc; border-radius: 3px;">-->
             <div class="modal fade" id="shazam-example" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-wide">
                     <div class="modal-content">
@@ -216,7 +217,6 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             </style>
 
             <?php
-			// $module->renderEditorTabs($field_name, $instrument);
 
 			require_once APP_PATH_DOCROOT . 'ProjectGeneral/footer.php';
 
@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			// SAVE A CONFIGURATION
 			// THIS IS AN AJAX METHOD
 			$params     = $_POST['params'];
-            $comments   = !empty($_POST['comments'])      ? "[$field_name] " . $_POST['comments']      : "-";
+            $comments   = !empty($_POST['comments'])      ? "[$field_name] " . filter_var($_POST['comments'], FILTER_SANITIZE_STRING) : "-";
 
             $exceptions = $module->getJavascriptUsers();
 
@@ -272,30 +272,36 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			print json_encode($return);
 			exit();
             break;
+
         case "delete":
 			unset($config[$field_name]);
 			$module->saveConfig($config, "Deleted $field_name");
 			break;
+
         case "activate":
 			$config[$field_name]['status'] = 1;
 			$module->saveConfig($config, "Activated $field_name");
 			break;
+
         case "deactivate":
 			$config[$field_name]['status'] = 0;
 			$module->saveConfig($config, "Deactivated $field_name");
 			break;
+
         case "restore":
             // The timestamp was passed in through the fieldname attribute
             $ts = $field_name;
             $module->emDebug("Restore", $ts);
             $module->restoreVersion($ts);
             break;
+
         case "grant":
             $ts = $field_name;
             $username = isset($_POST['username']) ? $_POST['username'] : "";
             $module->emDebug("Grant JS Permissions", $ts);
             $module->addJavascriptUser($username);
             break;
+
         case "remove":
             $ts = $field_name;
             $username = isset($_POST['username']) ? $_POST['username'] : "";
@@ -405,7 +411,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 
 
     <?php
-        }a
+        }
     ?>
     <?php if (!isset($config['shaz_ex_desc_field'])) { ?>
 
