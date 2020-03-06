@@ -87,13 +87,13 @@
     },
     {
       "key": "notification-email-from-address",
-      "name": "<b>Email From Address</b><br>(e.g. no-reply@myredcap.com or help@myredcap.com)<br>If left unset, the default will be the superuser ",
+      "name": "<b>Email From Address</b><br>When you grant javascript editing rights an email is sent from this address  (e.g. no-reply@myredcap.com or help@myredcap.com)<br>If left unset, the default will be the superuser ",
       "required": false,
       "type": "email"
     },
     {
       "key": "notification-email-header",
-      "name": "<b>Notification Email Header</b><br>This field will be included in the email for rejected API requests",
+      "name": "<b>Notification Email Header</b><br>This is the body of the email sent to notify users of javascript edit rights",
       "required": false,
       "type": "rich-text"
     }
