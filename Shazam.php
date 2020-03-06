@@ -21,8 +21,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     const KEY_SHAZAM_MIRROR_VIZ_FIX = "smvf";
 
     const JS_USER_KEY = "shazam-js-editors";
-    const EMAIL_FROM = 'no-reply@myredcap.com';
-    const EMAIL_BODY = 'You now have permission to edit dynamic javascript within the shazam External Module';
+    const DEFAULT_EMAIL_FROM = 'no-reply@myredcap.com';
+    const DEFAULT_EMAIL_BODY = 'You now have permission to edit dynamic javascript within the shazam External Module';
 
     public function __construct()
     {
@@ -44,6 +44,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $js_users = json_decode($this->getProjectSetting(self::JS_USER_KEY));
             return isset($js_users) ? $js_users : [];
         }
+
     }
 
 
@@ -56,19 +57,14 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')){ //Check if user has permission to add
             $existing_users = $this->getJavascriptUsers();
 
-            if(empty($existing_users)){ //if empty simply add to the list
-                $this->emDebug("No existing users, setting ", $username);
-                $this->setProjectSetting(self::JS_USER_KEY, json_encode(array($username)));
+            if(in_array($username, $existing_users)){
+                $this->emDebug("Error, username {$username} exists within existing users, update choices");
+            } else {
+                array_push($existing_users, $username);
+                $this->setProjectSetting(self::JS_USER_KEY, json_encode($existing_users));
                 $this->sendNotificationEmail($username);
-            }else{ //check if username is within existing users already added
-                if(in_array($username, $existing_users)){
-                    $this->emDebug("Error, username {$username} exists within existing users, update choices");
-                } else {
-                    array_push($existing_users, $username);
-                    $this->setProjectSetting(self::JS_USER_KEY, json_encode($existing_users));
-                    $this->sendNotificationEmail($username);
-                }
             }
+
         } else {
             $this->emError("User ${username} attempting to enable dynamic js permissions and failed");
         }
@@ -130,7 +126,6 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         if($this->getSystemSetting('enable-add-user-javascript-permissions')) {
             $users = $this->getJavascriptUsers();
             $html = '';
-            $a = gettype($users);
             if(!empty($users)){
                 foreach($users as $index => $user){
                     $html .= "<tr>
@@ -162,13 +157,20 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     function sendNotificationEmail($username){
         $to = $this->getUserEmail($username);
-        $messageBody = self::EMAIL_BODY;
-        $emailResult = REDCap::email($to, self::EMAIL_FROM,'Shazam Javascript permissions granted', $messageBody);
+        $messageBody = $this->getSystemSetting('notification-email-header');
+        $email_from = $this->getSystemSetting('notification-email-from-address');
+
+        $emailResult = REDCap::email($to,
+            !empty($email_from) ? $email_from : self::DEFAULT_EMAIL_FROM,
+            'Shazam Javascript permissions granted',
+            !empty($messageBody) ? $messageBody : self::DEFAULT_EMAIL_BODY);
+
         if($emailResult){
             $this->emLog("Email sent to ", $username);
         } else {
             $this->emError('Email not sent');
         }
+
     }
 
 

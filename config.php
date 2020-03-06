@@ -223,7 +223,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			?>
 			<script>
                 Shazam.su     = <?php echo SUPER_USER; ?>;
-                Shazam.currentUser = <?php echo json_encode(\ExternalModules\ExternalModules::getUsername()); ?>;
+                Shazam.currentUser = <?php echo json_encode(USERID); ?>;
                 Shazam.config = <?php echo json_encode($module->config[$field_name]); ?>;
                 Shazam.fields = <?php echo json_encode(array_keys($instrument_fields)); ?>;
                 Shazam.js_users = <?php echo json_encode($module->getJavascriptUsers()); ?>;
@@ -238,8 +238,10 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			$params     = $_POST['params'];
             $comments   = !empty($_POST['comments'])      ? "[$field_name] " . $_POST['comments']      : "-";
 
-			// If not a superuser, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
-            if (! SUPER_USER) {
+            $exceptions = $module->getJavascriptUsers();
+
+            // If not a superuser or user granted access, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
+            if (! SUPER_USER && !in_array(USERID, $exceptions)) {
                 // Is there an existing js
                 if (!empty($config[$field_name]['javascript'])) {
                     $module->emDebug("js is not empty - keeping original value since not a superuser");
@@ -403,11 +405,8 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 
 
     <?php
-        }
+        }a
     ?>
-    <div class="modal">
-        <p>Second ajaxa </p>
-    </div>
     <?php if (!isset($config['shaz_ex_desc_field'])) { ?>
 
 <!--    <div class="pull-right">-->
