@@ -296,16 +296,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             break;
 
         case "grant":
-            $ts = $field_name;
-            $username = isset($_POST['username']) ? $_POST['username'] : "";
-            $module->emDebug("Grant JS Permissions", $ts);
+            $username = $field_name; //isset($_POST['username']) ? filter_var($_POST['username'], FILTER_SANITIZE_STRING) : "";
+            $module->emDebug("Granting JS Permissions to {$username}");
             $module->addJavascriptUser($username);
             break;
 
         case "remove":
-            $ts = $field_name;
-            $username = isset($_POST['username']) ? $_POST['username'] : "";
-            $module->emDebug("Removing JS Permssions from ", $username);
+            $username = $field_name; //$username = isset($_POST['username']) ? filter_var($_POST['username'], FILTER_SANITIZE_STRING) : "";
+            $module->emDebug("Removing JS Permissions for {$username}");
             $module->removeJavascriptUser($username);
             break;
         default:
@@ -322,7 +320,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 <style>
     #shazam td { vertical-align: middle; }
     .shazam-descriptive { font-style: italic; font-size: smaller; margin: 0 20px; white-space: nowrap;}
-
+    <?php if(count($module->getJavascriptUsers()) === 0) echo ".js-users { display:none; }"; ?>
     .table th {font-weight: bold;}
 </style>
 
@@ -392,7 +390,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
                 </div>
             </div>
         </div>
-       <div class="mt-5">
+       <div class="mt-5 js-users">
            <h5>Users with JS editing permissions</h5>
            <hr>
             <table class=" w-50 table table-striped table-bordered table-condensed" cellspacing="0">
@@ -431,6 +429,5 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 <script src="<?php echo $module->getUrl('js/config.js'); ?>"></script>
 <script>
     Shazam.prepareTable();
-
 </script>
 
