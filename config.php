@@ -4,12 +4,15 @@
 
 $module->loadConfig();
 
-// Handle posts back to this script
+/**
+ * Handle calls from the configuration page
+ */
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$module->emDebug($_POST, "DEBUG", "INCOMING POST");
 
-	$field_name = !empty($_POST['field_name'])  ? $_POST['field_name']  : "";
-	$action     = !empty($_POST['action'])      ? $_POST['action']      : "";
+	// Parse required fields
+	$field_name = !empty($_POST['field_name'])  ? filter_var( $_POST['field_name'], FILTER_SANITIZE_STRING) : "";
+	$action     = !empty($_POST['action'])      ? filter_var( $_POST['action'], FILTER_SANITIZE_STRING)     : "";
 
 	// Get some instrument information as well:
     global $Proj;
@@ -64,9 +67,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
                 <span class="badge badge-info">Field: <?php echo $field_name?></span>
                 <button class="btn btn-success btn-sm float-right" data-toggle="modal" data-target="#shazam-example">Show Example/Instructions</button>
             </h4>
-
             <hr>
-<!--            <div id="shazam-example" class="collapse panel panel-body" style="border:2px solid #ccc; border-radius: 3px;">-->
             <div class="modal fade" id="shazam-example" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-wide">
                     <div class="modal-content">
@@ -216,15 +217,16 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             </style>
 
             <?php
-			// $module->renderEditorTabs($field_name, $instrument);
 
 			require_once APP_PATH_DOCROOT . 'ProjectGeneral/footer.php';
 
 			?>
 			<script>
                 Shazam.su     = <?php echo SUPER_USER; ?>;
+                Shazam.currentUser = <?php echo json_encode(USERID); ?>;
                 Shazam.config = <?php echo json_encode($module->config[$field_name]); ?>;
                 Shazam.fields = <?php echo json_encode(array_keys($instrument_fields)); ?>;
+                Shazam.js_users = <?php echo json_encode($module->getJavascriptUsers()); ?>;
                 Shazam.prepareEditors();
             </script>
             <?php
@@ -234,10 +236,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			// SAVE A CONFIGURATION
 			// THIS IS AN AJAX METHOD
 			$params     = $_POST['params'];
-            $comments   = !empty($_POST['comments'])      ? "[$field_name] " . $_POST['comments']      : "-";
+            $comments   = !empty($_POST['comments'])      ? "[$field_name] " . filter_var($_POST['comments'], FILTER_SANITIZE_STRING) : "-";
 
-			// If not a superuser, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
-            if (! SUPER_USER) {
+            $exceptions = $module->getJavascriptUsers();
+
+            // If not a superuser or user granted access, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
+            if (! SUPER_USER && !in_array(USERID, $exceptions)) {
                 // Is there an existing js
                 if (!empty($config[$field_name]['javascript'])) {
                     $module->emDebug("js is not empty - keeping original value since not a superuser");
@@ -268,23 +272,39 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 			print json_encode($return);
 			exit();
             break;
+
         case "delete":
 			unset($config[$field_name]);
 			$module->saveConfig($config, "Deleted $field_name");
 			break;
+
         case "activate":
 			$config[$field_name]['status'] = 1;
 			$module->saveConfig($config, "Activated $field_name");
 			break;
+
         case "deactivate":
 			$config[$field_name]['status'] = 0;
 			$module->saveConfig($config, "Deactivated $field_name");
 			break;
+
         case "restore":
             // The timestamp was passed in through the fieldname attribute
             $ts = $field_name;
             $module->emDebug("Restore", $ts);
             $module->restoreVersion($ts);
+            break;
+
+        case "grant":
+            $username = $field_name; //isset($_POST['username']) ? filter_var($_POST['username'], FILTER_SANITIZE_STRING) : "";
+            $module->emDebug("Granting JS Permissions to {$username}");
+            $module->addJavascriptUser($username);
+            break;
+
+        case "remove":
+            $username = $field_name; //$username = isset($_POST['username']) ? filter_var($_POST['username'], FILTER_SANITIZE_STRING) : "";
+            $module->emDebug("Removing JS Permissions for {$username}");
+            $module->removeJavascriptUser($username);
             break;
         default:
 			print "Unknown action";
@@ -295,12 +315,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 # Render Table Page
 require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
-
+//redcap_info();
 ?>
 <style>
     #shazam td { vertical-align: middle; }
     .shazam-descriptive { font-style: italic; font-size: smaller; margin: 0 20px; white-space: nowrap;}
-
+    <?php if(count($module->getJavascriptUsers()) === 0) echo ".js-users { display:none; }"; ?>
     .table th {font-weight: bold;}
 </style>
 
@@ -338,6 +358,59 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
             <?php echo $module->getPreviousShazamOptions() ?>
         </div>
     </div>
+    <?php
+
+    if($module->getProjectSetting('enable-add-user-javascript-permissions') && SUPER_USER) {
+
+        ?>
+            <div class="btn-group">
+                <button type="button"  class="grant-permission btn btn-sm btn-warning"
+                        aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#addUserModal">Grant Javascript Permissions</button>
+            </div>
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Select User to Grant Javascript
+                            Permissions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Note that the user has to be added to the project before this step can be completed</p>
+                        <select class="custom-select">
+                            <?php echo($module->getUserOptions()); ?>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="add-user-js" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class="mt-5 js-users">
+           <h5>Users with JS editing permissions</h5>
+           <hr>
+            <table class=" w-50 table table-striped table-bordered table-condensed" cellspacing="0">
+                <thead>
+                    <tr>
+                        <td><strong>Username</strong></td>
+                        <td><strong>Remove</strong></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php echo($module->renderJSTable()); ?>
+                </tbody>
+            </table>
+       </div>
+
+
+
+    <?php
+        }
+    ?>
     <?php if (!isset($config['shaz_ex_desc_field'])) { ?>
 
 <!--    <div class="pull-right">-->
@@ -357,3 +430,4 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 <script>
     Shazam.prepareTable();
 </script>
+

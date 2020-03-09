@@ -92,6 +92,23 @@ Shazam.initAceEditors = function() {
     Shazam.initEditor('editor_js', 'javascript');
 };
 
+Shazam.checkPermissions = function(){ //Check if user has permission to edit JS
+    if(Shazam.su !== 1) { //If not superUser
+        var passed = false; //Have to do this manually, no library support on IE
+        for (let i = 0; i < Shazam.js_users.length; i++) {
+            if (Shazam.js_users[i] === Shazam.currentUser) {
+                passed = true;
+            }
+        }
+
+        if (Shazam.js_users !== null && passed)
+            return true;
+        else
+            return false;
+    }
+    return true;
+};
+
 Shazam.initEditor = function(id, mode) {
     // console.log("initEditor" + id + " / " + mode);
     // Create an ACE editor on the id element with mode mode
@@ -138,18 +155,43 @@ Shazam.initEditor = function(id, mode) {
         if(currentValue == "$(document).ready(function(){\n\t//Add javascript here...\n\t\n});") {
             editor.gotoLine(3, 1);
         }
-
-        // Handle JS editing - only for superusers
-        if(Shazam.su !== 1) {
+        if(Shazam.checkPermissions()){
+            var jsWarn = $('<span></span>')
+                .addClass('badge badge-danger text-center')
+                .text("Javascript Editing Enabled (You've been granted permission)")
+                .wrap('<div/>')
+                .parent()
+                .addClass('text-center')
+                .insertBefore(editorElement);
+        } else {
             editor.setOptions({
                 readOnly: true
             });
-
-            var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
-
-        } else {
-            var jsWarn = $('<span></span>').addClass('badge badge-danger text-center').text("Javascript Editing Enabled (You are a Super User)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
+            var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("You do not have permissions to edit Javascript - contact your REDCap administrator").insertBefore(editorElement);
         }
+        // Handle JS editing - only for superusers & those granted permission
+        // if(Shazam.su !== 1) {
+        //     //Have to do this manually, no library support on IE
+        //     var passed = false;
+        //     for(let i = 0 ; i < Shazam.js_users.length ; i++){
+        //         if(Shazam.js_users[i] === Shazam.currentUser){
+        //             passed = true;
+        //         }
+        //     }
+        //
+        //     if(Shazam.js_users !== null && passed){
+        //         var jsWarn = $('<span></span>').addClass('badge badge-danger text-center').text("Javascript Editing Enabled (You've been granted permission)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
+        //     } else {
+        //         editor.setOptions({
+        //             readOnly: true
+        //         });
+        //
+        //         var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
+        //     }
+        //
+        // } else {
+        //     var jsWarn = $('<span></span>').addClass('badge badge-danger text-center').text("Javascript Editing Enabled (You are a Super User)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
+        // }
     }
 
     // For html, remove a few annotations that don't apply
@@ -227,10 +269,9 @@ Shazam.save = function(callback) {
         var editor = e.instance;
         var val = editor.getValue();
         var mode = e.mode;
-        // console.log(editor, val);
         data.params[mode] = val;
     });
-
+    // console.log(data);
     // Post back saved version
     var jqxhr = $.ajax({
         method: "POST",
@@ -316,14 +357,12 @@ Shazam.prepareTable = function() {
     });
 
 
-
     // Handle the Previous Version button
     $('.previous-shazam a').on('click', function() {
         // Recover version from old version
         var ts = $(this).data('ts');
         if (ts > 0) Shazam.post('restore', ts );
     });
-
 
 
     // Handle the in-table action buttons
@@ -358,6 +397,21 @@ Shazam.prepareTable = function() {
     // Handle the add example button
     $('div.add-example').on('click', function() {
         Shazam.post('add-example', 'shaz_ex_desc_field');
+    });
+
+    $('#add-user-js').on('click', function() {
+        var username = $('.custom-select').val();
+        if (username === null){
+            alert('No user selected -- try adding a user to the project')
+        } else {
+            Shazam.post('grant', username);
+        }
+    });
+
+    $('.removeUser').on('click', function(){
+        var user_id = $(this).attr('id');
+        var username = $('#user-'+user_id).text();
+        Shazam.post('remove', username);
     });
 
 };
