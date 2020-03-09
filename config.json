@@ -106,11 +106,6 @@
       "type": "descriptive"
     },
     {
-      "key": "shazam-js-editors",
-      "name": "<b>Shazam JS editors</b>",
-      "type": "text"
-    },
-    {
       "key": "shazam-display-icons",
       "name": "<b>Display Data History & Field Comment Log/Data Resolution Workflow Icons</b><br>You can also enable these icons for just a particular input by adding the class <code>shazam-icons</code> to a particular input field",
       "type": "checkbox"
