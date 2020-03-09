@@ -156,13 +156,18 @@ Shazam.initEditor = function(id, mode) {
             editor.gotoLine(3, 1);
         }
         if(Shazam.checkPermissions()){
-            var jsWarn = $('<span></span>').addClass('badge badge-danger text-center').text("Javascript Editing Enabled (You've been granted permission)").wrap('<div/>').parent().addClass('text-center').insertBefore(editorElement);
+            var jsWarn = $('<span></span>')
+                .addClass('badge badge-danger text-center')
+                .text("Javascript Editing Enabled (You've been granted permission)")
+                .wrap('<div/>')
+                .parent()
+                .addClass('text-center')
+                .insertBefore(editorElement);
         } else {
             editor.setOptions({
                 readOnly: true
             });
-
-            var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("Javascript can only be edited by a REDCap Administrator.").insertBefore(editorElement);
+            var jsWarn = $('<div></div>').addClass('alert alert-warning text-center').text("You do not have permissions to edit Javascript - contact your REDCap administrator").insertBefore(editorElement);
         }
         // Handle JS editing - only for superusers & those granted permission
         // if(Shazam.su !== 1) {
@@ -352,14 +357,12 @@ Shazam.prepareTable = function() {
     });
 
 
-
     // Handle the Previous Version button
     $('.previous-shazam a').on('click', function() {
         // Recover version from old version
         var ts = $(this).data('ts');
         if (ts > 0) Shazam.post('restore', ts );
     });
-
 
 
     // Handle the in-table action buttons
@@ -397,50 +400,18 @@ Shazam.prepareTable = function() {
     });
 
     $('#add-user-js').on('click', function() {
-        let username = $('.custom-select').val();
-
+        var username = $('.custom-select').val();
         if (username === null){
             alert('No user selected -- try adding a user to the project')
         } else {
-            let obj = {
-                'action': 'grant',
-                'username' : username
-            };
-
-            $.ajax({
-                method: "POST",
-                data: obj,
-            }).done(function (data) {
-                // console.log(data);
-                // $('#addUserModal').modal('toggle');
-                window.location.reload();
-            }).fail(function (err) {
-                console.log('err', err);
-            });
+            Shazam.post('grant', username);
         }
     });
 
     $('.removeUser').on('click', function(){
-        // console.log($(this).closest('tr').children('.username'));
-        let user_id = $(this).attr('id');
-        let username = $('#user-'+user_id).text()
-
-
-        let obj = {
-            'action': 'remove',
-            'username' : username
-        };
-
-        $.ajax({
-            method: "POST",
-            data: obj,
-        }).done(function (data) {
-            // console.log(data);
-            window.location.reload();
-        }).fail(function (err) {
-            console.log('err', err);
-        });
-
+        var user_id = $(this).attr('id');
+        var username = $('#user-'+user_id).text();
+        Shazam.post('remove', username);
     });
 
 };
