@@ -496,7 +496,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 			// //$js_url = $this->getUrl("js/shazam.js", true, true);
 
             $skipApi = $this->getProjectSetting("do-not-use-api-endpoint");
-            $inline = $this->getProjectSetting("shazam-inline-js");
+            $inline = $this->getSystemSetting("shazam-inline-js");
             $consoleLog = $this->getProjectSetting("enable-project-console-logging");
             if ($skipApi) {
                 $jsUrl = $this->getUrl("js/shazam.js");

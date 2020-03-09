@@ -81,6 +81,11 @@
       "type": "checkbox"
     },
     {
+      "key": "shazam-inline-js",
+      "name": "<b>Deliver JavaScript inline</b><br>This work-around will deliver javascript inline instead of making a script tag back to the server.  Only use if your API-endpoint is not open to the Internet",
+      "type": "checkbox"
+    },
+    {
       "key": "enable-add-user-javascript-permissions",
       "name": "<b>Enable user whitelist for javascript editing</b><br>If checked, superusers can grant regular users the ability to edit Shazam javascript on a per project basis",
       "type": "checkbox"
@@ -119,11 +124,6 @@
     {
       "key": "enable-project-console-logging",
       "name": "<b>Enable Console Debug Logging</b><br>You can enable debug-level logging to the browser console for this project",
-      "type": "checkbox"
-    },
-    {
-      "key": "shazam-inline-js",
-      "name": "Deliver JavaScript <b>inline</b><br>Use this setting when your API-endpoint is not open to the Internet",
       "type": "checkbox"
     }
   ],
