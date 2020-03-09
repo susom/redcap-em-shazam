@@ -397,6 +397,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $this->emDebug("PAGE: " . PAGE);
             $this->emDebug("INSTRUMENT: ". $instrument);
             $jsUrl = $this->getUrl("js/shazam.js");
+            $consoleLog = $this->getProjectSetting("enable-project-console-logging");
 
             // Highlight shazam fields on the page
             ?>
@@ -411,7 +412,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                     );
                 } else {
                     Shazam.fields = <?php echo json_encode($this->shazam_instruments[$instrument]); ?>;
-                    Shazam.isDev = <?php echo self::isDev(); ?>;
+                    Shazam.isDev = <?php echo $consoleLog ? 1 : 0; ?>;
                     $(document).ready(function () {
                         Shazam.highlightFields();
                     });
@@ -495,14 +496,24 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 			// //$js_url = $this->getUrl("js/shazam.js", true, true);
 
             $skipApi = $this->getProjectSetting("do-not-use-api-endpoint");
+            $inline = $this->getProjectSetting("shazam-inline-js");
+            $consoleLog = $this->getProjectSetting("enable-project-console-logging");
             if ($skipApi) {
                 $jsUrl = $this->getUrl("js/shazam.js");
             } else {
                 $jsUrl = $this->getUrl('js/shazam.js', false, true);
             }
 
+            // Inject JavaScript.
+            if ($inline) {
+                $jsText = file_get_contents(__DIR__ . "/js/shazam.js");
+                echo "<script type=\"text/javascript\">\n$jsText\n</script>";
+            }
+            else {
+                echo "<script type=\"text/javascript\" src=\"$jsUrl\"></script>";
+            }
+
             ?>
-                <script type='text/javascript' src="<?php echo $jsUrl ?>"></script>
                 <script type='text/javascript'>
                     if (typeof Shazam === "undefined") {
                         // There has been an error loading the js file.
@@ -514,7 +525,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                     } else {
                         $(document).ready(function () {
                             Shazam.params       = <?php print json_encode($shazamParams); ?>;
-                            Shazam.isDev        = <?php echo self::isDev(); ?>;
+                            Shazam.isDev        = <?php echo $consoleLog ? 1 : 0; ?>;
                             Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons")); ?>;
                             Shazam.isSurvey     = <?php print json_encode($isSurvey); ?>;
                             Shazam.Transform();
