@@ -93,20 +93,21 @@ Shazam.initAceEditors = function() {
 };
 
 Shazam.checkPermissions = function(){ //Check if user has permission to edit JS
-    if(Shazam.su !== 1) { //If not superUser
-        var passed = false; //Have to do this manually, no library support on IE
-        for (let i = 0; i < Shazam.js_users.length; i++) {
-            if (Shazam.js_users[i] === Shazam.currentUser) {
-                passed = true;
+    var passed = false;
+    if(Shazam.su !== 1) {
+        // Not superUser - check js_users
+        if (Shazam.js_users) {
+            for (let i = 0; i < Shazam.js_users.length; i++) {
+                if (Shazam.js_users[i] === Shazam.currentUser) {
+                    passed = true;
+                }
             }
         }
-
-        if (Shazam.js_users !== null && passed)
-            return true;
-        else
-            return false;
+    } else {
+        // Super user
+        passed = true;
     }
-    return true;
+    return passed;
 };
 
 Shazam.initEditor = function(id, mode) {
@@ -117,7 +118,7 @@ Shazam.initEditor = function(id, mode) {
 
     var currentValue = $(editorElement).html();
     if (Shazam.config[mode]) {
-        var currentValue = Shazam.config[mode];
+        currentValue = Shazam.config[mode];
     }
 
     // console.log("EditorElement",editorElement, currentValue);
