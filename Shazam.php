@@ -315,7 +315,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $result = false;
 
         // Evaluate all links for now - in the future you might have different rules for different links...
-        if (@$link['name'] == "Shazam Setup") {
+        if (@$link['name'] == "Shazam Setup" && !empty($project_id)) {
 
             // Show link if design or superuser
             global $userid;
