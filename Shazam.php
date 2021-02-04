@@ -528,7 +528,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                             Shazam.isDev        = <?php echo $consoleLog ? 1 : 0; ?>;
                             Shazam.displayIcons = <?php print json_encode($this->getProjectSetting("shazam-display-icons")); ?>;
                             Shazam.isSurvey     = <?php print json_encode($isSurvey); ?>;
-                            Shazam.Transform();
+                            setTimeout(function(){ Shazam.Transform(); }, 1);
                         });
                     }
                 </script>
