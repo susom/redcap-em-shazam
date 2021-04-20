@@ -32,14 +32,13 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     }
 
 
-    /**
-     * Returns all users with edit javascript rights
-     * @param void
-     * @return $js_users : array
-     */
+	/**
+	 * Returns all users with edit javascript rights
+	 * @return array $js_users : array
+	 */
     public function getJavascriptUsers(){
         if($this->getSystemSetting('enable-add-user-javascript-permissions')){
-            $js_users = json_decode($this->getProjectSetting(self::KEY_USER_JS));
+            $js_users = json_decode($this->getProjectSetting(self::KEY_USER_JS),true);
             return isset($js_users) ? $js_users : [];
         }
     }

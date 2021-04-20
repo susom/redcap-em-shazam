@@ -320,7 +320,11 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 <style>
     #shazam td { vertical-align: middle; }
     .shazam-descriptive { font-style: italic; font-size: smaller; margin: 0 20px; white-space: nowrap;}
-    <?php if(count($module->getJavascriptUsers()) === 0) echo ".js-users { display:none; }"; ?>
+    <?php
+        $jsUsers = $module->getJavascriptUsers();
+        if (empty($jsUsers)) echo ".js-users {display:none;}";
+        //if(count($module->getJavascriptUsers()) === 0) echo ".js-users { display:none; }";
+    ?>
     .table th {font-weight: bold;}
 </style>
 
