@@ -39,7 +39,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     public function getJavascriptUsers(){
         if($this->getSystemSetting('enable-add-user-javascript-permissions')){
             $js_users = json_decode($this->getProjectSetting(self::KEY_USER_JS),true);
-            return isset($js_users) ? $js_users : [];
+            return empty($js_users) ? [] : $js_users;
         }
     }
 
