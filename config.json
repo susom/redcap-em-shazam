@@ -28,7 +28,9 @@
       "1.3.5": "fixed issue around bug in em framework and emlogger integration",
       "1.3.6": "another logging fix",
       "1.3.7": "escape descriptive field info",
-      "1.3.8": "Adding option to allow select regular users to edit javascript"
+      "1.3.8": "Adding option to allow select regular users to edit javascript",
+      "1.3.9": "Fix for PHP8 around count",
+      "1.3.10": "Fix for PHP8 around SUPER_USER constant"
     }
   ],
 
@@ -49,6 +51,8 @@
       "institution": "Stanford University"
     }
   ],
+
+  "framework-version": 5,
 
   "permissions": [
     "redcap_survey_page_top",
@@ -129,8 +133,8 @@
   ],
 
   "compatibility": {
-    "php-version-min": "5.4.0",
-    "redcap-version-min": "8.7.0"
+    "php-version-min": "5.6.0",
+    "redcap-version-min": "9.1.1"
   }
 
 

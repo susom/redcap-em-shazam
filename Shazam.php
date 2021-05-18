@@ -51,7 +51,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     public function addJavascriptUser($username) {
         // Check if user has permission to edit users
-        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')) {
+        $user = $this->getUser();
+
+        if($user->isSuperUser() && $this->getSystemSetting('enable-add-user-javascript-permissions')) {
             $existing_users = $this->getJavascriptUsers();
 
             if(in_array($username, $existing_users)){
@@ -63,7 +65,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             }
 
         } else {
-            $this->emError("User " . USER_ID . " attempting to add user ${username} to edit Shazam JS but is not permitted");
+            $this->emError("User " . $user->getUsername() . " attempting to add user ${username} to edit Shazam JS but is not permitted");
         }
     }
 
@@ -75,7 +77,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     public function removeJavascriptUser($username) {
         // Check if user has permission to remove users
-        if(SUPER_USER && $this->getSystemSetting('enable-add-user-javascript-permissions')) {
+        $user = $this->getUser();
+
+        if($user->isSuperUser() && $this->getSystemSetting('enable-add-user-javascript-permissions')) {
             $existing_users = $this->getJavascriptUsers();
 
             $index = array_search($username, $existing_users);
@@ -87,7 +91,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 $this->emError("Error, existing users did not contain {$username}");
             }
         } else {
-            $this->emError("User ". USERID . " attempting to remove dynamic js permissions from ${$username} and failed");
+            $this->emError("User ". $user->getUsername() . " attempting to remove dynamic js permissions from ${$username} and failed");
         }
     }
 
@@ -104,9 +108,11 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $filtered = array_diff($all_users, $existing_users);
             $html = "";
 
+            $user = $this->getUser();
+
             if(!empty($filtered)) {
                 foreach ($filtered as $key => $val) {
-                    if($val !== USERID) { //User shouldn't be able to add themselves
+                    if($val !== $user->getUsername()) { //User shouldn't be able to add themselves
                         $html .= "<option value={$val}>{$val}</option>";
                     }
                 }
@@ -271,8 +277,9 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
         // Save the _MISC_ info to the current version
         $ts = time();
+        $user = $this->getUser();
         $this->config[self::KEY_CONFIG_METADATA]['last_modified']       = date('Y-m-d H:i:s', $ts);
-        $this->config[self::KEY_CONFIG_METADATA]['last_modified_by']    = USERID;
+        $this->config[self::KEY_CONFIG_METADATA]['last_modified_by']    = $user->getUsername();
         $this->config[self::KEY_CONFIG_METADATA]['save_comment']        = $saveComment;
 
         //self::log(json_encode($this->config), "DEBUG", "Saving this!");
@@ -312,14 +319,11 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     public function redcap_module_link_check_display($project_id, $link, $record = null, $instrument = null, $instance = null, $page = null) {
         $result = false;
-
         // Evaluate all links for now - in the future you might have different rules for different links...
         if (@$link['name'] == "Shazam Setup" && !empty($project_id)) {
-
             // Show link if design or superuser
-            global $userid;
-            $rights = REDCap::getUserRights($userid);
-            if (@$rights[$userid]['design'] == 1 || SUPER_USER ) $result = $link;
+            $user = $this->getUser();
+            if ($user->hasDesignRights() || $user->isSuperUser()) $result = $link;
         }
         return $result;
     }

@@ -220,10 +220,12 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 			require_once APP_PATH_DOCROOT . 'ProjectGeneral/footer.php';
 
+            $user = $module->getUser();
+
 			?>
 			<script>
-                Shazam.su     = <?php echo SUPER_USER; ?>;
-                Shazam.currentUser = <?php echo json_encode(USERID); ?>;
+                Shazam.su     = <?php echo ($user->isSuperUser() ? 1 : 0); ?>;
+                Shazam.currentUser = <?php echo json_encode($user->getUsername()); ?>;
                 Shazam.config = <?php echo json_encode($module->config[$field_name]); ?>;
                 Shazam.fields = <?php echo json_encode(array_keys($instrument_fields)); ?>;
                 Shazam.js_users = <?php echo json_encode($module->getJavascriptUsers()); ?>;
@@ -241,7 +243,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             $exceptions = $module->getJavascriptUsers();
 
             // If not a superuser or user granted access, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
-            if (! SUPER_USER && !in_array(USERID, $exceptions)) {
+            $user = $module->getUser();
+            if (! $user->isSuperUser() && !in_array($user->getUsername(), $exceptions)) {
                 // Is there an existing js
                 if (!empty($config[$field_name]['javascript'])) {
                     $module->emDebug("js is not empty - keeping original value since not a superuser");
@@ -315,6 +318,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
 # Render Table Page
 require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
+$user = $module->getUser();
 //redcap_info();
 ?>
 <style>
@@ -364,7 +368,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
     </div>
     <?php
 
-    if($module->getProjectSetting('enable-add-user-javascript-permissions') && SUPER_USER) {
+    if($module->getProjectSetting('enable-add-user-javascript-permissions') && $user->isSuperUser()) {
 
         ?>
             <div class="btn-group">
