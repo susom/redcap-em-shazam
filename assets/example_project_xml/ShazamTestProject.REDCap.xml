@@ -1,0 +1,1765 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:redcap="https://projectredcap.org" xsi:schemaLocation="http://www.cdisc.org/ns/odm/v1.3 schema/odm/ODM1-3-1.xsd" ODMVersion="1.3.1" FileOID="000-00-0000" FileType="Snapshot" Description="Shazam Test Project" AsOfDateTime="2021-05-18T12:11:31" CreationDateTime="2021-05-18T12:11:31" SourceSystem="REDCap" SourceSystemVersion="10.8.2">
+<Study OID="Project.ShazamTestProject">
+<GlobalVariables>
+	<StudyName>Shazam Test Project</StudyName>
+	<StudyDescription>This file contains the metadata, events, and data for REDCap project "Shazam Test Project".</StudyDescription>
+	<ProtocolName>Shazam Test Project</ProtocolName>
+	<redcap:RecordAutonumberingEnabled>1</redcap:RecordAutonumberingEnabled>
+	<redcap:CustomRecordLabel></redcap:CustomRecordLabel>
+	<redcap:SecondaryUniqueField></redcap:SecondaryUniqueField>
+	<redcap:SchedulingEnabled>0</redcap:SchedulingEnabled>
+	<redcap:SurveysEnabled>1</redcap:SurveysEnabled>
+	<redcap:SurveyInvitationEmailField></redcap:SurveyInvitationEmailField>
+	<redcap:Purpose>0</redcap:Purpose>
+	<redcap:PurposeOther></redcap:PurposeOther>
+	<redcap:ProjectNotes>A test project for Shazam</redcap:ProjectNotes>
+	<redcap:SurveyQueueCustomText></redcap:SurveyQueueCustomText>
+	<redcap:MissingDataCodes></redcap:MissingDataCodes>
+	<redcap:SurveysGroup>
+		<redcap:Surveys form_name="survey" title="Survey" instructions="&lt;p&gt;&lt;strong&gt;Please complete the survey below.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Thank you!&lt;/p&gt;" acknowledgement="&lt;p&gt;&lt;strong&gt;Thank you for taking the survey.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Have a nice day!&lt;/p&gt;" question_by_section="0" display_page_number="0" question_auto_numbering="0" survey_enabled="1" save_and_return="1" save_and_return_code_bypass="1" logo="" hide_title="0" view_results="0" min_responses_view_results="10" check_diversity_view_results="0" end_survey_redirect_next_survey="0" webauth_required="0" end_survey_redirect_url="" survey_expiration="" promis_skip_question="0" survey_auth_enabled_single="0" edit_completed_response="1" hide_back_button="0" show_required_field_text="1" confirmation_email_subject="" confirmation_email_content="" confirmation_email_from="" confirmation_email_from_display="" confirmation_email_attach_pdf="0" confirmation_email_attachment="" text_to_speech="0" text_to_speech_language="en" theme="" text_size="1" font_family="16" theme_text_buttons="" theme_bg_page="" theme_text_title="" theme_bg_title="" theme_text_sectionheader="" theme_bg_sectionheader="" theme_text_question="" theme_bg_question="" enhanced_choices="0" repeat_survey_enabled="0" repeat_survey_btn_text="" repeat_survey_btn_location="AFTER_SUBMIT" response_limit="" response_limit_include_partials="1" response_limit_custom_text="Thank you for your interest; however, the survey is closed because the maximum number of responses has been reached." survey_time_limit_days="" survey_time_limit_hours="" survey_time_limit_minutes="" email_participant_field="" end_of_survey_pdf_download="0" pdf_save_to_field="" pdf_save_to_event_id="" pdf_auto_archive="0" pdf_econsent_version="" pdf_econsent_type="" pdf_econsent_firstname_field="" pdf_econsent_firstname_event_id="" pdf_econsent_lastname_field="" pdf_econsent_lastname_event_id="" pdf_econsent_dob_field="" pdf_econsent_dob_event_id="" pdf_econsent_allow_edit="0" pdf_econsent_signature_field1="" pdf_econsent_signature_field2="" pdf_econsent_signature_field3="" pdf_econsent_signature_field4="" pdf_econsent_signature_field5=""/>
+		<redcap:Surveys form_name="survey_icons" title="Survey Icons" instructions="&lt;p&gt;&lt;strong&gt;Please complete the survey below.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Thank you!&lt;/p&gt;" acknowledgement="&lt;p&gt;&lt;strong&gt;Thank you for taking the survey.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Have a nice day!&lt;/p&gt;" question_by_section="0" display_page_number="0" question_auto_numbering="1" survey_enabled="1" save_and_return="1" save_and_return_code_bypass="1" logo="" hide_title="0" view_results="0" min_responses_view_results="10" check_diversity_view_results="0" end_survey_redirect_next_survey="0" webauth_required="0" end_survey_redirect_url="" survey_expiration="" promis_skip_question="0" survey_auth_enabled_single="0" edit_completed_response="1" hide_back_button="0" show_required_field_text="1" confirmation_email_subject="" confirmation_email_content="" confirmation_email_from="" confirmation_email_from_display="" confirmation_email_attach_pdf="0" confirmation_email_attachment="" text_to_speech="0" text_to_speech_language="en" theme="" text_size="1" font_family="16" theme_text_buttons="" theme_bg_page="" theme_text_title="" theme_bg_title="" theme_text_sectionheader="" theme_bg_sectionheader="" theme_text_question="" theme_bg_question="" enhanced_choices="0" repeat_survey_enabled="0" repeat_survey_btn_text="" repeat_survey_btn_location="AFTER_SUBMIT" response_limit="" response_limit_include_partials="1" response_limit_custom_text="Thank you for your interest; however, the survey is closed because the maximum number of responses has been reached." survey_time_limit_days="" survey_time_limit_hours="" survey_time_limit_minutes="" email_participant_field="" end_of_survey_pdf_download="0" pdf_save_to_field="" pdf_save_to_event_id="" pdf_auto_archive="0" pdf_econsent_version="" pdf_econsent_type="" pdf_econsent_firstname_field="" pdf_econsent_firstname_event_id="" pdf_econsent_lastname_field="" pdf_econsent_lastname_event_id="" pdf_econsent_dob_field="" pdf_econsent_dob_event_id="" pdf_econsent_allow_edit="0" pdf_econsent_signature_field1="" pdf_econsent_signature_field2="" pdf_econsent_signature_field3="" pdf_econsent_signature_field4="" pdf_econsent_signature_field5=""/>
+		<redcap:Surveys form_name="survey_control" title="Survey Control" instructions="&lt;p&gt;&lt;strong&gt;Please complete the survey below.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Thank you!&lt;/p&gt;" acknowledgement="&lt;p&gt;&lt;strong&gt;Thank you for taking the survey.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Have a nice day!&lt;/p&gt;" question_by_section="0" display_page_number="0" question_auto_numbering="1" survey_enabled="1" save_and_return="1" save_and_return_code_bypass="1" logo="" hide_title="0" view_results="0" min_responses_view_results="10" check_diversity_view_results="0" end_survey_redirect_next_survey="0" webauth_required="0" end_survey_redirect_url="" survey_expiration="" promis_skip_question="0" survey_auth_enabled_single="0" edit_completed_response="1" hide_back_button="0" show_required_field_text="1" confirmation_email_subject="" confirmation_email_content="" confirmation_email_from="" confirmation_email_from_display="" confirmation_email_attach_pdf="0" confirmation_email_attachment="" text_to_speech="0" text_to_speech_language="en" theme="" text_size="1" font_family="16" theme_text_buttons="" theme_bg_page="" theme_text_title="" theme_bg_title="" theme_text_sectionheader="" theme_bg_sectionheader="" theme_text_question="" theme_bg_question="" enhanced_choices="0" repeat_survey_enabled="0" repeat_survey_btn_text="" repeat_survey_btn_location="AFTER_SUBMIT" response_limit="" response_limit_include_partials="1" response_limit_custom_text="Thank you for your interest; however, the survey is closed because the maximum number of responses has been reached." survey_time_limit_days="" survey_time_limit_hours="" survey_time_limit_minutes="" email_participant_field="" end_of_survey_pdf_download="0" pdf_save_to_field="" pdf_save_to_event_id="" pdf_auto_archive="0" pdf_econsent_version="" pdf_econsent_type="" pdf_econsent_firstname_field="" pdf_econsent_firstname_event_id="" pdf_econsent_lastname_field="" pdf_econsent_lastname_event_id="" pdf_econsent_dob_field="" pdf_econsent_dob_event_id="" pdf_econsent_allow_edit="0" pdf_econsent_signature_field1="" pdf_econsent_signature_field2="" pdf_econsent_signature_field3="" pdf_econsent_signature_field4="" pdf_econsent_signature_field5=""/>
+	</redcap:SurveysGroup>
+	<redcap:SurveysQueueGroup>
+		<redcap:SurveysQueue active="1" auto_start="0" condition_surveycomplete_survey_id="" condition_surveycomplete_event_id="" condition_andor="OR" condition_logic="1" event_id="event_1_arm_1" survey_id="survey"/>
+		<redcap:SurveysQueue active="1" auto_start="0" condition_surveycomplete_survey_id="" condition_surveycomplete_event_id="" condition_andor="OR" condition_logic="1" event_id="event_1_arm_1" survey_id="survey_icons"/>
+		<redcap:SurveysQueue active="1" auto_start="0" condition_surveycomplete_survey_id="" condition_surveycomplete_event_id="" condition_andor="OR" condition_logic="1" event_id="event_1_arm_1" survey_id="survey_control"/>
+	</redcap:SurveysQueueGroup>
+	<redcap:UserRolesGroup>
+		<redcap:UserRoles role_name="Data Entry" lock_record="0" lock_record_multiform="0" lock_record_customize="0" data_export_tool="0" data_import_tool="1" data_comparison_tool="0" data_logging="0" file_repository="1" double_data="0" user_rights="0" data_access_groups="0" graphical="1" reports="1" design="0" calendar="1" data_entry="[my_first_instrument,1]" api_export="0" api_import="0" mobile_app="0" mobile_app_download_data="0" record_create="1" record_rename="0" record_delete="0" dts="0" participants="1" data_quality_design="0" data_quality_execute="0" data_quality_resolution="1" random_setup="0" random_dashboard="0" random_perform="0" realtime_webservice_mapping="0" realtime_webservice_adjudicate="0" external_module_config="0"/>
+		<redcap:UserRoles role_name="Export w/o Identifiers" lock_record="0" lock_record_multiform="0" lock_record_customize="0" data_export_tool="3" data_import_tool="0" data_comparison_tool="0" data_logging="0" file_repository="1" double_data="0" user_rights="0" data_access_groups="0" graphical="1" reports="1" design="0" calendar="0" data_entry="[my_first_instrument,1]" api_export="1" api_import="0" mobile_app="0" mobile_app_download_data="0" record_create="0" record_rename="0" record_delete="0" dts="0" participants="1" data_quality_design="0" data_quality_execute="0" data_quality_resolution="1" random_setup="0" random_dashboard="0" random_perform="0" realtime_webservice_mapping="0" realtime_webservice_adjudicate="0" external_module_config="0"/>
+		<redcap:UserRoles role_name="Project Admins" lock_record="2" lock_record_multiform="1" lock_record_customize="1" data_export_tool="1" data_import_tool="1" data_comparison_tool="1" data_logging="1" file_repository="1" double_data="0" user_rights="1" data_access_groups="1" graphical="1" reports="1" design="1" calendar="1" data_entry="[my_first_instrument,1]" api_export="1" api_import="1" mobile_app="1" mobile_app_download_data="1" record_create="1" record_rename="1" record_delete="1" dts="0" participants="1" data_quality_design="1" data_quality_execute="1" data_quality_resolution="1" random_setup="1" random_dashboard="0" random_perform="1" realtime_webservice_mapping="0" realtime_webservice_adjudicate="0" external_module_config="0"/>
+		<redcap:UserRoles role_name="Read Only" lock_record="0" lock_record_multiform="0" lock_record_customize="0" data_export_tool="0" data_import_tool="0" data_comparison_tool="0" data_logging="0" file_repository="1" double_data="0" user_rights="0" data_access_groups="0" graphical="1" reports="1" design="0" calendar="0" data_entry="[my_first_instrument,1]" api_export="0" api_import="0" mobile_app="0" mobile_app_download_data="0" record_create="0" record_rename="0" record_delete="0" dts="0" participants="1" data_quality_design="0" data_quality_execute="0" data_quality_resolution="1" random_setup="0" random_dashboard="0" random_perform="0" realtime_webservice_mapping="0" realtime_webservice_adjudicate="0" external_module_config="0"/>
+	</redcap:UserRolesGroup>
+</GlobalVariables>
+<MetaDataVersion OID="Metadata.ShazamTestProject_2021-05-18_1211" Name="Shazam Test Project" redcap:RecordIdField="participant_id">
+	<FormDef OID="Form.survey" Name="Survey" Repeating="No" redcap:FormName="survey">
+		<ItemGroupRef ItemGroupOID="survey.participant_id" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="survey.survey_complete" Mandatory="No"/>
+	</FormDef>
+	<FormDef OID="Form.survey_icons" Name="Survey Icons" Repeating="No" redcap:FormName="survey_icons">
+		<ItemGroupRef ItemGroupOID="survey_icons.shazam_icons" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="survey_icons.survey_icons_complete" Mandatory="No"/>
+	</FormDef>
+	<FormDef OID="Form.survey_control" Name="Survey Control" Repeating="No" redcap:FormName="survey_control">
+		<ItemGroupRef ItemGroupOID="survey_control.shazam_c" Mandatory="No"/>
+		<ItemGroupRef ItemGroupOID="survey_control.survey_control_complete" Mandatory="No"/>
+	</FormDef>
+	<ItemGroupDef OID="survey.participant_id" Name="Survey" Repeating="No">
+		<ItemRef ItemOID="participant_id" Mandatory="No" redcap:Variable="participant_id"/>
+		<ItemRef ItemOID="shazam" Mandatory="No" redcap:Variable="shazam"/>
+		<ItemRef ItemOID="text1" Mandatory="No" redcap:Variable="text1"/>
+		<ItemRef ItemOID="text2" Mandatory="No" redcap:Variable="text2"/>
+		<ItemRef ItemOID="text3" Mandatory="No" redcap:Variable="text3"/>
+		<ItemRef ItemOID="text4" Mandatory="No" redcap:Variable="text4"/>
+		<ItemRef ItemOID="radio1" Mandatory="No" redcap:Variable="radio1"/>
+		<ItemRef ItemOID="radio2" Mandatory="No" redcap:Variable="radio2"/>
+		<ItemRef ItemOID="radio3" Mandatory="No" redcap:Variable="radio3"/>
+		<ItemRef ItemOID="radio4" Mandatory="No" redcap:Variable="radio4"/>
+		<ItemRef ItemOID="dropdown1" Mandatory="No" redcap:Variable="dropdown1"/>
+		<ItemRef ItemOID="dropdown2" Mandatory="No" redcap:Variable="dropdown2"/>
+		<ItemRef ItemOID="dropdown3" Mandatory="No" redcap:Variable="dropdown3"/>
+		<ItemRef ItemOID="dropdown4" Mandatory="No" redcap:Variable="dropdown4"/>
+		<ItemRef ItemOID="dropdown_ac1" Mandatory="No" redcap:Variable="dropdown_ac1"/>
+		<ItemRef ItemOID="dropdown_ac2" Mandatory="No" redcap:Variable="dropdown_ac2"/>
+		<ItemRef ItemOID="dropdown_ac3" Mandatory="No" redcap:Variable="dropdown_ac3"/>
+		<ItemRef ItemOID="dropdown_ac4" Mandatory="No" redcap:Variable="dropdown_ac4"/>
+		<ItemRef ItemOID="notes1" Mandatory="No" redcap:Variable="notes1"/>
+		<ItemRef ItemOID="notes2" Mandatory="No" redcap:Variable="notes2"/>
+		<ItemRef ItemOID="notes3" Mandatory="No" redcap:Variable="notes3"/>
+		<ItemRef ItemOID="notes4" Mandatory="No" redcap:Variable="notes4"/>
+		<ItemRef ItemOID="checkbox1___1" Mandatory="No" redcap:Variable="checkbox1"/>
+		<ItemRef ItemOID="checkbox1___2" Mandatory="No" redcap:Variable="checkbox1"/>
+		<ItemRef ItemOID="checkbox1___3" Mandatory="No" redcap:Variable="checkbox1"/>
+		<ItemRef ItemOID="checkbox1___4" Mandatory="No" redcap:Variable="checkbox1"/>
+		<ItemRef ItemOID="checkbox2___1" Mandatory="No" redcap:Variable="checkbox2"/>
+		<ItemRef ItemOID="checkbox2___2" Mandatory="No" redcap:Variable="checkbox2"/>
+		<ItemRef ItemOID="checkbox2___3" Mandatory="No" redcap:Variable="checkbox2"/>
+		<ItemRef ItemOID="checkbox2___4" Mandatory="No" redcap:Variable="checkbox2"/>
+		<ItemRef ItemOID="checkbox3___1" Mandatory="No" redcap:Variable="checkbox3"/>
+		<ItemRef ItemOID="checkbox3___2" Mandatory="No" redcap:Variable="checkbox3"/>
+		<ItemRef ItemOID="checkbox3___3" Mandatory="No" redcap:Variable="checkbox3"/>
+		<ItemRef ItemOID="checkbox3___4" Mandatory="No" redcap:Variable="checkbox3"/>
+		<ItemRef ItemOID="checkbox4___1" Mandatory="No" redcap:Variable="checkbox4"/>
+		<ItemRef ItemOID="checkbox4___2" Mandatory="No" redcap:Variable="checkbox4"/>
+		<ItemRef ItemOID="checkbox4___3" Mandatory="No" redcap:Variable="checkbox4"/>
+		<ItemRef ItemOID="checkbox4___4" Mandatory="No" redcap:Variable="checkbox4"/>
+		<ItemRef ItemOID="date1" Mandatory="No" redcap:Variable="date1"/>
+		<ItemRef ItemOID="date2" Mandatory="No" redcap:Variable="date2"/>
+		<ItemRef ItemOID="date3" Mandatory="No" redcap:Variable="date3"/>
+		<ItemRef ItemOID="date4" Mandatory="No" redcap:Variable="date4"/>
+		<ItemRef ItemOID="file1" Mandatory="No" redcap:Variable="file1"/>
+		<ItemRef ItemOID="file2" Mandatory="No" redcap:Variable="file2"/>
+		<ItemRef ItemOID="file3" Mandatory="No" redcap:Variable="file3"/>
+		<ItemRef ItemOID="file4" Mandatory="No" redcap:Variable="file4"/>
+		<ItemRef ItemOID="slider1" Mandatory="No" redcap:Variable="slider1"/>
+		<ItemRef ItemOID="slider2" Mandatory="No" redcap:Variable="slider2"/>
+		<ItemRef ItemOID="slider3" Mandatory="No" redcap:Variable="slider3"/>
+		<ItemRef ItemOID="slider4" Mandatory="No" redcap:Variable="slider4"/>
+		<ItemRef ItemOID="descriptive1" Mandatory="No" redcap:Variable="descriptive1"/>
+		<ItemRef ItemOID="descriptive2" Mandatory="No" redcap:Variable="descriptive2"/>
+		<ItemRef ItemOID="descriptive3" Mandatory="No" redcap:Variable="descriptive3"/>
+		<ItemRef ItemOID="descriptive4" Mandatory="No" redcap:Variable="descriptive4"/>
+		<ItemRef ItemOID="matrix1___0" Mandatory="No" redcap:Variable="matrix1"/>
+		<ItemRef ItemOID="matrix1___1" Mandatory="No" redcap:Variable="matrix1"/>
+		<ItemRef ItemOID="matrix1___2" Mandatory="No" redcap:Variable="matrix1"/>
+		<ItemRef ItemOID="matrix1___3" Mandatory="No" redcap:Variable="matrix1"/>
+		<ItemRef ItemOID="matrix1___4" Mandatory="No" redcap:Variable="matrix1"/>
+		<ItemRef ItemOID="matrix2___0" Mandatory="No" redcap:Variable="matrix2"/>
+		<ItemRef ItemOID="matrix2___1" Mandatory="No" redcap:Variable="matrix2"/>
+		<ItemRef ItemOID="matrix2___2" Mandatory="No" redcap:Variable="matrix2"/>
+		<ItemRef ItemOID="matrix2___3" Mandatory="No" redcap:Variable="matrix2"/>
+		<ItemRef ItemOID="matrix2___4" Mandatory="No" redcap:Variable="matrix2"/>
+		<ItemRef ItemOID="matrix3___0" Mandatory="No" redcap:Variable="matrix3"/>
+		<ItemRef ItemOID="matrix3___1" Mandatory="No" redcap:Variable="matrix3"/>
+		<ItemRef ItemOID="matrix3___2" Mandatory="No" redcap:Variable="matrix3"/>
+		<ItemRef ItemOID="matrix3___3" Mandatory="No" redcap:Variable="matrix3"/>
+		<ItemRef ItemOID="matrix3___4" Mandatory="No" redcap:Variable="matrix3"/>
+		<ItemRef ItemOID="matrix4___0" Mandatory="No" redcap:Variable="matrix4"/>
+		<ItemRef ItemOID="matrix4___1" Mandatory="No" redcap:Variable="matrix4"/>
+		<ItemRef ItemOID="matrix4___2" Mandatory="No" redcap:Variable="matrix4"/>
+		<ItemRef ItemOID="matrix4___3" Mandatory="No" redcap:Variable="matrix4"/>
+		<ItemRef ItemOID="matrix4___4" Mandatory="No" redcap:Variable="matrix4"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="survey.survey_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="survey_complete" Mandatory="No" redcap:Variable="survey_complete"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="survey_icons.shazam_icons" Name="Survey Icons" Repeating="No">
+		<ItemRef ItemOID="shazam_icons" Mandatory="No" redcap:Variable="shazam_icons"/>
+		<ItemRef ItemOID="text1_icons" Mandatory="No" redcap:Variable="text1_icons"/>
+		<ItemRef ItemOID="text2_icons" Mandatory="No" redcap:Variable="text2_icons"/>
+		<ItemRef ItemOID="text3_icons" Mandatory="No" redcap:Variable="text3_icons"/>
+		<ItemRef ItemOID="text4_icons" Mandatory="No" redcap:Variable="text4_icons"/>
+		<ItemRef ItemOID="radio1_icons" Mandatory="No" redcap:Variable="radio1_icons"/>
+		<ItemRef ItemOID="radio2_icons" Mandatory="No" redcap:Variable="radio2_icons"/>
+		<ItemRef ItemOID="radio3_icons" Mandatory="No" redcap:Variable="radio3_icons"/>
+		<ItemRef ItemOID="radio4_icons" Mandatory="No" redcap:Variable="radio4_icons"/>
+		<ItemRef ItemOID="dropdown1_icons" Mandatory="No" redcap:Variable="dropdown1_icons"/>
+		<ItemRef ItemOID="dropdown2_icons" Mandatory="No" redcap:Variable="dropdown2_icons"/>
+		<ItemRef ItemOID="dropdown3_icons" Mandatory="No" redcap:Variable="dropdown3_icons"/>
+		<ItemRef ItemOID="dropdown4_icons" Mandatory="No" redcap:Variable="dropdown4_icons"/>
+		<ItemRef ItemOID="dropdown_ac1_icons" Mandatory="No" redcap:Variable="dropdown_ac1_icons"/>
+		<ItemRef ItemOID="dropdown_ac2_icons" Mandatory="No" redcap:Variable="dropdown_ac2_icons"/>
+		<ItemRef ItemOID="dropdown_ac3_icons" Mandatory="No" redcap:Variable="dropdown_ac3_icons"/>
+		<ItemRef ItemOID="dropdown_ac4_icons" Mandatory="No" redcap:Variable="dropdown_ac4_icons"/>
+		<ItemRef ItemOID="notes1_icons" Mandatory="No" redcap:Variable="notes1_icons"/>
+		<ItemRef ItemOID="notes2_icons" Mandatory="No" redcap:Variable="notes2_icons"/>
+		<ItemRef ItemOID="notes3_icons" Mandatory="No" redcap:Variable="notes3_icons"/>
+		<ItemRef ItemOID="notes4_icons" Mandatory="No" redcap:Variable="notes4_icons"/>
+		<ItemRef ItemOID="checkbox1_icons___1" Mandatory="No" redcap:Variable="checkbox1_icons"/>
+		<ItemRef ItemOID="checkbox1_icons___2" Mandatory="No" redcap:Variable="checkbox1_icons"/>
+		<ItemRef ItemOID="checkbox1_icons___3" Mandatory="No" redcap:Variable="checkbox1_icons"/>
+		<ItemRef ItemOID="checkbox1_icons___4" Mandatory="No" redcap:Variable="checkbox1_icons"/>
+		<ItemRef ItemOID="checkbox2_icons___1" Mandatory="No" redcap:Variable="checkbox2_icons"/>
+		<ItemRef ItemOID="checkbox2_icons___2" Mandatory="No" redcap:Variable="checkbox2_icons"/>
+		<ItemRef ItemOID="checkbox2_icons___3" Mandatory="No" redcap:Variable="checkbox2_icons"/>
+		<ItemRef ItemOID="checkbox2_icons___4" Mandatory="No" redcap:Variable="checkbox2_icons"/>
+		<ItemRef ItemOID="checkbox3_icons___1" Mandatory="No" redcap:Variable="checkbox3_icons"/>
+		<ItemRef ItemOID="checkbox3_icons___2" Mandatory="No" redcap:Variable="checkbox3_icons"/>
+		<ItemRef ItemOID="checkbox3_icons___3" Mandatory="No" redcap:Variable="checkbox3_icons"/>
+		<ItemRef ItemOID="checkbox3_icons___4" Mandatory="No" redcap:Variable="checkbox3_icons"/>
+		<ItemRef ItemOID="checkbox4_icons___1" Mandatory="No" redcap:Variable="checkbox4_icons"/>
+		<ItemRef ItemOID="checkbox4_icons___2" Mandatory="No" redcap:Variable="checkbox4_icons"/>
+		<ItemRef ItemOID="checkbox4_icons___3" Mandatory="No" redcap:Variable="checkbox4_icons"/>
+		<ItemRef ItemOID="checkbox4_icons___4" Mandatory="No" redcap:Variable="checkbox4_icons"/>
+		<ItemRef ItemOID="date1_icons" Mandatory="No" redcap:Variable="date1_icons"/>
+		<ItemRef ItemOID="date2_icons" Mandatory="No" redcap:Variable="date2_icons"/>
+		<ItemRef ItemOID="date3_icons" Mandatory="No" redcap:Variable="date3_icons"/>
+		<ItemRef ItemOID="date4_icons" Mandatory="No" redcap:Variable="date4_icons"/>
+		<ItemRef ItemOID="file1_icons" Mandatory="No" redcap:Variable="file1_icons"/>
+		<ItemRef ItemOID="file2_icons" Mandatory="No" redcap:Variable="file2_icons"/>
+		<ItemRef ItemOID="file3_icons" Mandatory="No" redcap:Variable="file3_icons"/>
+		<ItemRef ItemOID="file4_icons" Mandatory="No" redcap:Variable="file4_icons"/>
+		<ItemRef ItemOID="slider1_icons" Mandatory="No" redcap:Variable="slider1_icons"/>
+		<ItemRef ItemOID="slider2_icons" Mandatory="No" redcap:Variable="slider2_icons"/>
+		<ItemRef ItemOID="slider3_icons" Mandatory="No" redcap:Variable="slider3_icons"/>
+		<ItemRef ItemOID="slider4_icons" Mandatory="No" redcap:Variable="slider4_icons"/>
+		<ItemRef ItemOID="descriptive1_icons" Mandatory="No" redcap:Variable="descriptive1_icons"/>
+		<ItemRef ItemOID="descriptive2_icons" Mandatory="No" redcap:Variable="descriptive2_icons"/>
+		<ItemRef ItemOID="descriptive3_icons" Mandatory="No" redcap:Variable="descriptive3_icons"/>
+		<ItemRef ItemOID="descriptive4_icons" Mandatory="No" redcap:Variable="descriptive4_icons"/>
+		<ItemRef ItemOID="matrix1_icons___0" Mandatory="No" redcap:Variable="matrix1_icons"/>
+		<ItemRef ItemOID="matrix1_icons___1" Mandatory="No" redcap:Variable="matrix1_icons"/>
+		<ItemRef ItemOID="matrix1_icons___2" Mandatory="No" redcap:Variable="matrix1_icons"/>
+		<ItemRef ItemOID="matrix1_icons___3" Mandatory="No" redcap:Variable="matrix1_icons"/>
+		<ItemRef ItemOID="matrix1_icons___4" Mandatory="No" redcap:Variable="matrix1_icons"/>
+		<ItemRef ItemOID="matrix2_icons___0" Mandatory="No" redcap:Variable="matrix2_icons"/>
+		<ItemRef ItemOID="matrix2_icons___1" Mandatory="No" redcap:Variable="matrix2_icons"/>
+		<ItemRef ItemOID="matrix2_icons___2" Mandatory="No" redcap:Variable="matrix2_icons"/>
+		<ItemRef ItemOID="matrix2_icons___3" Mandatory="No" redcap:Variable="matrix2_icons"/>
+		<ItemRef ItemOID="matrix2_icons___4" Mandatory="No" redcap:Variable="matrix2_icons"/>
+		<ItemRef ItemOID="matrix3_icons___0" Mandatory="No" redcap:Variable="matrix3_icons"/>
+		<ItemRef ItemOID="matrix3_icons___1" Mandatory="No" redcap:Variable="matrix3_icons"/>
+		<ItemRef ItemOID="matrix3_icons___2" Mandatory="No" redcap:Variable="matrix3_icons"/>
+		<ItemRef ItemOID="matrix3_icons___3" Mandatory="No" redcap:Variable="matrix3_icons"/>
+		<ItemRef ItemOID="matrix3_icons___4" Mandatory="No" redcap:Variable="matrix3_icons"/>
+		<ItemRef ItemOID="matrix4_icons___0" Mandatory="No" redcap:Variable="matrix4_icons"/>
+		<ItemRef ItemOID="matrix4_icons___1" Mandatory="No" redcap:Variable="matrix4_icons"/>
+		<ItemRef ItemOID="matrix4_icons___2" Mandatory="No" redcap:Variable="matrix4_icons"/>
+		<ItemRef ItemOID="matrix4_icons___3" Mandatory="No" redcap:Variable="matrix4_icons"/>
+		<ItemRef ItemOID="matrix4_icons___4" Mandatory="No" redcap:Variable="matrix4_icons"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="survey_icons.survey_icons_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="survey_icons_complete" Mandatory="No" redcap:Variable="survey_icons_complete"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="survey_control.shazam_c" Name="Survey Control" Repeating="No">
+		<ItemRef ItemOID="shazam_c" Mandatory="No" redcap:Variable="shazam_c"/>
+		<ItemRef ItemOID="text1_c" Mandatory="No" redcap:Variable="text1_c"/>
+		<ItemRef ItemOID="text2_c" Mandatory="No" redcap:Variable="text2_c"/>
+		<ItemRef ItemOID="text3_c" Mandatory="No" redcap:Variable="text3_c"/>
+		<ItemRef ItemOID="text4_c" Mandatory="No" redcap:Variable="text4_c"/>
+		<ItemRef ItemOID="radio1_c" Mandatory="No" redcap:Variable="radio1_c"/>
+		<ItemRef ItemOID="radio2_c" Mandatory="No" redcap:Variable="radio2_c"/>
+		<ItemRef ItemOID="radio3_c" Mandatory="No" redcap:Variable="radio3_c"/>
+		<ItemRef ItemOID="radio4_c" Mandatory="No" redcap:Variable="radio4_c"/>
+		<ItemRef ItemOID="dropdown1_c" Mandatory="No" redcap:Variable="dropdown1_c"/>
+		<ItemRef ItemOID="dropdown2_c" Mandatory="No" redcap:Variable="dropdown2_c"/>
+		<ItemRef ItemOID="dropdown3_c" Mandatory="No" redcap:Variable="dropdown3_c"/>
+		<ItemRef ItemOID="dropdown4_c" Mandatory="No" redcap:Variable="dropdown4_c"/>
+		<ItemRef ItemOID="dropdown_ac1_c" Mandatory="No" redcap:Variable="dropdown_ac1_c"/>
+		<ItemRef ItemOID="dropdown_ac2_c" Mandatory="No" redcap:Variable="dropdown_ac2_c"/>
+		<ItemRef ItemOID="dropdown_ac3_c" Mandatory="No" redcap:Variable="dropdown_ac3_c"/>
+		<ItemRef ItemOID="dropdown_ac4_c" Mandatory="No" redcap:Variable="dropdown_ac4_c"/>
+		<ItemRef ItemOID="notes1_c" Mandatory="No" redcap:Variable="notes1_c"/>
+		<ItemRef ItemOID="notes2_c" Mandatory="No" redcap:Variable="notes2_c"/>
+		<ItemRef ItemOID="notes3_c" Mandatory="No" redcap:Variable="notes3_c"/>
+		<ItemRef ItemOID="notes4_c" Mandatory="No" redcap:Variable="notes4_c"/>
+		<ItemRef ItemOID="checkbox1_c___1" Mandatory="No" redcap:Variable="checkbox1_c"/>
+		<ItemRef ItemOID="checkbox1_c___2" Mandatory="No" redcap:Variable="checkbox1_c"/>
+		<ItemRef ItemOID="checkbox1_c___3" Mandatory="No" redcap:Variable="checkbox1_c"/>
+		<ItemRef ItemOID="checkbox1_c___4" Mandatory="No" redcap:Variable="checkbox1_c"/>
+		<ItemRef ItemOID="checkbox2_c___1" Mandatory="No" redcap:Variable="checkbox2_c"/>
+		<ItemRef ItemOID="checkbox2_c___2" Mandatory="No" redcap:Variable="checkbox2_c"/>
+		<ItemRef ItemOID="checkbox2_c___3" Mandatory="No" redcap:Variable="checkbox2_c"/>
+		<ItemRef ItemOID="checkbox2_c___4" Mandatory="No" redcap:Variable="checkbox2_c"/>
+		<ItemRef ItemOID="checkbox3_c___1" Mandatory="No" redcap:Variable="checkbox3_c"/>
+		<ItemRef ItemOID="checkbox3_c___2" Mandatory="No" redcap:Variable="checkbox3_c"/>
+		<ItemRef ItemOID="checkbox3_c___3" Mandatory="No" redcap:Variable="checkbox3_c"/>
+		<ItemRef ItemOID="checkbox3_c___4" Mandatory="No" redcap:Variable="checkbox3_c"/>
+		<ItemRef ItemOID="checkbox4_c___1" Mandatory="No" redcap:Variable="checkbox4_c"/>
+		<ItemRef ItemOID="checkbox4_c___2" Mandatory="No" redcap:Variable="checkbox4_c"/>
+		<ItemRef ItemOID="checkbox4_c___3" Mandatory="No" redcap:Variable="checkbox4_c"/>
+		<ItemRef ItemOID="checkbox4_c___4" Mandatory="No" redcap:Variable="checkbox4_c"/>
+		<ItemRef ItemOID="date1_c" Mandatory="No" redcap:Variable="date1_c"/>
+		<ItemRef ItemOID="date2_c" Mandatory="No" redcap:Variable="date2_c"/>
+		<ItemRef ItemOID="date3_c" Mandatory="No" redcap:Variable="date3_c"/>
+		<ItemRef ItemOID="date4_c" Mandatory="No" redcap:Variable="date4_c"/>
+		<ItemRef ItemOID="file1_c" Mandatory="No" redcap:Variable="file1_c"/>
+		<ItemRef ItemOID="file2_c" Mandatory="No" redcap:Variable="file2_c"/>
+		<ItemRef ItemOID="file3_c" Mandatory="No" redcap:Variable="file3_c"/>
+		<ItemRef ItemOID="file4_c" Mandatory="No" redcap:Variable="file4_c"/>
+		<ItemRef ItemOID="slider1_c" Mandatory="No" redcap:Variable="slider1_c"/>
+		<ItemRef ItemOID="slider2_c" Mandatory="No" redcap:Variable="slider2_c"/>
+		<ItemRef ItemOID="slider3_c" Mandatory="No" redcap:Variable="slider3_c"/>
+		<ItemRef ItemOID="slider4_c" Mandatory="No" redcap:Variable="slider4_c"/>
+		<ItemRef ItemOID="descriptive1_c" Mandatory="No" redcap:Variable="descriptive1_c"/>
+		<ItemRef ItemOID="descriptive2_c" Mandatory="No" redcap:Variable="descriptive2_c"/>
+		<ItemRef ItemOID="descriptive3_c" Mandatory="No" redcap:Variable="descriptive3_c"/>
+		<ItemRef ItemOID="descriptive4_c" Mandatory="No" redcap:Variable="descriptive4_c"/>
+		<ItemRef ItemOID="matrix1_c___0" Mandatory="No" redcap:Variable="matrix1_c"/>
+		<ItemRef ItemOID="matrix1_c___1" Mandatory="No" redcap:Variable="matrix1_c"/>
+		<ItemRef ItemOID="matrix1_c___2" Mandatory="No" redcap:Variable="matrix1_c"/>
+		<ItemRef ItemOID="matrix1_c___3" Mandatory="No" redcap:Variable="matrix1_c"/>
+		<ItemRef ItemOID="matrix1_c___4" Mandatory="No" redcap:Variable="matrix1_c"/>
+		<ItemRef ItemOID="matrix2_c___0" Mandatory="No" redcap:Variable="matrix2_c"/>
+		<ItemRef ItemOID="matrix2_c___1" Mandatory="No" redcap:Variable="matrix2_c"/>
+		<ItemRef ItemOID="matrix2_c___2" Mandatory="No" redcap:Variable="matrix2_c"/>
+		<ItemRef ItemOID="matrix2_c___3" Mandatory="No" redcap:Variable="matrix2_c"/>
+		<ItemRef ItemOID="matrix2_c___4" Mandatory="No" redcap:Variable="matrix2_c"/>
+		<ItemRef ItemOID="matrix3_c___0" Mandatory="No" redcap:Variable="matrix3_c"/>
+		<ItemRef ItemOID="matrix3_c___1" Mandatory="No" redcap:Variable="matrix3_c"/>
+		<ItemRef ItemOID="matrix3_c___2" Mandatory="No" redcap:Variable="matrix3_c"/>
+		<ItemRef ItemOID="matrix3_c___3" Mandatory="No" redcap:Variable="matrix3_c"/>
+		<ItemRef ItemOID="matrix3_c___4" Mandatory="No" redcap:Variable="matrix3_c"/>
+		<ItemRef ItemOID="matrix4_c___0" Mandatory="No" redcap:Variable="matrix4_c"/>
+		<ItemRef ItemOID="matrix4_c___1" Mandatory="No" redcap:Variable="matrix4_c"/>
+		<ItemRef ItemOID="matrix4_c___2" Mandatory="No" redcap:Variable="matrix4_c"/>
+		<ItemRef ItemOID="matrix4_c___3" Mandatory="No" redcap:Variable="matrix4_c"/>
+		<ItemRef ItemOID="matrix4_c___4" Mandatory="No" redcap:Variable="matrix4_c"/>
+	</ItemGroupDef>
+	<ItemGroupDef OID="survey_control.survey_control_complete" Name="Form Status" Repeating="No">
+		<ItemRef ItemOID="survey_control_complete" Mandatory="No" redcap:Variable="survey_control_complete"/>
+	</ItemGroupDef>
+	<ItemDef OID="participant_id" Name="participant_id" DataType="text" Length="999" redcap:Variable="participant_id" redcap:FieldType="text">
+		<Question><TranslatedText>Participant ID</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="shazam" Name="shazam" DataType="text" Length="999" redcap:Variable="shazam" redcap:FieldType="descriptive">
+		<Question><TranslatedText>Shazam Goes Here</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text1" Name="text1" DataType="text" Length="999" redcap:Variable="text1" redcap:FieldType="text" redcap:FieldNote="text1_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>text1_rv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text2" Name="text2" DataType="text" Length="999" redcap:Variable="text2" redcap:FieldType="text" redcap:FieldNote="text2_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>text2_rh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text3" Name="text3" DataType="text" Length="999" redcap:Variable="text3" redcap:FieldType="text" redcap:FieldNote="text3_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>text3_lv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text4" Name="text4" DataType="text" Length="999" redcap:Variable="text4" redcap:FieldType="text" redcap:FieldNote="text4_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>text4_lh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="radio1" Name="radio1" DataType="text" Length="1" redcap:Variable="radio1" redcap:FieldType="radio" redcap:FieldNote="radio1_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>radio1_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio1.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio2" Name="radio2" DataType="text" Length="1" redcap:Variable="radio2" redcap:FieldType="radio" redcap:FieldNote="radio2_rh_note" redcap:BranchingLogic="[radio1] &lt;&gt; &#039;&#039;" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>radio2_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio2.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio3" Name="radio3" DataType="text" Length="1" redcap:Variable="radio3" redcap:FieldType="radio" redcap:FieldNote="radio3_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>radio3_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio3.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio4" Name="radio4" DataType="text" Length="1" redcap:Variable="radio4" redcap:FieldType="radio" redcap:FieldNote="radio4_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>radio4_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio4.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown1" Name="dropdown1" DataType="text" Length="1" redcap:Variable="dropdown1" redcap:FieldType="select" redcap:FieldNote="dropdown1_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>dropdown1_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown1.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown2" Name="dropdown2" DataType="text" Length="1" redcap:Variable="dropdown2" redcap:FieldType="select" redcap:FieldNote="dropdown2_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>dropdown2_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown2.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown3" Name="dropdown3" DataType="text" Length="1" redcap:Variable="dropdown3" redcap:FieldType="select" redcap:FieldNote="dropdown3_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>dropdown3_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown3.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown4" Name="dropdown4" DataType="text" Length="1" redcap:Variable="dropdown4" redcap:FieldType="select" redcap:FieldNote="dropdown4_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>dropdown4_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown4.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac1" Name="dropdown_ac1" DataType="text" Length="1" redcap:Variable="dropdown_ac1" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac1_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>dropdown_ac1_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac1.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac2" Name="dropdown_ac2" DataType="text" Length="1" redcap:Variable="dropdown_ac2" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac2_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>dropdown_ac2_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac2.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac3" Name="dropdown_ac3" DataType="text" Length="1" redcap:Variable="dropdown_ac3" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac3_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>dropdown_ac3_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac3.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac4" Name="dropdown_ac4" DataType="text" Length="1" redcap:Variable="dropdown_ac4" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac4_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>dropdown_ac4_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac4.choices"/>
+	</ItemDef>
+	<ItemDef OID="notes1" Name="notes1" DataType="text" Length="999" redcap:Variable="notes1" redcap:FieldType="textarea" redcap:FieldNote="notes1_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>notes1_rv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes2" Name="notes2" DataType="text" Length="999" redcap:Variable="notes2" redcap:FieldType="textarea" redcap:FieldNote="notes2_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>notes2_rh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes3" Name="notes3" DataType="text" Length="999" redcap:Variable="notes3" redcap:FieldType="textarea" redcap:FieldNote="notes3_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>notes3_lv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes4" Name="notes4" DataType="text" Length="999" redcap:Variable="notes4" redcap:FieldType="textarea" redcap:FieldNote="notes4_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>notes4_lh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="checkbox1___1" Name="checkbox1___1" DataType="boolean" Length="1" redcap:Variable="checkbox1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1___2" Name="checkbox1___2" DataType="boolean" Length="1" redcap:Variable="checkbox1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1___3" Name="checkbox1___3" DataType="boolean" Length="1" redcap:Variable="checkbox1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1___4" Name="checkbox1___4" DataType="boolean" Length="1" redcap:Variable="checkbox1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2___1" Name="checkbox2___1" DataType="boolean" Length="1" redcap:Variable="checkbox2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2___2" Name="checkbox2___2" DataType="boolean" Length="1" redcap:Variable="checkbox2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2___3" Name="checkbox2___3" DataType="boolean" Length="1" redcap:Variable="checkbox2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2___4" Name="checkbox2___4" DataType="boolean" Length="1" redcap:Variable="checkbox2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3___1" Name="checkbox3___1" DataType="boolean" Length="1" redcap:Variable="checkbox3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3___2" Name="checkbox3___2" DataType="boolean" Length="1" redcap:Variable="checkbox3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3___3" Name="checkbox3___3" DataType="boolean" Length="1" redcap:Variable="checkbox3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3___4" Name="checkbox3___4" DataType="boolean" Length="1" redcap:Variable="checkbox3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4___1" Name="checkbox4___1" DataType="boolean" Length="1" redcap:Variable="checkbox4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4___2" Name="checkbox4___2" DataType="boolean" Length="1" redcap:Variable="checkbox4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4___3" Name="checkbox4___3" DataType="boolean" Length="1" redcap:Variable="checkbox4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4___4" Name="checkbox4___4" DataType="boolean" Length="1" redcap:Variable="checkbox4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="date1" Name="date1" DataType="date" Length="999" redcap:Variable="date1" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date2" Name="date2" DataType="date" Length="999" redcap:Variable="date2" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date3" Name="date3" DataType="date" Length="999" redcap:Variable="date3" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date4" Name="date4" DataType="date" Length="999" redcap:Variable="date4" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file1" Name="file1" DataType="text" Length="999" redcap:Variable="file1" redcap:FieldType="file" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file2" Name="file2" DataType="text" Length="999" redcap:Variable="file2" redcap:FieldType="file" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file3" Name="file3" DataType="text" Length="999" redcap:Variable="file3" redcap:FieldType="file" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file4" Name="file4" DataType="text" Length="999" redcap:Variable="file4" redcap:FieldType="file" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider1" Name="slider1" DataType="integer" Length="999" redcap:Variable="slider1" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider2" Name="slider2" DataType="integer" Length="999" redcap:Variable="slider2" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider3" Name="slider3" DataType="integer" Length="999" redcap:Variable="slider3" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider4" Name="slider4" DataType="integer" Length="999" redcap:Variable="slider4" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive1" Name="descriptive1" DataType="text" Length="999" redcap:Variable="descriptive1" redcap:FieldType="descriptive" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive2" Name="descriptive2" DataType="text" Length="999" redcap:Variable="descriptive2" redcap:FieldType="descriptive" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive3" Name="descriptive3" DataType="text" Length="999" redcap:Variable="descriptive3" redcap:FieldType="descriptive" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive4" Name="descriptive4" DataType="text" Length="999" redcap:Variable="descriptive4" redcap:FieldType="descriptive" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="matrix1___0" Name="matrix1___0" DataType="boolean" Length="1" redcap:Variable="matrix1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1___1" Name="matrix1___1" DataType="boolean" Length="1" redcap:Variable="matrix1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1___2" Name="matrix1___2" DataType="boolean" Length="1" redcap:Variable="matrix1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1___3" Name="matrix1___3" DataType="boolean" Length="1" redcap:Variable="matrix1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1___4" Name="matrix1___4" DataType="boolean" Length="1" redcap:Variable="matrix1" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2___0" Name="matrix2___0" DataType="boolean" Length="1" redcap:Variable="matrix2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2___1" Name="matrix2___1" DataType="boolean" Length="1" redcap:Variable="matrix2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2___2" Name="matrix2___2" DataType="boolean" Length="1" redcap:Variable="matrix2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2___3" Name="matrix2___3" DataType="boolean" Length="1" redcap:Variable="matrix2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2___4" Name="matrix2___4" DataType="boolean" Length="1" redcap:Variable="matrix2" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3___0" Name="matrix3___0" DataType="boolean" Length="1" redcap:Variable="matrix3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3___1" Name="matrix3___1" DataType="boolean" Length="1" redcap:Variable="matrix3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3___2" Name="matrix3___2" DataType="boolean" Length="1" redcap:Variable="matrix3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3___3" Name="matrix3___3" DataType="boolean" Length="1" redcap:Variable="matrix3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3___4" Name="matrix3___4" DataType="boolean" Length="1" redcap:Variable="matrix3" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4___0" Name="matrix4___0" DataType="boolean" Length="1" redcap:Variable="matrix4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4___1" Name="matrix4___1" DataType="boolean" Length="1" redcap:Variable="matrix4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4___2" Name="matrix4___2" DataType="boolean" Length="1" redcap:Variable="matrix4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4___3" Name="matrix4___3" DataType="boolean" Length="1" redcap:Variable="matrix4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4___4" Name="matrix4___4" DataType="boolean" Length="1" redcap:Variable="matrix4" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="survey_complete" Name="survey_complete" DataType="text" Length="1" redcap:Variable="survey_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="survey_complete.choices"/>
+	</ItemDef>
+	<ItemDef OID="shazam_icons" Name="shazam_icons" DataType="text" Length="999" redcap:Variable="shazam_icons" redcap:FieldType="descriptive">
+		<Question><TranslatedText>Shazam Goes Here</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text1_icons" Name="text1_icons" DataType="text" Length="999" redcap:Variable="text1_icons" redcap:FieldType="text" redcap:FieldNote="text1_icons_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>text1_icons_rv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text2_icons" Name="text2_icons" DataType="text" Length="999" redcap:Variable="text2_icons" redcap:FieldType="text" redcap:FieldNote="text2_icons_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>text2_icons_rh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text3_icons" Name="text3_icons" DataType="text" Length="999" redcap:Variable="text3_icons" redcap:FieldType="text" redcap:FieldNote="text3_icons_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>text3_icons_lv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text4_icons" Name="text4_icons" DataType="text" Length="999" redcap:Variable="text4_icons" redcap:FieldType="text" redcap:FieldNote="text4_icons_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>text4_icons_lh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="radio1_icons" Name="radio1_icons" DataType="text" Length="1" redcap:Variable="radio1_icons" redcap:FieldType="radio" redcap:FieldNote="radio1_icons_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>radio1_icons_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio1_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio2_icons" Name="radio2_icons" DataType="text" Length="1" redcap:Variable="radio2_icons" redcap:FieldType="radio" redcap:FieldNote="radio2_icons_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>radio2_icons_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio2_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio3_icons" Name="radio3_icons" DataType="text" Length="1" redcap:Variable="radio3_icons" redcap:FieldType="radio" redcap:FieldNote="radio3_icons_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>radio3_icons_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio3_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio4_icons" Name="radio4_icons" DataType="text" Length="1" redcap:Variable="radio4_icons" redcap:FieldType="radio" redcap:FieldNote="radio4_icons_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>radio4_icons_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio4_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown1_icons" Name="dropdown1_icons" DataType="text" Length="1" redcap:Variable="dropdown1_icons" redcap:FieldType="select" redcap:FieldNote="dropdown1_icons_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>dropdown1_icons_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown1_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown2_icons" Name="dropdown2_icons" DataType="text" Length="1" redcap:Variable="dropdown2_icons" redcap:FieldType="select" redcap:FieldNote="dropdown2_icons_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>dropdown2_icons_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown2_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown3_icons" Name="dropdown3_icons" DataType="text" Length="1" redcap:Variable="dropdown3_icons" redcap:FieldType="select" redcap:FieldNote="dropdown3_icons_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>dropdown3_icons_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown3_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown4_icons" Name="dropdown4_icons" DataType="text" Length="1" redcap:Variable="dropdown4_icons" redcap:FieldType="select" redcap:FieldNote="dropdown4_icons_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>dropdown4_icons_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown4_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac1_icons" Name="dropdown_ac1_icons" DataType="text" Length="1" redcap:Variable="dropdown_ac1_icons" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac1_icons_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>dropdown_ac1_icons_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac1_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac2_icons" Name="dropdown_ac2_icons" DataType="text" Length="1" redcap:Variable="dropdown_ac2_icons" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac2_icons_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>dropdown_ac2_icons_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac2_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac3_icons" Name="dropdown_ac3_icons" DataType="text" Length="1" redcap:Variable="dropdown_ac3_icons" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac3_icons_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>dropdown_ac3_icons_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac3_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac4_icons" Name="dropdown_ac4_icons" DataType="text" Length="1" redcap:Variable="dropdown_ac4_icons" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac4_icons_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>dropdown_ac4_icons_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac4_icons.choices"/>
+	</ItemDef>
+	<ItemDef OID="notes1_icons" Name="notes1_icons" DataType="text" Length="999" redcap:Variable="notes1_icons" redcap:FieldType="textarea" redcap:FieldNote="notes1_icons_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>notes1_icons_rv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes2_icons" Name="notes2_icons" DataType="text" Length="999" redcap:Variable="notes2_icons" redcap:FieldType="textarea" redcap:FieldNote="notes2_icons_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>notes2_icons_rh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes3_icons" Name="notes3_icons" DataType="text" Length="999" redcap:Variable="notes3_icons" redcap:FieldType="textarea" redcap:FieldNote="notes3_icons_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>notes3_icons_lv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes4_icons" Name="notes4_icons" DataType="text" Length="999" redcap:Variable="notes4_icons" redcap:FieldType="textarea" redcap:FieldNote="notes4_icons_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>notes4_icons_lh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="checkbox1_icons___1" Name="checkbox1_icons___1" DataType="boolean" Length="1" redcap:Variable="checkbox1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_icons_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1_icons___2" Name="checkbox1_icons___2" DataType="boolean" Length="1" redcap:Variable="checkbox1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_icons_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1_icons___3" Name="checkbox1_icons___3" DataType="boolean" Length="1" redcap:Variable="checkbox1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_icons_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1_icons___4" Name="checkbox1_icons___4" DataType="boolean" Length="1" redcap:Variable="checkbox1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_icons_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_icons___1" Name="checkbox2_icons___1" DataType="boolean" Length="1" redcap:Variable="checkbox2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_icons_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_icons___2" Name="checkbox2_icons___2" DataType="boolean" Length="1" redcap:Variable="checkbox2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_icons_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_icons___3" Name="checkbox2_icons___3" DataType="boolean" Length="1" redcap:Variable="checkbox2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_icons_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_icons___4" Name="checkbox2_icons___4" DataType="boolean" Length="1" redcap:Variable="checkbox2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_icons_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_icons___1" Name="checkbox3_icons___1" DataType="boolean" Length="1" redcap:Variable="checkbox3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_icons_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_icons___2" Name="checkbox3_icons___2" DataType="boolean" Length="1" redcap:Variable="checkbox3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_icons_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_icons___3" Name="checkbox3_icons___3" DataType="boolean" Length="1" redcap:Variable="checkbox3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_icons_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_icons___4" Name="checkbox3_icons___4" DataType="boolean" Length="1" redcap:Variable="checkbox3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_icons_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_icons___1" Name="checkbox4_icons___1" DataType="boolean" Length="1" redcap:Variable="checkbox4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_icons_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_icons___2" Name="checkbox4_icons___2" DataType="boolean" Length="1" redcap:Variable="checkbox4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_icons_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_icons___3" Name="checkbox4_icons___3" DataType="boolean" Length="1" redcap:Variable="checkbox4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_icons_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_icons___4" Name="checkbox4_icons___4" DataType="boolean" Length="1" redcap:Variable="checkbox4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_icons_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="date1_icons" Name="date1_icons" DataType="date" Length="999" redcap:Variable="date1_icons" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date2_icons" Name="date2_icons" DataType="date" Length="999" redcap:Variable="date2_icons" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date3_icons" Name="date3_icons" DataType="date" Length="999" redcap:Variable="date3_icons" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date4_icons" Name="date4_icons" DataType="date" Length="999" redcap:Variable="date4_icons" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file1_icons" Name="file1_icons" DataType="text" Length="999" redcap:Variable="file1_icons" redcap:FieldType="file" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file2_icons" Name="file2_icons" DataType="text" Length="999" redcap:Variable="file2_icons" redcap:FieldType="file" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file3_icons" Name="file3_icons" DataType="text" Length="999" redcap:Variable="file3_icons" redcap:FieldType="file" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file4_icons" Name="file4_icons" DataType="text" Length="999" redcap:Variable="file4_icons" redcap:FieldType="file" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider1_icons" Name="slider1_icons" DataType="integer" Length="999" redcap:Variable="slider1_icons" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider2_icons" Name="slider2_icons" DataType="integer" Length="999" redcap:Variable="slider2_icons" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider3_icons" Name="slider3_icons" DataType="integer" Length="999" redcap:Variable="slider3_icons" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider4_icons" Name="slider4_icons" DataType="integer" Length="999" redcap:Variable="slider4_icons" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive1_icons" Name="descriptive1_icons" DataType="text" Length="999" redcap:Variable="descriptive1_icons" redcap:FieldType="descriptive" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive2_icons" Name="descriptive2_icons" DataType="text" Length="999" redcap:Variable="descriptive2_icons" redcap:FieldType="descriptive" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive3_icons" Name="descriptive3_icons" DataType="text" Length="999" redcap:Variable="descriptive3_icons" redcap:FieldType="descriptive" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive4_icons" Name="descriptive4_icons" DataType="text" Length="999" redcap:Variable="descriptive4_icons" redcap:FieldType="descriptive" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="matrix1_icons___0" Name="matrix1_icons___0" DataType="boolean" Length="1" redcap:Variable="matrix1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_icons___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_icons___1" Name="matrix1_icons___1" DataType="boolean" Length="1" redcap:Variable="matrix1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_icons___2" Name="matrix1_icons___2" DataType="boolean" Length="1" redcap:Variable="matrix1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_icons___3" Name="matrix1_icons___3" DataType="boolean" Length="1" redcap:Variable="matrix1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_icons___4" Name="matrix1_icons___4" DataType="boolean" Length="1" redcap:Variable="matrix1_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_icons___0" Name="matrix2_icons___0" DataType="boolean" Length="1" redcap:Variable="matrix2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_icons___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_icons___1" Name="matrix2_icons___1" DataType="boolean" Length="1" redcap:Variable="matrix2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_icons___2" Name="matrix2_icons___2" DataType="boolean" Length="1" redcap:Variable="matrix2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_icons___3" Name="matrix2_icons___3" DataType="boolean" Length="1" redcap:Variable="matrix2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_icons___4" Name="matrix2_icons___4" DataType="boolean" Length="1" redcap:Variable="matrix2_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_icons___0" Name="matrix3_icons___0" DataType="boolean" Length="1" redcap:Variable="matrix3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_icons___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_icons___1" Name="matrix3_icons___1" DataType="boolean" Length="1" redcap:Variable="matrix3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_icons___2" Name="matrix3_icons___2" DataType="boolean" Length="1" redcap:Variable="matrix3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_icons___3" Name="matrix3_icons___3" DataType="boolean" Length="1" redcap:Variable="matrix3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_icons___4" Name="matrix3_icons___4" DataType="boolean" Length="1" redcap:Variable="matrix3_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_icons___0" Name="matrix4_icons___0" DataType="boolean" Length="1" redcap:Variable="matrix4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_icons___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_icons___1" Name="matrix4_icons___1" DataType="boolean" Length="1" redcap:Variable="matrix4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_icons___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_icons___2" Name="matrix4_icons___2" DataType="boolean" Length="1" redcap:Variable="matrix4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_icons___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_icons___3" Name="matrix4_icons___3" DataType="boolean" Length="1" redcap:Variable="matrix4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_icons___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_icons___4" Name="matrix4_icons___4" DataType="boolean" Length="1" redcap:Variable="matrix4_icons" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_icons">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_icons___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="survey_icons_complete" Name="survey_icons_complete" DataType="text" Length="1" redcap:Variable="survey_icons_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="survey_icons_complete.choices"/>
+	</ItemDef>
+	<ItemDef OID="shazam_c" Name="shazam_c" DataType="text" Length="999" redcap:Variable="shazam_c" redcap:FieldType="descriptive">
+		<Question><TranslatedText>Shazam Control</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text1_c" Name="text1_c" DataType="text" Length="999" redcap:Variable="text1_c" redcap:FieldType="text" redcap:FieldNote="text1_c_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>text1_c_rv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text2_c" Name="text2_c" DataType="text" Length="999" redcap:Variable="text2_c" redcap:FieldType="text" redcap:FieldNote="text2_c_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>text2_c_rh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text3_c" Name="text3_c" DataType="text" Length="999" redcap:Variable="text3_c" redcap:FieldType="text" redcap:FieldNote="text3_c_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>text3_c_lv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="text4_c" Name="text4_c" DataType="text" Length="999" redcap:Variable="text4_c" redcap:FieldType="text" redcap:FieldNote="text4_c_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>text4_c_lh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="radio1_c" Name="radio1_c" DataType="text" Length="1" redcap:Variable="radio1_c" redcap:FieldType="radio" redcap:FieldNote="radio1_c_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>radio1_c_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio1_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio2_c" Name="radio2_c" DataType="text" Length="1" redcap:Variable="radio2_c" redcap:FieldType="radio" redcap:FieldNote="radio2_c_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>radio2_c_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio2_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio3_c" Name="radio3_c" DataType="text" Length="1" redcap:Variable="radio3_c" redcap:FieldType="radio" redcap:FieldNote="radio3_c_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>radio3_c_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio3_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="radio4_c" Name="radio4_c" DataType="text" Length="1" redcap:Variable="radio4_c" redcap:FieldType="radio" redcap:FieldNote="radio4_c_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>radio4_c_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="radio4_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown1_c" Name="dropdown1_c" DataType="text" Length="1" redcap:Variable="dropdown1_c" redcap:FieldType="select" redcap:FieldNote="dropdown1_c_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>dropdown1_c_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown1_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown2_c" Name="dropdown2_c" DataType="text" Length="1" redcap:Variable="dropdown2_c" redcap:FieldType="select" redcap:FieldNote="dropdown2_c_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>dropdown2_c_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown2_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown3_c" Name="dropdown3_c" DataType="text" Length="1" redcap:Variable="dropdown3_c" redcap:FieldType="select" redcap:FieldNote="dropdown3_c_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>dropdown3_c_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown3_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown4_c" Name="dropdown4_c" DataType="text" Length="1" redcap:Variable="dropdown4_c" redcap:FieldType="select" redcap:FieldNote="dropdown4_c_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>dropdown4_c_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown4_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac1_c" Name="dropdown_ac1_c" DataType="text" Length="1" redcap:Variable="dropdown_ac1_c" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac1_c_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>dropdown_ac1_c_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac1_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac2_c" Name="dropdown_ac2_c" DataType="text" Length="1" redcap:Variable="dropdown_ac2_c" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac2_c_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>dropdown_ac2_c_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac2_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac3_c" Name="dropdown_ac3_c" DataType="text" Length="1" redcap:Variable="dropdown_ac3_c" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac3_c_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>dropdown_ac3_c_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac3_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="dropdown_ac4_c" Name="dropdown_ac4_c" DataType="text" Length="1" redcap:Variable="dropdown_ac4_c" redcap:FieldType="select" redcap:TextValidationType="autocomplete" redcap:FieldNote="dropdown_ac4_c_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>dropdown_ac4_c_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="dropdown_ac4_c.choices"/>
+	</ItemDef>
+	<ItemDef OID="notes1_c" Name="notes1_c" DataType="text" Length="999" redcap:Variable="notes1_c" redcap:FieldType="textarea" redcap:FieldNote="notes1_c_rv_note" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>notes1_c_rv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes2_c" Name="notes2_c" DataType="text" Length="999" redcap:Variable="notes2_c" redcap:FieldType="textarea" redcap:FieldNote="notes2_c_rh_note" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>notes2_c_rh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes3_c" Name="notes3_c" DataType="text" Length="999" redcap:Variable="notes3_c" redcap:FieldType="textarea" redcap:FieldNote="notes3_c_lv_note" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>notes3_c_lv</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="notes4_c" Name="notes4_c" DataType="text" Length="999" redcap:Variable="notes4_c" redcap:FieldType="textarea" redcap:FieldNote="notes4_c_lh_note" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>notes4_c_lh</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="checkbox1_c___1" Name="checkbox1_c___1" DataType="boolean" Length="1" redcap:Variable="checkbox1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_c_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1_c___2" Name="checkbox1_c___2" DataType="boolean" Length="1" redcap:Variable="checkbox1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_c_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1_c___3" Name="checkbox1_c___3" DataType="boolean" Length="1" redcap:Variable="checkbox1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_c_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox1_c___4" Name="checkbox1_c___4" DataType="boolean" Length="1" redcap:Variable="checkbox1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>checkbox1_c_rv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox1_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_c___1" Name="checkbox2_c___1" DataType="boolean" Length="1" redcap:Variable="checkbox2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_c_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_c___2" Name="checkbox2_c___2" DataType="boolean" Length="1" redcap:Variable="checkbox2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_c_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_c___3" Name="checkbox2_c___3" DataType="boolean" Length="1" redcap:Variable="checkbox2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_c_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox2_c___4" Name="checkbox2_c___4" DataType="boolean" Length="1" redcap:Variable="checkbox2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>checkbox2_c_rh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox2_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_c___1" Name="checkbox3_c___1" DataType="boolean" Length="1" redcap:Variable="checkbox3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_c_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_c___2" Name="checkbox3_c___2" DataType="boolean" Length="1" redcap:Variable="checkbox3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_c_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_c___3" Name="checkbox3_c___3" DataType="boolean" Length="1" redcap:Variable="checkbox3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_c_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox3_c___4" Name="checkbox3_c___4" DataType="boolean" Length="1" redcap:Variable="checkbox3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>checkbox3_c_lv</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox3_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_c___1" Name="checkbox4_c___1" DataType="boolean" Length="1" redcap:Variable="checkbox4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_c_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_c___2" Name="checkbox4_c___2" DataType="boolean" Length="1" redcap:Variable="checkbox4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_c_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_c___3" Name="checkbox4_c___3" DataType="boolean" Length="1" redcap:Variable="checkbox4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_c_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="checkbox4_c___4" Name="checkbox4_c___4" DataType="boolean" Length="1" redcap:Variable="checkbox4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>checkbox4_c_lh</TranslatedText></Question>
+		<CodeListRef CodeListOID="checkbox4_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="date1_c" Name="date1_c" DataType="date" Length="999" redcap:Variable="date1_c" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date2_c" Name="date2_c" DataType="date" Length="999" redcap:Variable="date2_c" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date3_c" Name="date3_c" DataType="date" Length="999" redcap:Variable="date3_c" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="date4_c" Name="date4_c" DataType="date" Length="999" redcap:Variable="date4_c" redcap:FieldType="text" redcap:TextValidationType="date_ymd" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>DATE questions are also an option. If you click the calendar icon on the right, a pop-up calendar will appear, thus allowing the respondent to easily select a date. Or it can be simply typed in.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file1_c" Name="file1_c" DataType="text" Length="999" redcap:Variable="file1_c" redcap:FieldType="file" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file2_c" Name="file2_c" DataType="text" Length="999" redcap:Variable="file2_c" redcap:FieldType="file" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file3_c" Name="file3_c" DataType="text" Length="999" redcap:Variable="file3_c" redcap:FieldType="file" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="file4_c" Name="file4_c" DataType="text" Length="999" redcap:Variable="file4_c" redcap:FieldType="file" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>The FILE UPLOAD question type allows respondents to upload any type of document to the survey that you may afterward download and open when viewing your survey results.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider1_c" Name="slider1_c" DataType="integer" Length="999" redcap:Variable="slider1_c" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider2_c" Name="slider2_c" DataType="integer" Length="999" redcap:Variable="slider2_c" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider3_c" Name="slider3_c" DataType="integer" Length="999" redcap:Variable="slider3_c" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="slider4_c" Name="slider4_c" DataType="integer" Length="999" redcap:Variable="slider4_c" redcap:FieldType="slider" redcap:SliderLabels="" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>A SLIDER is a question type that allows the respondent to choose an answer along a continuum. The respondent&#039;s answer is saved as an integer between 0 (far left) and 100 (far right) with a step of 1.</TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive1_c" Name="descriptive1_c" DataType="text" Length="999" redcap:Variable="descriptive1_c" redcap:FieldType="descriptive" redcap:CustomAlignment="RV">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive2_c" Name="descriptive2_c" DataType="text" Length="999" redcap:Variable="descriptive2_c" redcap:FieldType="descriptive" redcap:CustomAlignment="RH">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive3_c" Name="descriptive3_c" DataType="text" Length="999" redcap:Variable="descriptive3_c" redcap:FieldType="descriptive" redcap:CustomAlignment="LV">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="descriptive4_c" Name="descriptive4_c" DataType="text" Length="999" redcap:Variable="descriptive4_c" redcap:FieldType="descriptive" redcap:CustomAlignment="LH">
+		<Question><TranslatedText>You may also use DESCRIPTIVE TEXT to provide informational text within a survey section. </TranslatedText></Question>
+	</ItemDef>
+	<ItemDef OID="matrix1_c___0" Name="matrix1_c___0" DataType="boolean" Length="1" redcap:Variable="matrix1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_c___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_c___1" Name="matrix1_c___1" DataType="boolean" Length="1" redcap:Variable="matrix1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_c___2" Name="matrix1_c___2" DataType="boolean" Length="1" redcap:Variable="matrix1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_c___3" Name="matrix1_c___3" DataType="boolean" Length="1" redcap:Variable="matrix1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix1_c___4" Name="matrix1_c___4" DataType="boolean" Length="1" redcap:Variable="matrix1_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Gym (Weight Training)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix1_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_c___0" Name="matrix2_c___0" DataType="boolean" Length="1" redcap:Variable="matrix2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_c___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_c___1" Name="matrix2_c___1" DataType="boolean" Length="1" redcap:Variable="matrix2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_c___2" Name="matrix2_c___2" DataType="boolean" Length="1" redcap:Variable="matrix2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_c___3" Name="matrix2_c___3" DataType="boolean" Length="1" redcap:Variable="matrix2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix2_c___4" Name="matrix2_c___4" DataType="boolean" Length="1" redcap:Variable="matrix2_c" redcap:FieldType="checkbox" redcap:CustomAlignment="RH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Aerobics</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix2_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_c___0" Name="matrix3_c___0" DataType="boolean" Length="1" redcap:Variable="matrix3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_c___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_c___1" Name="matrix3_c___1" DataType="boolean" Length="1" redcap:Variable="matrix3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_c___2" Name="matrix3_c___2" DataType="boolean" Length="1" redcap:Variable="matrix3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_c___3" Name="matrix3_c___3" DataType="boolean" Length="1" redcap:Variable="matrix3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix3_c___4" Name="matrix3_c___4" DataType="boolean" Length="1" redcap:Variable="matrix3_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LV" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Eat Out (Dinner/Lunch)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix3_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_c___0" Name="matrix4_c___0" DataType="boolean" Length="1" redcap:Variable="matrix4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_c___0.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_c___1" Name="matrix4_c___1" DataType="boolean" Length="1" redcap:Variable="matrix4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_c___1.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_c___2" Name="matrix4_c___2" DataType="boolean" Length="1" redcap:Variable="matrix4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_c___2.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_c___3" Name="matrix4_c___3" DataType="boolean" Length="1" redcap:Variable="matrix4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_c___3.choices"/>
+	</ItemDef>
+	<ItemDef OID="matrix4_c___4" Name="matrix4_c___4" DataType="boolean" Length="1" redcap:Variable="matrix4_c" redcap:FieldType="checkbox" redcap:CustomAlignment="LH" redcap:MatrixGroupName="matrix_c">
+		<Question><TranslatedText>Drink (Alcoholic Beverages)</TranslatedText></Question>
+		<CodeListRef CodeListOID="matrix4_c___4.choices"/>
+	</ItemDef>
+	<ItemDef OID="survey_control_complete" Name="survey_control_complete" DataType="text" Length="1" redcap:Variable="survey_control_complete" redcap:FieldType="select" redcap:SectionHeader="Form Status">
+		<Question><TranslatedText>Complete?</TranslatedText></Question>
+		<CodeListRef CodeListOID="survey_control_complete.choices"/>
+	</ItemDef>
+	<CodeList OID="radio1.choices" Name="radio1" DataType="text" redcap:Variable="radio1">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio2.choices" Name="radio2" DataType="text" redcap:Variable="radio2">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio3.choices" Name="radio3" DataType="text" redcap:Variable="radio3">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio4.choices" Name="radio4" DataType="text" redcap:Variable="radio4">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown1.choices" Name="dropdown1" DataType="text" redcap:Variable="dropdown1">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown2.choices" Name="dropdown2" DataType="text" redcap:Variable="dropdown2">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown3.choices" Name="dropdown3" DataType="text" redcap:Variable="dropdown3">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown4.choices" Name="dropdown4" DataType="text" redcap:Variable="dropdown4">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac1.choices" Name="dropdown_ac1" DataType="text" redcap:Variable="dropdown_ac1">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac2.choices" Name="dropdown_ac2" DataType="text" redcap:Variable="dropdown_ac2">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac3.choices" Name="dropdown_ac3" DataType="text" redcap:Variable="dropdown_ac3">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac4.choices" Name="dropdown_ac4" DataType="text" redcap:Variable="dropdown_ac4">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1___1.choices" Name="checkbox1___1" DataType="boolean" redcap:Variable="checkbox1" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1___2.choices" Name="checkbox1___2" DataType="boolean" redcap:Variable="checkbox1" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1___3.choices" Name="checkbox1___3" DataType="boolean" redcap:Variable="checkbox1" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1___4.choices" Name="checkbox1___4" DataType="boolean" redcap:Variable="checkbox1" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2___1.choices" Name="checkbox2___1" DataType="boolean" redcap:Variable="checkbox2" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2___2.choices" Name="checkbox2___2" DataType="boolean" redcap:Variable="checkbox2" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2___3.choices" Name="checkbox2___3" DataType="boolean" redcap:Variable="checkbox2" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2___4.choices" Name="checkbox2___4" DataType="boolean" redcap:Variable="checkbox2" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3___1.choices" Name="checkbox3___1" DataType="boolean" redcap:Variable="checkbox3" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3___2.choices" Name="checkbox3___2" DataType="boolean" redcap:Variable="checkbox3" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3___3.choices" Name="checkbox3___3" DataType="boolean" redcap:Variable="checkbox3" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3___4.choices" Name="checkbox3___4" DataType="boolean" redcap:Variable="checkbox3" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4___1.choices" Name="checkbox4___1" DataType="boolean" redcap:Variable="checkbox4" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4___2.choices" Name="checkbox4___2" DataType="boolean" redcap:Variable="checkbox4" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4___3.choices" Name="checkbox4___3" DataType="boolean" redcap:Variable="checkbox4" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4___4.choices" Name="checkbox4___4" DataType="boolean" redcap:Variable="checkbox4" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1___0.choices" Name="matrix1___0" DataType="boolean" redcap:Variable="matrix1" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1___1.choices" Name="matrix1___1" DataType="boolean" redcap:Variable="matrix1" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1___2.choices" Name="matrix1___2" DataType="boolean" redcap:Variable="matrix1" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1___3.choices" Name="matrix1___3" DataType="boolean" redcap:Variable="matrix1" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1___4.choices" Name="matrix1___4" DataType="boolean" redcap:Variable="matrix1" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2___0.choices" Name="matrix2___0" DataType="boolean" redcap:Variable="matrix2" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2___1.choices" Name="matrix2___1" DataType="boolean" redcap:Variable="matrix2" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2___2.choices" Name="matrix2___2" DataType="boolean" redcap:Variable="matrix2" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2___3.choices" Name="matrix2___3" DataType="boolean" redcap:Variable="matrix2" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2___4.choices" Name="matrix2___4" DataType="boolean" redcap:Variable="matrix2" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3___0.choices" Name="matrix3___0" DataType="boolean" redcap:Variable="matrix3" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3___1.choices" Name="matrix3___1" DataType="boolean" redcap:Variable="matrix3" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3___2.choices" Name="matrix3___2" DataType="boolean" redcap:Variable="matrix3" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3___3.choices" Name="matrix3___3" DataType="boolean" redcap:Variable="matrix3" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3___4.choices" Name="matrix3___4" DataType="boolean" redcap:Variable="matrix3" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4___0.choices" Name="matrix4___0" DataType="boolean" redcap:Variable="matrix4" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4___1.choices" Name="matrix4___1" DataType="boolean" redcap:Variable="matrix4" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4___2.choices" Name="matrix4___2" DataType="boolean" redcap:Variable="matrix4" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4___3.choices" Name="matrix4___3" DataType="boolean" redcap:Variable="matrix4" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4___4.choices" Name="matrix4___4" DataType="boolean" redcap:Variable="matrix4" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="survey_complete.choices" Name="survey_complete" DataType="text" redcap:Variable="survey_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio1_icons.choices" Name="radio1_icons" DataType="text" redcap:Variable="radio1_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio2_icons.choices" Name="radio2_icons" DataType="text" redcap:Variable="radio2_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio3_icons.choices" Name="radio3_icons" DataType="text" redcap:Variable="radio3_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio4_icons.choices" Name="radio4_icons" DataType="text" redcap:Variable="radio4_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown1_icons.choices" Name="dropdown1_icons" DataType="text" redcap:Variable="dropdown1_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown2_icons.choices" Name="dropdown2_icons" DataType="text" redcap:Variable="dropdown2_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown3_icons.choices" Name="dropdown3_icons" DataType="text" redcap:Variable="dropdown3_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown4_icons.choices" Name="dropdown4_icons" DataType="text" redcap:Variable="dropdown4_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac1_icons.choices" Name="dropdown_ac1_icons" DataType="text" redcap:Variable="dropdown_ac1_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac2_icons.choices" Name="dropdown_ac2_icons" DataType="text" redcap:Variable="dropdown_ac2_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac3_icons.choices" Name="dropdown_ac3_icons" DataType="text" redcap:Variable="dropdown_ac3_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac4_icons.choices" Name="dropdown_ac4_icons" DataType="text" redcap:Variable="dropdown_ac4_icons">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_icons___1.choices" Name="checkbox1_icons___1" DataType="boolean" redcap:Variable="checkbox1_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_icons___2.choices" Name="checkbox1_icons___2" DataType="boolean" redcap:Variable="checkbox1_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_icons___3.choices" Name="checkbox1_icons___3" DataType="boolean" redcap:Variable="checkbox1_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_icons___4.choices" Name="checkbox1_icons___4" DataType="boolean" redcap:Variable="checkbox1_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_icons___1.choices" Name="checkbox2_icons___1" DataType="boolean" redcap:Variable="checkbox2_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_icons___2.choices" Name="checkbox2_icons___2" DataType="boolean" redcap:Variable="checkbox2_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_icons___3.choices" Name="checkbox2_icons___3" DataType="boolean" redcap:Variable="checkbox2_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_icons___4.choices" Name="checkbox2_icons___4" DataType="boolean" redcap:Variable="checkbox2_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_icons___1.choices" Name="checkbox3_icons___1" DataType="boolean" redcap:Variable="checkbox3_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_icons___2.choices" Name="checkbox3_icons___2" DataType="boolean" redcap:Variable="checkbox3_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_icons___3.choices" Name="checkbox3_icons___3" DataType="boolean" redcap:Variable="checkbox3_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_icons___4.choices" Name="checkbox3_icons___4" DataType="boolean" redcap:Variable="checkbox3_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_icons___1.choices" Name="checkbox4_icons___1" DataType="boolean" redcap:Variable="checkbox4_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_icons___2.choices" Name="checkbox4_icons___2" DataType="boolean" redcap:Variable="checkbox4_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_icons___3.choices" Name="checkbox4_icons___3" DataType="boolean" redcap:Variable="checkbox4_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_icons___4.choices" Name="checkbox4_icons___4" DataType="boolean" redcap:Variable="checkbox4_icons" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_icons___0.choices" Name="matrix1_icons___0" DataType="boolean" redcap:Variable="matrix1_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_icons___1.choices" Name="matrix1_icons___1" DataType="boolean" redcap:Variable="matrix1_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_icons___2.choices" Name="matrix1_icons___2" DataType="boolean" redcap:Variable="matrix1_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_icons___3.choices" Name="matrix1_icons___3" DataType="boolean" redcap:Variable="matrix1_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_icons___4.choices" Name="matrix1_icons___4" DataType="boolean" redcap:Variable="matrix1_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_icons___0.choices" Name="matrix2_icons___0" DataType="boolean" redcap:Variable="matrix2_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_icons___1.choices" Name="matrix2_icons___1" DataType="boolean" redcap:Variable="matrix2_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_icons___2.choices" Name="matrix2_icons___2" DataType="boolean" redcap:Variable="matrix2_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_icons___3.choices" Name="matrix2_icons___3" DataType="boolean" redcap:Variable="matrix2_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_icons___4.choices" Name="matrix2_icons___4" DataType="boolean" redcap:Variable="matrix2_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_icons___0.choices" Name="matrix3_icons___0" DataType="boolean" redcap:Variable="matrix3_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_icons___1.choices" Name="matrix3_icons___1" DataType="boolean" redcap:Variable="matrix3_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_icons___2.choices" Name="matrix3_icons___2" DataType="boolean" redcap:Variable="matrix3_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_icons___3.choices" Name="matrix3_icons___3" DataType="boolean" redcap:Variable="matrix3_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_icons___4.choices" Name="matrix3_icons___4" DataType="boolean" redcap:Variable="matrix3_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_icons___0.choices" Name="matrix4_icons___0" DataType="boolean" redcap:Variable="matrix4_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_icons___1.choices" Name="matrix4_icons___1" DataType="boolean" redcap:Variable="matrix4_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_icons___2.choices" Name="matrix4_icons___2" DataType="boolean" redcap:Variable="matrix4_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_icons___3.choices" Name="matrix4_icons___3" DataType="boolean" redcap:Variable="matrix4_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_icons___4.choices" Name="matrix4_icons___4" DataType="boolean" redcap:Variable="matrix4_icons" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="survey_icons_complete.choices" Name="survey_icons_complete" DataType="text" redcap:Variable="survey_icons_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio1_c.choices" Name="radio1_c" DataType="text" redcap:Variable="radio1_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio2_c.choices" Name="radio2_c" DataType="text" redcap:Variable="radio2_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio3_c.choices" Name="radio3_c" DataType="text" redcap:Variable="radio3_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="radio4_c.choices" Name="radio4_c" DataType="text" redcap:Variable="radio4_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown1_c.choices" Name="dropdown1_c" DataType="text" redcap:Variable="dropdown1_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown2_c.choices" Name="dropdown2_c" DataType="text" redcap:Variable="dropdown2_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown3_c.choices" Name="dropdown3_c" DataType="text" redcap:Variable="dropdown3_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown4_c.choices" Name="dropdown4_c" DataType="text" redcap:Variable="dropdown4_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac1_c.choices" Name="dropdown_ac1_c" DataType="text" redcap:Variable="dropdown_ac1_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac2_c.choices" Name="dropdown_ac2_c" DataType="text" redcap:Variable="dropdown_ac2_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac3_c.choices" Name="dropdown_ac3_c" DataType="text" redcap:Variable="dropdown_ac3_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="dropdown_ac4_c.choices" Name="dropdown_ac4_c" DataType="text" redcap:Variable="dropdown_ac4_c">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Choice One</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Choice Two</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="3"><Decode><TranslatedText>Choice Three</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="4"><Decode><TranslatedText>Etc.</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_c___1.choices" Name="checkbox1_c___1" DataType="boolean" redcap:Variable="checkbox1_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_c___2.choices" Name="checkbox1_c___2" DataType="boolean" redcap:Variable="checkbox1_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_c___3.choices" Name="checkbox1_c___3" DataType="boolean" redcap:Variable="checkbox1_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox1_c___4.choices" Name="checkbox1_c___4" DataType="boolean" redcap:Variable="checkbox1_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_c___1.choices" Name="checkbox2_c___1" DataType="boolean" redcap:Variable="checkbox2_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_c___2.choices" Name="checkbox2_c___2" DataType="boolean" redcap:Variable="checkbox2_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_c___3.choices" Name="checkbox2_c___3" DataType="boolean" redcap:Variable="checkbox2_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox2_c___4.choices" Name="checkbox2_c___4" DataType="boolean" redcap:Variable="checkbox2_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_c___1.choices" Name="checkbox3_c___1" DataType="boolean" redcap:Variable="checkbox3_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_c___2.choices" Name="checkbox3_c___2" DataType="boolean" redcap:Variable="checkbox3_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_c___3.choices" Name="checkbox3_c___3" DataType="boolean" redcap:Variable="checkbox3_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox3_c___4.choices" Name="checkbox3_c___4" DataType="boolean" redcap:Variable="checkbox3_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_c___1.choices" Name="checkbox4_c___1" DataType="boolean" redcap:Variable="checkbox4_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_c___2.choices" Name="checkbox4_c___2" DataType="boolean" redcap:Variable="checkbox4_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_c___3.choices" Name="checkbox4_c___3" DataType="boolean" redcap:Variable="checkbox4_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="checkbox4_c___4.choices" Name="checkbox4_c___4" DataType="boolean" redcap:Variable="checkbox4_c" redcap:CheckboxChoices="1, Choice One|2, Choice Two|3, Choice Three|4, Select as many as you like">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_c___0.choices" Name="matrix1_c___0" DataType="boolean" redcap:Variable="matrix1_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_c___1.choices" Name="matrix1_c___1" DataType="boolean" redcap:Variable="matrix1_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_c___2.choices" Name="matrix1_c___2" DataType="boolean" redcap:Variable="matrix1_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_c___3.choices" Name="matrix1_c___3" DataType="boolean" redcap:Variable="matrix1_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix1_c___4.choices" Name="matrix1_c___4" DataType="boolean" redcap:Variable="matrix1_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_c___0.choices" Name="matrix2_c___0" DataType="boolean" redcap:Variable="matrix2_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_c___1.choices" Name="matrix2_c___1" DataType="boolean" redcap:Variable="matrix2_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_c___2.choices" Name="matrix2_c___2" DataType="boolean" redcap:Variable="matrix2_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_c___3.choices" Name="matrix2_c___3" DataType="boolean" redcap:Variable="matrix2_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix2_c___4.choices" Name="matrix2_c___4" DataType="boolean" redcap:Variable="matrix2_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_c___0.choices" Name="matrix3_c___0" DataType="boolean" redcap:Variable="matrix3_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_c___1.choices" Name="matrix3_c___1" DataType="boolean" redcap:Variable="matrix3_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_c___2.choices" Name="matrix3_c___2" DataType="boolean" redcap:Variable="matrix3_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_c___3.choices" Name="matrix3_c___3" DataType="boolean" redcap:Variable="matrix3_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix3_c___4.choices" Name="matrix3_c___4" DataType="boolean" redcap:Variable="matrix3_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_c___0.choices" Name="matrix4_c___0" DataType="boolean" redcap:Variable="matrix4_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_c___1.choices" Name="matrix4_c___1" DataType="boolean" redcap:Variable="matrix4_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_c___2.choices" Name="matrix4_c___2" DataType="boolean" redcap:Variable="matrix4_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_c___3.choices" Name="matrix4_c___3" DataType="boolean" redcap:Variable="matrix4_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="matrix4_c___4.choices" Name="matrix4_c___4" DataType="boolean" redcap:Variable="matrix4_c" redcap:CheckboxChoices="0, Mon|1, Tue|2, Wed|3, Thur|4, Fri">
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Checked</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Unchecked</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+	<CodeList OID="survey_control_complete.choices" Name="survey_control_complete" DataType="text" redcap:Variable="survey_control_complete">
+		<CodeListItem CodedValue="0"><Decode><TranslatedText>Incomplete</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="1"><Decode><TranslatedText>Unverified</TranslatedText></Decode></CodeListItem>
+		<CodeListItem CodedValue="2"><Decode><TranslatedText>Complete</TranslatedText></Decode></CodeListItem>
+	</CodeList>
+</MetaDataVersion>
+</Study>
+</ODM>

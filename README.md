@@ -69,7 +69,9 @@ Then, to make customization easier, you can use CSS instead of in-line CSS to tw
 
 ![Example CSS](assets/example_css.png)
 
-It also supports the abiliy to hide and show some of your custom elements based on other branched REDCap elements.  This means you could make a complex table and be able to hide/show rows of that table based on another REDCap field - similar to how one can do branching on rows in an input matrix.
+It also supports the ability to hide and show some of your custom elements based on other branched REDCap elements.
+This means you could make a complex table and be able to hide/show rows of that table based on another REDCap field -
+similar to how one can do branching on rows in an input matrix.
 
 Javascript can only be added/edited/removed by a superuser to prevent users from doing bad things :-)
 
@@ -92,6 +94,11 @@ $(document.ready( function() {
 });
 ```
 
+### Example Projects
+Here is a consortium post with a nice example:
+https://community.projectredcap.org/content/idea/78670/shazam-sample-project.html
 
-#### DISCLAIMER:
-This is an early release and I'm sure there are some issues - so please post.
+Also, there is a project xml file built into this project here:
+[Example xml](assets/example_project_xml/ShazamTestProject.REDCap.xml)
+with instructions:
+[Instructions](assets/example_project_xml/configuration.md)
