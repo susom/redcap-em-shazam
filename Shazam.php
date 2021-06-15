@@ -151,8 +151,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * @return String $q
      */
     function getUserEmail($user) {
-        $sql = "SELECT user_email from redcap_user_information where username = '" . db_real_escape_string($user) . "'";
-        $q = $this->query($sql);
+        $sql = "SELECT user_email from redcap_user_information where username = ?";
+        $q = $this->query($sql, array(db_real_escape_string($user)));
         return db_result($q,0);
     }
 
@@ -298,7 +298,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $this->emDebug("Sorted Keys Before", array_keys($backup_configs));
 
         // Only keep so many copies of backups
-        $this->backup_configs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
+        $this->backup_con7figs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
 
         $this->emDebug("Sorted Keys After", array_keys($this->backup_configs));
 
