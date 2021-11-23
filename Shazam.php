@@ -298,7 +298,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $this->emDebug("Sorted Keys Before", array_keys($backup_configs));
 
         // Only keep so many copies of backups
-        $this->backup_con7figs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
+        $this->backup_configs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
 
         $this->emDebug("Sorted Keys After", array_keys($this->backup_configs));
 
