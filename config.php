@@ -241,6 +241,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             $comments   = !empty($_POST['comments'])      ? "[$field_name] " . filter_var($_POST['comments'], FILTER_SANITIZE_STRING) : "-";
 
             $exceptions = $module->getJavascriptUsers();
+            if (empty($exceptions)) $exceptions = [];
 
             // If not a superuser or user granted access, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
             $user = $module->getUser();
