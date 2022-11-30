@@ -8,7 +8,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 {
     use emLoggerTrait;
 
-    private bool $config_loaded = false;
+    private $config_loaded = false;
 
     public $config = array();
     public $shazam_instruments = array(); // An array with key = instrument and values = shazam fields
@@ -396,7 +396,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * Highlight Shazam Fields on the Online Designer
      * @return void
      */
-    private function highlightShazamFields(): void
+    private function highlightShazamFields()
     {
         $instrument = htmlspecialchars($_GET['page'], ENT_QUOTES);
         $this->emDebug("Calling hook_every_page_top on " . PAGE . " as instrument $instrument");
