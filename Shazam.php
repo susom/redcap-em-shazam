@@ -8,6 +8,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 {
     use emLoggerTrait;
 
+    private bool $config_loaded = false;
+
     public $config = array();
     public $shazam_instruments = array(); // An array with key = instrument and values = shazam fields
     public $available_descriptive_fields = array();
@@ -194,19 +196,24 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     public function loadConfig()
     {
-        // Load the config
-        $this->config = json_decode($this->getProjectSetting('shazam-config'), true);
-        $this->emDebug("Config Loaded");
-        // $this->emDebug($this->config, "LOADED CONFIG");
+        if (! $this->config_loaded) {
+            // Load the config
+            $this->config = json_decode($this->getProjectSetting('shazam-config'), true);
+            $this->emDebug("Config Loaded");
 
-        // Migrate over 'shazam-mirror-visibility' in HTML to data-shazam-mirror-visibility
-        $this->migrateShazamMirrorViz();
+            // Migrate over 'shazam-mirror-visibility' in HTML to data-shazam-mirror-visibility
+            $this->migrateShazamMirrorViz();
 
-        // Set shazam instruments too
-        $this->setShazamInstruments();
+            // Set shazam instruments
+            $this->setShazamInstruments();
 
-        // Get backup instruments
-        $this->backup_configs = json_decode($this->getProjectSetting('shazam-config-backups'), true);
+            // Get backup configs
+            $this->backup_configs = json_decode($this->getProjectSetting('shazam-config-backups'), true);
+
+            $this->config_loaded = true;
+        } else {
+            $this->emDebug("Config already loaded");
+        }
     }
 
 
@@ -267,25 +274,23 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      */
     public function saveConfig($newConfig, $saveComment = "") {
 
+        $this->emDebug("This is the newConfig", $newConfig, $this->config);
+
         // Set and save new Config
         $this->config = $newConfig;
-
-        $this->emDebug("This is the newConfig", $newConfig, $this->config);
 
         // Add the metadata tag if it doesn't exist
         if (!isset($this->config[self::KEY_CONFIG_METADATA])) $this->config[self::KEY_CONFIG_METADATA] = [];
 
-        // Save the _MISC_ info to the current version
+        // Save the metadata for the current version
         $ts = time();
         $user = $this->getUser();
         $this->config[self::KEY_CONFIG_METADATA]['last_modified']       = date('Y-m-d H:i:s', $ts);
         $this->config[self::KEY_CONFIG_METADATA]['last_modified_by']    = $user->getUsername();
         $this->config[self::KEY_CONFIG_METADATA]['save_comment']        = $saveComment;
 
-        //self::log(json_encode($this->config), "DEBUG", "Saving this!");
         $this->setProjectSetting('shazam-config', json_encode($this->config));
         $this->emDebug("Config Saved");
-
 
         // Load backups and save current config as new backup
         $backup_configs = $this->backup_configs;
@@ -295,12 +300,12 @@ class Shazam extends \ExternalModules\AbstractExternalModule
         $backup_configs[$ts] = $this->config;
         krsort($backup_configs);
 
-        $this->emDebug("Sorted Keys Before", array_keys($backup_configs));
+        // $this->emDebug("Sorted Keys Before", array_keys($backup_configs));
 
         // Only keep so many copies of backups
         $this->backup_configs = array_slice($backup_configs,0,self::BACKUP_COPIES,true);
 
-        $this->emDebug("Sorted Keys After", array_keys($this->backup_configs));
+        // $this->emDebug("Sorted Keys After", array_keys($this->backup_configs));
 
         $this->setProjectSetting('shazam-config-backups', json_encode($this->backup_configs));
         $this->emDebug(count($this->backup_configs) . " backup configs saved");
@@ -381,62 +386,65 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
 
     function redcap_every_page_top($project_id = null) {
-
-        // ONLY DO STUFF FOR THE ONLINE DESIGNER PAGE:
+        // Highlight Shazam Fields in the online designer
 	    if (PAGE == "Design/online_designer.php") {
-            $this->emDebug("Calling hook_every_page_top on " . PAGE);
-            $instrument = $_GET['page'];
-
-            // Apparently the config usn't loaded?  TODO: TEST THIS.
-            $this->loadConfig();
-
-            // Skip if this instrument doesn't have any shazam fields
-            if (!isset($this->shazam_instruments[$instrument])) {
-                $this->emDebug("$instrument not used");
-                return;
-            }
-
-            //self::log($this);
-            $this->emDebug("PAGE: " . PAGE);
-            $this->emDebug("INSTRUMENT: ". $instrument);
-            $jsUrl = $this->getUrl("js/shazam.js");
-            $consoleLog = $this->getProjectSetting("enable-project-console-logging");
-
-            // Highlight shazam fields on the page
-            ?>
-            <script src='<?php echo $jsUrl; ?>'></script>
-            <script>
-                if (typeof Shazam === "undefined") {
-                    alert("This page uses an external module called 'Shazam' but due to a configuration error " +
-                        "the module is not loading the required javascript library correctly.\n\n" +
-                        "There is a parameter in the system configuration page (under External Modules) you might try changing " +
-                        "and see if that makes a difference.\n\nPlease notify the project administrator.\n\n" +
-                        "URL: <?php echo $jsUrl ?>"
-                    );
-                } else {
-                    Shazam.fields = <?php echo json_encode($this->shazam_instruments[$instrument]); ?>;
-                    Shazam.isDev = <?php echo $consoleLog ? 1 : 0; ?>;
-                    $(document).ready(function () {
-                        Shazam.highlightFields();
-                    });
-                }
-            </script>
-            <style>
-                .shazam-label {
-                    z-index: 1000;
-                    float: right;
-                    padding: 3px;
-                    margin-right: 10px;
-                }
-
-                .shazam-label:hover {
-                    cursor: pointer;
-                }
-
-            </style>
-            <?php
+            $this->highlightShazamFields();
         }
 	}
+
+    /**
+     * Highlight Shazam Fields on the Online Designer
+     * @return void
+     */
+    private function highlightShazamFields(): void
+    {
+        $instrument = htmlspecialchars($_GET['page'], ENT_QUOTES);
+        $this->emDebug("Calling hook_every_page_top on " . PAGE . " as instrument $instrument");
+        $this->loadConfig();
+
+        // Skip if this instrument doesn't have any shazam fields
+        if (!isset($this->shazam_instruments[$instrument])) {
+            $this->emDebug("$instrument not used");
+            return;
+        }
+
+        $js_url = $this->getUrl("js/shazam.js");
+        $console_log = $this->getProjectSetting("enable-project-console-logging");
+
+        // Highlight shazam fields on the page
+        ?>
+        <script src='<?php echo $js_url; ?>'></script>
+        <script>
+            if (typeof Shazam === "undefined") {
+                alert("This page uses an external module called 'Shazam' but due to a configuration error " +
+                    "the module is not loading the required javascript library correctly.\n\n" +
+                    "There is a parameter in the system configuration page (under External Modules) you might try changing " +
+                    "and see if that makes a difference.\n\nPlease notify the project administrator.\n\n" +
+                    "URL: <?php echo $js_url ?>"
+                );
+            } else {
+                Shazam.fields = <?php echo json_encode($this->shazam_instruments[$instrument]); ?>;
+                Shazam.isDev = <?php echo $console_log ? 1 : 0; ?>;
+                $(document).ready(function () {
+                    Shazam.highlightFields();
+                });
+            }
+        </script>
+        <style>
+            .shazam-label {
+                z-index: 1000;
+                float: right;
+                padding: 3px;
+                margin-right: 10px;
+            }
+
+            .shazam-label:hover {
+                cursor: pointer;
+            }
+
+        </style>
+        <?php
+    }
 
 
     /**
@@ -458,14 +466,14 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      *
      * @param $project_id
      * @param $instrument
+     * @param bool $isSurvey
      */
-    function shazamIt($project_id, $instrument, $isSurvey = false) {
+    function shazamIt($project_id, $instrument, bool $isSurvey = false) {
 
         $this->emDebug("Evaluating ShazamIt for $instrument");
-
-        // Determine if any of the current shazam-enabled fields are on the current instrument
         $this->loadConfig();
 
+        // Determine if any of the current shazam-enabled fields are on the current instrument
         if(isset($this->shazam_instruments[$instrument])) {
 
             // We are active!
@@ -483,29 +491,22 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                 );
 
                 if (!empty($params['css'])) {
-                    print "<style type='text/css'>" . $params['css'] . "</style>";
+                    print "<style>" . $params['css'] . "</style>";
                 }
                 if (!empty($params['javascript'])) {
                     print "<script type='text/javascript'>" . $params['javascript'] . "</script>";
                 }
             }
 
-            // self::log($shazamParams, $shazamParams);
-            // global $auth_meth;
-			// $is_above_843 = REDCap::versionCompare(REDCAP_VERSION, '8.4.3') >= 0;
-			// $this->emDebug($auth_meth, $is_above_843);
-            //
-			// $js_url = $is_above_843  ? $this->getUrl("js/shazam.js", true, true) : $this->getUrl("js/shazam.js");
-			// //$js_url = $this->getUrl("js/shazam.js", true, true);
-
+            // In the early days of EMs (and still today) there were lots of issues with Shibboleth
+            // servers and url permissions.  Shazam offered options to use the API endpoint which
+            // is typically not Shib protected and would work for shib setups
             $skipApi = $this->getProjectSetting("do-not-use-api-endpoint");
             $inline = $this->getSystemSetting("shazam-inline-js");
             $consoleLog = $this->getProjectSetting("enable-project-console-logging");
-            if ($skipApi) {
-                $jsUrl = $this->getUrl("js/shazam.js");
-            } else {
-                $jsUrl = $this->getUrl('js/shazam.js', false, true);
-            }
+
+            // Get shazam js url
+            $jsUrl = $skipApi ? $this->getUrl("js/shazam.js") : $this->getUrl('js/shazam.js', false, true);
 
             // Inject JavaScript.
             if ($inline) {
@@ -535,11 +536,10 @@ class Shazam extends \ExternalModules\AbstractExternalModule
                         });
                     }
                 </script>
-                <style type='text/css'>
+                <style>
                     #form {opacity: 0;}
                     .shazam-vanished { z-index: -9999; }
                 </style>
-
             <?php
 
         } else {

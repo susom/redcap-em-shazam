@@ -1,8 +1,11 @@
 <?php
+namespace Stanford\Shazam;
+
 // SHOW TABLE OF CONFIGURED SHAZAM OPTIONS
-/** @var \Stanford\Shazam\Shazam $module */
+/** @var Shazam $module */
 
 $module->loadConfig();
+$user = $module->getUser();
 
 /**
  * Handle calls from the configuration page
@@ -11,17 +14,16 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	$module->emDebug($_POST, "DEBUG", "INCOMING POST");
 
 	// Parse required fields
-	$field_name = !empty($_POST['field_name'])  ? filter_var( $_POST['field_name'], FILTER_SANITIZE_STRING) : "";
-	$action     = !empty($_POST['action'])      ? filter_var( $_POST['action'], FILTER_SANITIZE_STRING)     : "";
+	$field_name = !empty($_POST['field_name'])  ? htmlspecialchars( $_POST['field_name'], ENT_QUOTES) : "";
+	$action     = !empty($_POST['action'])      ? htmlspecialchars( $_POST['action'], ENT_QUOTES)     : "";
 
 	// Get some instrument information as well:
     global $Proj;
     $instrument         = !empty($field_name) ? $Proj->metadata[$field_name]['form_name'] : "";
-    $instrument_fields  = !empty($instrument) ? $Proj->forms[$instrument]['fields'] : "";
+    $instrument_fields  = !empty($instrument) ? $Proj->forms[$instrument]['fields']       : "";
 
 	if ($action == "create") {
         // Create a default entry for the new field and save it.  Then render the edit page.
-        // print "Create $field_name";
         $module->addDefaultField($field_name);
         $action = "edit";
     }
@@ -29,30 +31,9 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
     // Get the current config as a variable
     $config = $module->config;
 
-//    if ($action == "add-example") {
-//	    // see if the field doesn't already exist
-//        if (isset($config[$field_name])) {
-//            // Already exists - can't do anything
-//            $module->emDebug("$field_name already exists as an example module");
-//        } else {
-//            // load the example config
-//            $example_config = $module->getExampleConfig();
-//
-//            $module->emDebug("Example Config", $example_config);
-//
-//            if ($example_config) {
-//                // Giving up on this for the moment..
-//                $_POST['$params'] = $example_config;
-//                $_POST['comments'] = "Adding example config";
-//                $action = "save";
-//            };
-//        }
-//    }
-
     switch ($action) {
         case "edit":
 			// Verify edit is valid and then render the 'edit' page.
-			//print "Edit $field_name";
 			// Plugin::log($module->config, "DEBUG", "this->config");
 			// Render the editor
 			require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
@@ -217,35 +198,34 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             </style>
 
             <?php
-
-			require_once APP_PATH_DOCROOT . 'ProjectGeneral/footer.php';
-
-            $user = $module->getUser();
-
+    			require_once APP_PATH_DOCROOT . 'ProjectGeneral/footer.php';
 			?>
 			<script>
-                Shazam.su     = <?php echo ($user->isSuperUser() ? 1 : 0); ?>;
+                Shazam.su          = <?php echo ($user->isSuperUser() ? 1 : 0); ?>;
                 Shazam.currentUser = <?php echo json_encode($user->getUsername()); ?>;
-                Shazam.config = <?php echo json_encode($module->config[$field_name]); ?>;
-                Shazam.fields = <?php echo json_encode(array_keys($instrument_fields)); ?>;
-                Shazam.js_users = <?php echo json_encode($module->getJavascriptUsers()); ?>;
+                Shazam.config      = <?php echo json_encode($module->config[$field_name]); ?>;
+                Shazam.fields      = <?php echo json_encode(array_keys($instrument_fields)); ?>;
+                Shazam.js_users    = <?php echo json_encode($module->getJavascriptUsers()); ?>;
                 Shazam.prepareEditors();
             </script>
             <?php
 			exit();
-			break;
         case "save":
 			// SAVE A CONFIGURATION
 			// THIS IS AN AJAX METHOD
-			$params     = $_POST['params'];
-            $comments   = !empty($_POST['comments'])      ? "[$field_name] " . filter_var($_POST['comments'], FILTER_SANITIZE_STRING) : "-";
+			$params_raw  = $_POST['params'];
+            $module->emDebug("Params", $params_raw);
 
+            // Add a database transit to get around psalm
+            $module->setProjectSetting('params_raw', $params_raw);
+            $params = $module->getProjectSetting('params_raw');
+
+            $comments   = !empty($_POST['comments']) ? "[$field_name] " . htmlspecialchars($_POST['comments'], ENT_QUOTES) : "-";
             $exceptions = $module->getJavascriptUsers();
             if (empty($exceptions)) $exceptions = [];
 
             // If not a superuser or user granted access, then you can't change the javascript...  Also prevent someone from trying to inject a change into the post
-            $user = $module->getUser();
-            if (! $user->isSuperUser() && !in_array($user->getUsername(), $exceptions)) {
+            if (!$user->isSuperUser() && !in_array($user->getUsername(), $exceptions)) {
                 // Is there an existing js
                 if (!empty($config[$field_name]['javascript'])) {
                     $module->emDebug("js is not empty - keeping original value since not a superuser");
@@ -264,18 +244,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 
             // Add or update config
 			$new_config = empty($config) ? $update : array_merge($config, $update);
-            //$module::log($update, "DEBUG", "UPDATE");
             //$module::log($new_config, "DEBUG", "new_config");
 
 			// Save and backup the Config
 			$return = $module->saveConfig($new_config, $comments);
 
-			// $return = $module->setProjectSetting('shazam-config', json_encode($new_config));
-			// Plugin::log($return, "DEBUG", "STAUTS of setProjectSetting");
 			header('Content-Type: application/json');
 			print json_encode($return);
 			exit();
-            break;
 
         case "delete":
 			unset($config[$field_name]);
@@ -310,17 +286,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
             $module->emDebug("Removing JS Permissions for {$username}");
             $module->removeJavascriptUser($username);
             break;
+
         default:
 			print "Unknown action";
 	}
 }
 
-
-
 # Render Table Page
 require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
-$user = $module->getUser();
-//redcap_info();
 ?>
 <style>
     #shazam td { vertical-align: middle; }
@@ -328,7 +301,6 @@ $user = $module->getUser();
     <?php
         $jsUsers = $module->getJavascriptUsers();
         if (empty($jsUsers)) echo ".js-users {display:none;}";
-        //if(count($module->getJavascriptUsers()) === 0) echo ".js-users { display:none; }";
     ?>
     .table th {font-weight: bold;}
 </style>
@@ -336,7 +308,8 @@ $user = $module->getUser();
 <h3>Shazam Fields</h3>
 
 <p>
-    This is a table of descriptive fields in your project that have been configured with Shazam's powers.  Click on the add button below to get started.  More instructions are available when you are actually editing the Shazam configuration.
+    This is a table of descriptive fields in your project that have been configured with Shazam's powers.  Click on the
+    add button below to get started.  More instructions are available when you are actually editing the Shazam configuration.
 </p>
 
 <div class="shazam-table">
@@ -368,75 +341,59 @@ $user = $module->getUser();
         </div>
     </div>
     <?php
-
-    if($module->getProjectSetting('enable-add-user-javascript-permissions') && $user->isSuperUser()) {
-
-        ?>
-            <div class="btn-group">
-                <button type="button"  class="grant-permission btn btn-sm btn-warning"
-                        aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#addUserModal">Grant Javascript Permissions</button>
-            </div>
-        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Select User to Grant Javascript
-                            Permissions</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Note that the user has to be added to the project before this step can be completed</p>
-                        <select class="custom-select">
-                            <?php echo($module->getUserOptions()); ?>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" id="add-user-js" class="btn btn-primary">Add</button>
-                    </div>
+        if($module->getProjectSetting('enable-add-user-javascript-permissions') && $user->isSuperUser()) {
+    ?>
+    <div class="btn-group">
+        <button type="button"  class="grant-permission btn btn-sm btn-warning"
+                aria-haspopup="true" aria-expanded="false" data-toggle="modal" data-target="#addUserModal">Grant Javascript Permissions</button>
+    </div>
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Select User to Grant Javascript
+                        Permissions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Note that the user has to be added to the project before this step can be completed</p>
+                    <select class="custom-select">
+                        <?php echo($module->getUserOptions()); ?>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="add-user-js" class="btn btn-primary">Add</button>
                 </div>
             </div>
         </div>
-       <div class="mt-5 js-users">
-           <h5>Users with JS editing permissions</h5>
-           <hr>
-            <table class=" w-50 table table-striped table-bordered table-condensed" cellspacing="0">
-                <thead>
-                    <tr>
-                        <td><strong>Username</strong></td>
-                        <td><strong>Remove</strong></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php echo($module->renderJSTable()); ?>
-                </tbody>
-            </table>
-       </div>
-
-
-
+    </div>
+    <div class="mt-5 js-users">
+        <h5>Users with JS editing permissions</h5>
+        <hr>
+        <table class=" w-50 table table-striped table-bordered table-condensed" cellspacing="0">
+            <thead>
+                <tr>
+                    <td><strong>Username</strong></td>
+                    <td><strong>Remove</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php echo($module->renderJSTable()); ?>
+            </tbody>
+        </table>
+    </div>
     <?php
         }
     ?>
-    <?php if (!isset($config['shaz_ex_desc_field'])) { ?>
-
-<!--    <div class="pull-right">-->
-<!--        <p>-->
-<!--            <div class="btn btn-info btn-sm add-example" aria-haspopup="true" aria-expanded="false">-->
-<!--                <i class="fas fa-plus-square"></i> Add Example Field-->
-<!--            </div>-->
-<!--        </p>-->
-<!--    </div>-->
-    <?php } ?>
 </div>
 
-<form id="action-form" name="action" class="hidden" method="POST">
-</form>
+<form id="action-form" name="action" class="hidden" method="POST"></form>
 
 <script src="<?php echo $module->getUrl('js/config.js'); ?>"></script>
+
 <script>
     Shazam.prepareTable();
 </script>
-
