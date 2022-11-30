@@ -30,7 +30,8 @@
       "1.3.7": "escape descriptive field info",
       "1.3.8": "Adding option to allow select regular users to edit javascript",
       "1.3.9": "Fix for PHP8 around count",
-      "1.3.10": "Fix for PHP8 around SUPER_USER constant"
+      "1.3.10": "Fix for PHP8 around SUPER_USER constant",
+      "1.3.11": "Another fix for php8 around javascript allow_users array"
     }
   ],
 

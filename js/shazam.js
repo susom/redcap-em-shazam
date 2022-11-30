@@ -1,7 +1,6 @@
 // SHAZAM JS FILE USED FOR BOTH CONFIG AND ACTUAL ADMINISTRATION OF SHAZAM INSTRUMENTS
 var Shazam = Shazam || {};
 
-
 // These counters are for when we need to delay transformation for dropdown auto-complete fields
 Shazam.maxTransformDelays = 5;
 Shazam.transformDelays = 0;
@@ -10,7 +9,6 @@ Shazam.hideDuration = Shazam.hideDuration || 0;
 
 // This is a callback that can be registered that you can call before Shazam displays the page
 Shazam.beforeDisplayCallback = Shazam.beforeDisplayCallback || null;
-
 
 
 /**
