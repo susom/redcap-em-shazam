@@ -54,7 +54,7 @@
     }
   ],
 
-  "framework-version": 5,
+  "framework-version": 9,
 
   "permissions": [
     "redcap_survey_page_top",
