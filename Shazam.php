@@ -322,7 +322,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * @param null $page
      * @return bool|null
      */
-    public function redcap_module_link_check_display($project_id, $link, $record = null, $instrument = null, $instance = null, $page = null) {
+    public function redcap_module_link_check_display($project_id, $link) {
         $result = false;
         // Evaluate all links for now - in the future you might have different rules for different links...
         if (@$link['name'] == "Shazam Setup" && !empty($project_id)) {
@@ -373,13 +373,13 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     }
 
 
-    function  redcap_survey_page_top($project_id, $record = NULL, $instrument, $event_id, $group_id = NULL, $survey_hash = NULL, $response_id = NULL, $repeat_instance = 1) {
+    function  redcap_survey_page_top($project_id, $record, $instrument, $event_id, $group_id, $survey_hash, $response_id, $repeat_instance) {
 		// self::log("Calling from hook_survey_page_top");
         $this->shazamIt($project_id,$instrument, true);
 	}
 
 
-    function  redcap_data_entry_form_top($project_id, $record = NULL, $instrument, $event_id, $group_id = NULL, $repeat_instance = 1) {
+    function  redcap_data_entry_form_top($project_id, $record, $instrument, $event_id, $group_id, $repeat_instance) {
         // self::log("Calling from hook_data_entry_form_top");
         $this->shazamIt($project_id,$instrument);
     }
@@ -468,7 +468,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * @param $instrument
      * @param bool $isSurvey
      */
-    function shazamIt($project_id, $instrument, bool $isSurvey = false) {
+    function shazamIt($project_id, $instrument, $isSurvey = false) {
 
         $this->emDebug("Evaluating ShazamIt for $instrument");
         $this->loadConfig();
@@ -711,29 +711,28 @@ class Shazam extends \ExternalModules\AbstractExternalModule
 
 
 
-    private static function renderTable($id, $header=array(), $table_data) {
+    private static function renderTable($id, $header, $table_data) {
 		//Render table
 		$grid =
 			'<table id="'.$id.'" class="table table-striped table-bordered table-condensed" cellspacing="0" width="100%">';
 
 		$grid .= self::renderHeaderRow($header, 'thead');
-//        $grid .= self::renderHeaderRow($header, 'tfoot');
 		$grid .= self::renderTableRows($table_data);
 		$grid .= '</table>';
 
 		return $grid;
 	}
 
-	private static function renderHeaderRow($header = array(), $tag) {
+	private static function renderHeaderRow($header, $tag) {
         $row = '<'.$tag.'><tr>';
         foreach ($header as $col_key => $this_col) {
-        $row .=  '<th>'.$this_col.'</th>';
+            $row .=  '<th>'.$this_col.'</th>';
         }
         $row .= '</tr></'.$tag.'>';
         return $row;
     }
 
-    private static function renderTableRows($row_data=array()) {
+    private static function renderTableRows($row_data) {
     	$rows = '';
         foreach ($row_data as $row_key=>$this_row) {
             $rows .= '<tr>';
