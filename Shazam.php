@@ -198,7 +198,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     {
         if (! $this->config_loaded) {
             // Load the config
-            $this->config = json_decode($this->getProjectSetting('shazam-config'), true);
+            $this->config = json_decode($this->getProjectSetting('shazam-config') ?? "[]", true);
             $this->emDebug("Config Loaded");
 
             // Migrate over 'shazam-mirror-visibility' in HTML to data-shazam-mirror-visibility
@@ -223,7 +223,7 @@ class Shazam extends \ExternalModules\AbstractExternalModule
      * https://github.com/susom/redcap-em-shazam/issues/13
      */
     public function migrateShazamMirrorViz() {
-        $config = $this->config;
+        $config = $this->config ?? [];
 
         // Use a regex to replace shazam-mirror-visibility...
         $re = '/(?<!data-)shazam-mirror-visibility/m';
@@ -341,8 +341,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
     function setShazamInstruments() {
         global $Proj;
         $this->shazam_instruments = array();
-
-        foreach ($this->config as $field_name => $detail) {
+        $config = $this->config ?? [];
+        foreach ($config as $field_name => $detail) {
             if ($field_name == self::KEY_CONFIG_METADATA) continue;
 
             // Skip invalid fields
