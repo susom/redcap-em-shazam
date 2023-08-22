@@ -208,7 +208,8 @@ class Shazam extends \ExternalModules\AbstractExternalModule
             $this->setShazamInstruments();
 
             // Get backup configs
-            $this->backup_configs = json_decode($this->getProjectSetting('shazam-config-backups'), true);
+            $shazamBackups = $this->getProjectSetting('shazam-config-backups') ?? "";
+            $this->backup_configs = json_decode($shazamBackups, true);
 
             $this->config_loaded = true;
         } else {
