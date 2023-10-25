@@ -96,7 +96,7 @@ $(document.ready( function() {
 
 ### Example Projects
 Here is a consortium post with a nice example:
-https://community.projectredcap.org/content/idea/78670/shazam-sample-project.html
+https://redcap.vanderbilt.edu/community/post.php?id=78670
 
 Also, there is a project xml file built into this project here:
 [Example xml](assets/example_project_xml/ShazamTestProject.REDCap.xml)
