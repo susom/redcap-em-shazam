@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
 	// Get some instrument information as well:
     global $Proj;
     $instrument         = !empty($field_name) ? $Proj->metadata[$field_name]['form_name'] : "";
-    $instrument_fields  = !empty($instrument) ? $Proj->forms[$instrument]['fields']       : "";
+    $instrument_fields  = !empty($instrument) ? $Proj->forms[$instrument]['fields']       : [];
 
 	if ($action == "create") {
         // Create a default entry for the new field and save it.  Then render the edit page.
